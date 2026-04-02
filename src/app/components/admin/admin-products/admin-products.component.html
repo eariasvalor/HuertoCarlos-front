@@ -1,1 +1,120 @@
-<p>admin-products.component works!</p>,
+<div class="products-wrapper">
+
+  <app-navbar />
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Products</h1>
+      <p>Manage your catalogue</p>
+    </div>
+    <button class="btn-add" (click)="openCreateModal()">+ Add product</button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="alert-error">{{ errorMessage() }}</div>
+  }
+
+  @if (isLoading()) {
+    <div class="loading">Loading products...</div>
+  } @else if (products().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">🍅</div>
+      <p>No products yet</p>
+    </div>
+  } @else {
+    <div class="products-list">
+      @for (product of products(); track product.id) {
+        <div class="product-card">
+          <img class="product-img" [src]="getImage(product)" [alt]="product.name" />
+          <div class="product-info">
+            <div class="product-name">{{ product.name }}</div>
+            <div class="product-variety">{{ product.variety }} · {{ product.category }}</div>
+            <div class="product-meta">
+              {{ product.price | number:'1.2-2' }} € / {{ product.unit | lowercase }} · Stock: {{ product.stock }}
+            </div>
+          </div>
+          <span class="badge" [class.badge-available]="product.available" [class.badge-unavailable]="!product.available"
+            (click)="toggleAvailability(product)" style="cursor:pointer">
+            {{ product.available ? 'Available' : 'Unavailable' }}
+          </span>
+          <div class="product-actions">
+            <button class="action-btn" (click)="openEditModal(product)">Edit</button>
+            <button class="action-btn" (click)="openStockModal(product)">Stock</button>
+            <button class="action-btn danger" (click)="deleteProduct(product)">Delete</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (showModal()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <h2>{{ editingProduct() ? 'Edit product' : 'Add product' }}</h2>
+
+        <form [formGroup]="form" (ngSubmit)="saveProduct()" novalidate>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" formControlName="name" placeholder="Product name" />
+          </div>
+          <div class="form-group">
+            <label>Variety</label>
+            <select formControlName="varietyId">
+              <option value="">Select variety</option>
+              @for (variety of varieties(); track variety.id) {
+                <option [value]="variety.id">{{ variety.name }}</option>
+              }
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Price (€)</label>
+              <input type="number" formControlName="price" step="0.01" placeholder="0.00" />
+            </div>
+            <div class="form-group">
+              <label>Unit</label>
+              <select formControlName="unit">
+                @for (u of units; track u) {
+                  <option [value]="u">{{ u }}</option>
+                }
+              </select>
+            </div>
+          </div>
+          @if (!editingProduct()) {
+            <div class="form-group">
+              <label>Initial stock</label>
+              <input type="number" formControlName="stock" placeholder="0" />
+            </div>
+          }
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn-save" [disabled]="form.invalid || isSubmitting()">
+              @if (isSubmitting()) { Saving... } @else { Save product }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  @if (showStockModal()) {
+    <div class="modal-overlay" (click)="closeStockModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <h2>Update stock — {{ selectedProduct()?.name }}</h2>
+        <form [formGroup]="stockForm" (ngSubmit)="saveStock()" novalidate>
+          <div class="form-group">
+            <label>New stock quantity</label>
+            <input type="number" formControlName="quantity" placeholder="0" />
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" (click)="closeStockModal()">Cancel</button>
+            <button type="submit" class="btn-save" [disabled]="stockForm.invalid || isSubmitting()">
+              @if (isSubmitting()) { Saving... } @else { Update stock }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+</div>
