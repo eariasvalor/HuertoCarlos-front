@@ -10,10 +10,11 @@
 .login-card {
   background: white;
   border-radius: 16px;
-  padding: 2.5rem 2rem;
+  padding: 2.5rem;
   width: 100%;
   max-width: 380px;
   border: 0.5px solid #F7C1C1;
+  box-sizing: border-box;
 }
 
 .login-header {
@@ -58,6 +59,7 @@
 
   input {
     width: 100%;
+    box-sizing: border-box;
     padding: 11px 14px;
     border: 1.5px solid #F0C0C0;
     border-radius: 10px;
@@ -70,6 +72,11 @@
     &:focus { border-color: #A32D2D; }
     &.error { border-color: #E24B4A; }
     &::placeholder { color: #B4B2A9; }
+
+    &:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      -webkit-text-fill-color: #2C2C2A;
+    }
   }
 }
 
@@ -92,6 +99,7 @@
 
 button[type="submit"] {
   width: 100%;
+  box-sizing: border-box;
   padding: 13px;
   background: #A32D2D;
   color: white;
