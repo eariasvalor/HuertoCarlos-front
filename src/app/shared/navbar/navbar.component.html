@@ -1,1 +1,20 @@
-<p>navbar.component works!</p>,
+<nav class="navbar">
+  <div class="nav-left">
+    <a routerLink="/" class="nav-brand">
+      <span class="nav-icon">🍅</span>
+      El Huerto de Carlos
+    </a>
+  </div>
+
+  <div class="nav-actions">
+    @if (isAuthenticated()) {
+      <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catalogue</a>
+      <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
+      <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
+      <button class="nav-btn nav-btn-signout" (click)="logout()">Sign out</button>
+    } @else {
+      <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>
+      <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">Register</a>
+    }
+  </div>
+</nav>

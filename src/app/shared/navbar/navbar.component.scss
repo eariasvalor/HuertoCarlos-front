@@ -1,3 +1,63 @@
-:host {
-  display: block;
+.navbar {
+  background: #791F1F;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-brand {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.nav-icon { font-size: 20px; }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover { background: rgba(255,255,255,0.25); }
+
+  &.active {
+    background: rgba(255,255,255,0.25);
+    font-weight: 500;
+  }
+
+  &.nav-btn-primary {
+    background: white;
+    color: #791F1F;
+    font-weight: 500;
+
+    &:hover { background: #FCEBEB; }
+  }
+
+  &.nav-btn-signout {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+
+    &:hover { background: rgba(255,255,255,0.15); }
+  }
 }

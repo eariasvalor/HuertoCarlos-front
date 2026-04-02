@@ -1,18 +1,9 @@
 <div class="orders-wrapper">
 
-  <nav class="navbar">
-  <button class="nav-btn nav-back" (click)="goBack()">← Back</button>
-  <div class="nav-brand">
-    <span class="nav-icon">🍅</span>
-    El Huerto de Carlos
-  </div>
-  <div class="nav-actions">
-    <a routerLink="/" class="nav-btn">Catalogue</a>
-    <a routerLink="/profile" class="nav-btn">Profile</a>
-  </div>
-</nav>
+  <app-navbar />
 
   <div class="header">
+    <button class="btn-back" (click)="goBack()">← Back</button>
     <h1>My orders</h1>
     <p>Track your orders from the field</p>
   </div>

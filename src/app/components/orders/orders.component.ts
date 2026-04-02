@@ -5,11 +5,12 @@ import { OrderService } from '../../core/services/order.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Order, OrderStatus } from '../../core/model/order.model';
 import { Location } from '@angular/common';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NavbarComponent],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })

@@ -1,20 +1,6 @@
 <div class="catalogue-wrapper">
 
-  <nav class="navbar">
-    <div class="nav-brand">
-      <span class="nav-icon">🍅</span>
-      El Huerto de Carlos
-    </div>
-    <div class="nav-actions">
-      @if (isAuthenticated()) {
-        <a routerLink="/orders" class="nav-btn">My orders</a>
-        <a routerLink="/profile" class="nav-btn">Profile</a>
-        <button class="nav-btn" (click)="logout()">Sign out</button>
-      } @else {
-        <a routerLink="/login" class="nav-btn nav-btn-primary">Sign in</a>
-      }
-    </div>
-  </nav>
+  <app-navbar />
 
   <div class="hero">
     <h1>Today's catalogue</h1>

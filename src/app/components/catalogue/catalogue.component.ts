@@ -6,6 +6,8 @@ import { OrderService } from '../../core/services/order.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Product } from '../../core/model/product.model';
 import { getProductImage } from '../../core/utils/product-image.util';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
+
 
 interface CartItem {
   product: Product;
@@ -15,7 +17,7 @@ interface CartItem {
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, NavbarComponent],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.scss'
 })
