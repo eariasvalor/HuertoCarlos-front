@@ -1,3 +1,133 @@
-:host {
+.register-wrapper {
+  min-height: 100vh;
+  background: #FCEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.register-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 380px;
+  border: 0.5px solid #F7C1C1;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #501313;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 13px;
+    color: #A32D2D;
+  }
+}
+
+.tomato-icon {
+  width: 64px;
+  height: 64px;
+  background: #A32D2D;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 30px;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444441;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid #F0C0C0;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #2C2C2A;
+    outline: none;
+    background: white;
+    transition: border-color 0.15s;
+
+    &:focus { border-color: #A32D2D; }
+    &.error { border-color: #E24B4A; }
+    &::placeholder { color: #B4B2A9; }
+  }
+}
+
+.error-msg {
   display: block;
+  font-size: 12px;
+  color: #E24B4A;
+  margin-top: 4px;
+}
+
+.alert-error {
+  background: #FCEBEB;
+  border: 1px solid #F7C1C1;
+  color: #791F1F;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 13px;
+  background: #A32D2D;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.15s;
+
+  &:hover:not(:disabled) { background: #791F1F; }
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 13px;
+  color: #888780;
+
+  a {
+    color: #A32D2D;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+}
+
+.tagline {
+  font-size: 11px;
+  color: #B4B2A9;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 0.5px solid #F7C1C1;
+  letter-spacing: 0.02em;
 }
