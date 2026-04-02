@@ -1,3 +1,125 @@
-:host {
-  display: block;
+.dashboard-wrapper {
+  min-height: 100vh;
+  background: #FCEBEB;
+  padding-bottom: 2rem;
+}
+
+.header {
+  padding: 1.5rem 1.5rem 1rem;
+
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #501313;
+    margin-bottom: 4px;
+  }
+
+  p { font-size: 13px; color: #A32D2D; }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 1.5rem 1.5rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  border: 0.5px solid #F7C1C1;
+  padding: 1rem;
+
+  &.pending .stat-value   { color: #854F0B; }
+  &.confirmed .stat-value { color: #27500A; }
+  &.preparation .stat-value { color: #185FA5; }
+  &.ready .stat-value     { color: #085041; }
+  &.cancelled .stat-value { color: #5F5E5A; }
+
+  &.total {
+    grid-column: span 1;
+    background: #791F1F;
+    border-color: #791F1F;
+
+    .stat-label { color: rgba(255,255,255,0.7); }
+    .stat-value { color: white; font-size: 36px; }
+  }
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #888780;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 500;
+  color: #501313;
+}
+
+.section-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #501313;
+  padding: 0 1.5rem;
+  margin-bottom: 10px;
+}
+
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 1.5rem;
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 0.5px solid #F7C1C1;
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover { background: #FDF5F5; }
+}
+
+.link-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #FCEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.link-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2C2C2A;
+}
+
+.link-sub {
+  font-size: 11px;
+  color: #888780;
+  margin-top: 2px;
+}
+
+.arrow {
+  color: #A32D2D;
+  font-size: 16px;
 }

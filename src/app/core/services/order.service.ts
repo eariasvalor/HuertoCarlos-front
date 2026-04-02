@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Order, CreateOrderRequest } from '../model/order.model';
+import { Order, CreateOrderRequest, OrderStats } from '../model/order.model';
 import { PageResponse } from '../model/product.model';
 import { environment } from '../../../environments/environment';
+
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
@@ -37,4 +38,8 @@ export class OrderService {
   cancel(id: string): Observable<Order> {
     return this.http.patch<Order>(`${this.API}/orders/${id}/cancel`, {});
   }
+
+  getStats(): Observable<OrderStats> {
+  return this.http.get<OrderStats>(`${this.API}/admin/orders/stats`);
+}
 }

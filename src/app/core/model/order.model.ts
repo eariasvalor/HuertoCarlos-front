@@ -31,3 +31,12 @@ export interface CreateOrderRequest {
   customerId: string;
   lines: { productId: string; quantity: number }[];
 }
+
+export interface OrderStats {
+  pendingConfirmation: number;
+  confirmed: number;
+  inPreparation: number;
+  readyForPickup: number;
+  cancelled: number;
+  total: number;
+}

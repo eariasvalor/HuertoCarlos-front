@@ -31,6 +31,11 @@ export const routes: Routes = [
       import('./components/profile/profile.component').then(m => m.ProfileComponent)
   },
   {
+  path: 'admin/login',
+  loadComponent: () =>
+    import('./components/admin/admin-login/admin-login.component').then(m => m.AdminLoginComponent)
+},
+  {
     path: 'admin-dashboard',
     pathMatch: 'full',
     redirectTo: 'admin'

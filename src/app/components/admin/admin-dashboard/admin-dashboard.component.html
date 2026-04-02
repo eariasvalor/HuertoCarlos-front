@@ -1,1 +1,84 @@
-<p>admin-dashboard works!</p>
+<div class="dashboard-wrapper">
+
+  <app-navbar />
+
+  <div class="header">
+    <h1>Admin dashboard</h1>
+    <p>Overview of orders and operations</p>
+  </div>
+
+  @if (stats(); as s) {
+    <div class="stats-grid">
+  <div class="stat-card pending">
+    <div class="stat-label">Pending</div>
+    <div class="stat-value">{{ s.pendingConfirmation }}</div>
+  </div>
+  <div class="stat-card confirmed">
+    <div class="stat-label">Confirmed</div>
+    <div class="stat-value">{{ s.confirmed }}</div>
+  </div>
+  <div class="stat-card preparation">
+    <div class="stat-label">In preparation</div>
+    <div class="stat-value">{{ s.inPreparation }}</div>
+  </div>
+  <div class="stat-card ready">
+    <div class="stat-label">Ready</div>
+    <div class="stat-value">{{ s.readyForPickup }}</div>
+  </div>
+  <div class="stat-card cancelled">
+    <div class="stat-label">Cancelled</div>
+    <div class="stat-value">{{ s.cancelled }}</div>
+  </div>
+  <div class="stat-card total">
+    <div class="stat-label">Total orders</div>
+    <div class="stat-value">{{ s.total }}</div>
+  </div>
+</div>
+  }
+
+  <div class="section-title">Manage</div>
+
+  <div class="quick-links">
+    <a routerLink="/admin/orders" class="quick-link">
+      <div class="link-left">
+        <div class="link-icon">📋</div>
+        <div class="link-info">
+          <div class="link-name">Orders</div>
+          <div class="link-sub">View and manage all orders</div>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+    <a routerLink="/admin/products" class="quick-link">
+      <div class="link-left">
+        <div class="link-icon">🍅</div>
+        <div class="link-info">
+          <div class="link-name">Products</div>
+          <div class="link-sub">Manage catalogue and stock</div>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+    <a routerLink="/admin/varieties" class="quick-link">
+      <div class="link-left">
+        <div class="link-icon">🌱</div>
+        <div class="link-info">
+          <div class="link-name">Varieties</div>
+          <div class="link-sub">Manage product varieties</div>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+    <a routerLink="/admin/customers" class="quick-link">
+      <div class="link-left">
+        <div class="link-icon">👥</div>
+        <div class="link-info">
+          <div class="link-name">Customers</div>
+          <div class="link-sub">View registered customers</div>
+        </div>
+      </div>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+
+</div>

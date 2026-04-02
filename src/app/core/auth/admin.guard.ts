@@ -7,13 +7,13 @@ export const adminGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   if (!authService.isAuthenticated()) {
-    router.navigate(['/login']);
+    router.navigate(['/admin/login']);
     return false;
   }
 
   const token = authService.token();
   if (!token) {
-    router.navigate(['/login']);
+    router.navigate(['/admin/login']);
     return false;
   }
 
@@ -21,10 +21,10 @@ export const adminGuard: CanActivateFn = () => {
     const payload = JSON.parse(atob(token.split('.')[1]));
     if (payload.role === 'ADMIN') return true;
   } catch {
-    router.navigate(['/login']);
+    router.navigate(['/admin/login']);
     return false;
   }
 
-  router.navigate(['/']);
+  router.navigate(['/admin/login']);
   return false;
 };

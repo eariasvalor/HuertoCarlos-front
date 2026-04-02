@@ -95,4 +95,8 @@ export class AuthService {
       return null;
     }
   }
+
+  saveAdminToken(token: string) {
+  this.saveToken(token);
+}
 }
