@@ -20,12 +20,17 @@ export class OrderService {
     return this.http.get<Order>(`${this.API}/orders/${id}`);
   }
 
-  getAll(page = 0, size = 20, status?: string): Observable<PageResponse<Order>> {
+  getAll(page = 0, size = 20, status?: string, customerId?: string): Observable<PageResponse<Order>> {
   let params = new HttpParams()
     .set('page', page)
     .set('size', size);
   if (status) params = params.set('status', status);
+  if (customerId) params = params.set('customerId', customerId);
   return this.http.get<PageResponse<Order>>(`${this.API}/orders`, { params });
+}
+
+revert(id: string): Observable<Order> {
+  return this.http.patch<Order>(`${this.API}/orders/${id}/revert`, {});
 }
 
   getMyOrders(customerId: string, page = 0, size = 20): Observable<PageResponse<Order>> {
@@ -42,4 +47,16 @@ export class OrderService {
   getStats(): Observable<OrderStats> {
   return this.http.get<OrderStats>(`${this.API}/admin/orders/stats`);
 }
+confirm(id: string): Observable<Order> {
+  return this.http.patch<Order>(`${this.API}/orders/${id}/confirm`, {});
+}
+
+startPreparation(id: string): Observable<Order> {
+  return this.http.patch<Order>(`${this.API}/orders/${id}/preparation`, {});
+}
+
+markReady(id: string): Observable<Order> {
+  return this.http.patch<Order>(`${this.API}/orders/${id}/ready`, {});
+}
+
 }

@@ -1,8 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Customer } from '../model/customer.model';
 import { environment } from '../../../environments/environment';
+import { PageResponse } from '../model/product.model';
+
 
 export interface UpdateCustomerRequest {
   name: string;
@@ -22,4 +24,11 @@ export class CustomerService {
   update(id: string, request: UpdateCustomerRequest): Observable<Customer> {
     return this.http.put<Customer>(`${this.API}/customers/${id}`, request);
   }
+
+  getAll(page = 0, size = 100): Observable<PageResponse<Customer>> {
+  const params = new HttpParams()
+    .set('page', page)
+    .set('size', size);
+  return this.http.get<PageResponse<Customer>>(`${this.API}/customers`, { params });
+}
 }

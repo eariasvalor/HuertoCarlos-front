@@ -20,6 +20,7 @@ export interface Order {
   id: string;
   visibleId: string;
   customerId: string;
+  customerName: string;
   lines: OrderLine[];
   status: OrderStatus;
   total: number;

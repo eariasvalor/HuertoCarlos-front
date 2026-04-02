@@ -1,1 +1,97 @@
-<p>admin-orders.component works!</p>,
+<div class="orders-wrapper">
+
+  <app-navbar />
+
+  <div class="header">
+    <h1>Orders</h1>
+    <p>Manage all incoming orders</p>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="alert-error">{{ errorMessage() }}</div>
+  }
+
+  <div class="filters">
+    <div class="filter-row">
+      <span class="filter-label">Customer</span>
+      <select class="filter-select" (change)="selectCustomer($any($event.target).value)">
+        <option value="All">All customers</option>
+        @for (customer of customers(); track customer.id) {
+          <option [value]="customer.id">{{ customer.name }}</option>
+        }
+      </select>
+    </div>
+    <div class="filter-chips">
+      @for (status of ['All', 'PENDING_CONFIRMATION', 'CONFIRMED', 'IN_PREPARATION', 'READY_FOR_PICKUP', 'CANCELLED']; track status) {
+        <button
+          class="filter-chip"
+          [class.active]="selectedStatus() === status"
+          (click)="selectStatus(status)">
+          {{ status === 'All' ? 'All' : statusLabel($any(status)) }}
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">Loading orders...</div>
+  } @else if (orders().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">📋</div>
+      <p>No orders found</p>
+    </div>
+  } @else {
+    <div class="orders-list">
+      @for (order of orders(); track order.id) {
+        <div class="order-card">
+          <div class="order-header">
+            <div>
+              <div class="order-id">{{ order.visibleId }}</div>
+              <div class="order-meta">{{ order.customerName }} · {{ order.createdAt | date:'dd MMM yyyy, HH:mm' }}</div>
+            </div>
+            <span class="status-badge" [ngClass]="statusClass(order.status)">
+              {{ statusLabel(order.status) }}
+            </span>
+          </div>
+
+          <div class="order-lines">
+            @for (line of order.lines; track line.id) {
+              <div class="order-line">
+                <span>{{ line.productName }} × {{ line.quantity }} {{ line.productUnit | lowercase }}</span>
+                <span>{{ line.subtotal | number:'1.2-2' }} €</span>
+              </div>
+            }
+          </div>
+
+          <div class="order-footer">
+            <div class="order-total">Total: {{ order.total | number:'1.2-2' }} €</div>
+            <div class="order-actions">
+              @if (canCancel(order.status)) {
+                <button class="action-btn"
+                  (click)="cancel(order.id)"
+                  [disabled]="processingId() === order.id">
+                  Cancel
+                </button>
+              }
+              @if (canRevert(order.status)) {
+                <button class="action-btn"
+                  (click)="revert(order.id)"
+                  [disabled]="processingId() === order.id">
+                  ← Revert
+                </button>
+              }
+              @if (nextAction(order.status)) {
+                <button class="action-btn primary"
+                  (click)="executeNextAction(order)"
+                  [disabled]="processingId() === order.id">
+                  {{ nextAction(order.status) }}
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+</div>
