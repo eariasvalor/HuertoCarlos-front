@@ -9,6 +9,9 @@ export interface OrderLine {
   id: string;
   productId: string;
   productName: string;
+  productVariety: string;
+  productPrice: number;
+  productUnit: string;
   quantity: number;
   subtotal: number;
 }

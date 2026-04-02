@@ -19,12 +19,20 @@ export class OrderService {
     return this.http.get<Order>(`${this.API}/orders/${id}`);
   }
 
+  getAll(page = 0, size = 20, status?: string): Observable<PageResponse<Order>> {
+  let params = new HttpParams()
+    .set('page', page)
+    .set('size', size);
+  if (status) params = params.set('status', status);
+  return this.http.get<PageResponse<Order>>(`${this.API}/orders`, { params });
+}
+
   getMyOrders(customerId: string, page = 0, size = 20): Observable<PageResponse<Order>> {
-    const params = new HttpParams()
-      .set('page', page)
-      .set('size', size);
-    return this.http.get<PageResponse<Order>>(`${this.API}/orders`, { params });
-  }
+  const params = new HttpParams()
+    .set('page', page)
+    .set('size', size);
+  return this.http.get<PageResponse<Order>>(`${this.API}/orders/my`, { params });
+}
 
   cancel(id: string): Observable<Order> {
     return this.http.patch<Order>(`${this.API}/orders/${id}/cancel`, {});

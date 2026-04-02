@@ -1,1 +1,76 @@
-<p>orders works!</p>,
+<div class="orders-wrapper">
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-icon">🍅</span>
+      El Huerto de Carlos
+    </div>
+    <div class="nav-actions">
+      <a routerLink="/" class="nav-btn">Catalogue</a>
+      <a routerLink="/profile" class="nav-btn">Profile</a>
+    </div>
+  </nav>
+
+  <div class="header">
+    <h1>My orders</h1>
+    <p>Track your orders from the field</p>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="alert-error">{{ errorMessage() }}</div>
+  }
+
+  @if (isLoading()) {
+    <div class="loading">Loading your orders...</div>
+  } @else if (orders().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">🛒</div>
+      <p>No orders yet</p>
+      <a routerLink="/" class="btn-primary">Browse catalogue</a>
+    </div>
+  } @else {
+    <div class="orders-list">
+      @for (order of orders(); track order.id) {
+        <div class="order-card">
+          <div class="order-header">
+            <div>
+              <div class="order-id">{{ order.visibleId }}</div>
+              <div class="order-date">{{ order.createdAt | date:'dd MMM yyyy, HH:mm' }}</div>
+            </div>
+            <span class="status-badge" [ngClass]="statusClass(order.status)">
+              {{ statusLabel(order.status) }}
+            </span>
+          </div>
+
+          <div class="order-lines">
+            @for (line of order.lines; track line.id) {
+              <div class="order-line">
+                <div class="line-product">
+                  <span class="line-name">{{ line.productName }}</span>
+                  <span class="line-variety">{{ line.productVariety }}</span>
+                </div>
+                <span class="line-price">{{ line.productPrice | number:'1.2-2' }} € / {{ line.productUnit | lowercase }}</span>
+                <span class="line-qty">× {{ line.quantity }}</span>
+                <span class="line-subtotal">{{ line.subtotal | number:'1.2-2' }} €</span>
+              </div>
+            }
+          </div>
+
+          <div class="order-footer">
+            <div class="order-total">Total: {{ order.total | number:'1.2-2' }} €</div>
+            @if (canCancel(order)) {
+              <button
+                class="btn-cancel"
+                (click)="cancelOrder(order.id)"
+                [disabled]="cancellingId() === order.id">
+                @if (cancellingId() === order.id) { Cancelling... } @else { Cancel }
+              </button>
+            }
+          </div>
+
+        </div>
+      }
+    </div>
+  }
+
+</div>
