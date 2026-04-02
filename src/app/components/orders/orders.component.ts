@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OrderService } from '../../core/services/order.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Order, OrderStatus } from '../../core/model/order.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
@@ -16,6 +17,7 @@ export class OrdersComponent implements OnInit {
 
   private readonly orderService = inject(OrderService);
   private readonly authService = inject(AuthService);
+  private readonly location = inject(Location);
 
   readonly orders = signal<Order[]>([]);
   readonly isLoading = signal(true);
@@ -25,6 +27,10 @@ export class OrdersComponent implements OnInit {
   ngOnInit() {
     this.loadOrders();
   }
+
+  goBack() {
+  this.location.back();
+}
 
   loadOrders() {
     const customer = this.authService.currentUser();
