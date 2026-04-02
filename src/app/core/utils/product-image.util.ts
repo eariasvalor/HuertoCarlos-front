@@ -12,6 +12,7 @@ const CATEGORY_IMAGES: Record<string, string> = {
   'vegetable':   'https://images.unsplash.com/photo-1622205313162-be1d5712a43f?w=400&q=80',
   'herb':        'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&q=80',
   'fruit':       'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&q=80',
+  'lettuce':     'https://images.unsplash.com/photo-1622205313162-be1d5712a43f?w=400&q=80',
 };
 
 const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80';

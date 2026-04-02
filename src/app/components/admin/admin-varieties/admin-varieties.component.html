@@ -1,1 +1,68 @@
-<p>admin-varieties.component works!</p>,
+<div class="varieties-wrapper">
+
+  <app-navbar />
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Varieties</h1>
+      <p>Manage product varieties</p>
+    </div>
+    <button class="btn-add" (click)="openCreateModal()">+ Add variety</button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="alert-error">{{ errorMessage() }}</div>
+  }
+
+  @if (isLoading()) {
+    <div class="loading">Loading varieties...</div>
+  } @else if (varieties().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">🌱</div>
+      <p>No varieties yet</p>
+    </div>
+  } @else {
+    <div class="varieties-list">
+      @for (variety of varieties(); track variety.id) {
+        <div class="variety-card">
+          <div class="variety-info">
+            <div class="variety-name">{{ variety.name }}</div>
+            <div class="variety-category">{{ variety.productCategory }}</div>
+          </div>
+          <button class="action-btn danger" (click)="deleteVariety(variety)">Delete</button>
+        </div>
+      }
+    </div>
+  }
+
+  @if (showModal()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <h2>Add variety</h2>
+        <form [formGroup]="form" (ngSubmit)="saveVariety()" novalidate>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" formControlName="name" placeholder="e.g. Raf" />
+            @if (name?.invalid && name?.touched) {
+              <span class="error-msg">Name must be at least 2 characters</span>
+            }
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <input type="text" formControlName="productCategory" placeholder="e.g. Tomato" />
+            @if (productCategory?.invalid && productCategory?.touched) {
+              <span class="error-msg">Category is required</span>
+            }
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn-save" [disabled]="form.invalid || isSubmitting()">
+              @if (isSubmitting()) { Saving... } @else { Save variety }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+</div>
