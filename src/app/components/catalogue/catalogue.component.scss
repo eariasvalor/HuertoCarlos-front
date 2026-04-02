@@ -1,3 +1,254 @@
-:host {
-  display: block;
+.catalogue-wrapper {
+  min-height: 100vh;
+  background: #FCEBEB;
+  padding-bottom: 5rem;
+}
+
+.navbar {
+  background: #791F1F;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-brand {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-icon { font-size: 20px; }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover { background: rgba(255,255,255,0.25); }
+
+  &.nav-btn-primary {
+    background: white;
+    color: #791F1F;
+    font-weight: 500;
+  }
+}
+
+.hero {
+  padding: 1.5rem 1.5rem 1rem;
+
+  h1 {
+    font-size: 22px;
+    font-weight: 500;
+    color: #501313;
+    margin-bottom: 4px;
+  }
+
+  p { font-size: 13px; color: #A32D2D; }
+}
+
+.alert-success {
+  margin: 0 1.5rem 1rem;
+  padding: 10px 14px;
+  background: #EAF3DE;
+  border: 1px solid #C0DD97;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #27500A;
+}
+
+.alert-error {
+  margin: 0 1.5rem 1rem;
+  padding: 10px 14px;
+  background: #FCEBEB;
+  border: 1px solid #F7C1C1;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #791F1F;
+}
+
+.filter-bar {
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #F0C0C0;
+  background: white;
+  color: #A32D2D;
+  transition: all 0.15s;
+
+  &.active {
+    background: #A32D2D;
+    color: white;
+    border-color: #A32D2D;
+  }
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #A32D2D;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 1.5rem;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  border: 0.5px solid #F7C1C1;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.product-info { padding: 0.75rem; }
+
+.product-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #2C2C2A;
+  margin-bottom: 2px;
+}
+
+.product-variety {
+  font-size: 11px;
+  color: #A32D2D;
+  margin-bottom: 6px;
+}
+
+.product-price {
+  font-size: 15px;
+  font-weight: 500;
+  color: #501313;
+  margin-bottom: 10px;
+}
+
+.product-unit {
+  font-size: 11px;
+  color: #888780;
+  font-weight: 400;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid #F0C0C0;
+  background: #FCEBEB;
+  color: #A32D2D;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  transition: all 0.15s;
+
+  &.plus {
+    background: #A32D2D;
+    color: white;
+    border-color: #A32D2D;
+
+    &:hover { background: #791F1F; }
+  }
+
+  &.minus:hover { background: #F7C1C1; }
+}
+
+.qty-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2C2C2A;
+  min-width: 20px;
+  text-align: center;
+}
+
+.order-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #791F1F;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.order-info { color: white; }
+
+.order-items {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.order-total {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.order-btn {
+  background: white;
+  color: #791F1F;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+  &:hover:not(:disabled) { opacity: 0.9; }
 }
