@@ -13,6 +13,7 @@ export class AuthService {
   private readonly API = 'http://localhost:8080/api/v1';
   private readonly TOKEN_KEY = 'huerto_token';
   private readonly USER_KEY = 'huerto_user';
+  
 
   // --- Signals ---
   private _token = signal<string | null>(localStorage.getItem(this.TOKEN_KEY));
@@ -23,6 +24,17 @@ export class AuthService {
   readonly isAuthenticated = computed(() => !!this._token());
   readonly currentUser = this._currentUser.asReadonly();
   readonly token = this._token.asReadonly();
+
+  readonly isAdmin = computed(() => {
+  const token = this._token();
+  if (!token) return false;
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.role === 'ADMIN';
+  } catch {
+    return false;
+  }
+});
 
   // --- Auth actions ---
 

@@ -14,6 +14,7 @@ export class NavbarComponent {
 
   private readonly authService = inject(AuthService);
   private readonly location = inject(Location);
+  readonly isAdmin = computed(() => this.authService.isAdmin());
 
   readonly isAuthenticated = computed(() => this.authService.isAuthenticated());
 

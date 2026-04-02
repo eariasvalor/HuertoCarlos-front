@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth/auth.guard';
+import { adminGuard } from './core/auth/admin.guard';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,41 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () =>
       import('./components/profile/profile.component').then(m => m.ProfileComponent)
+  },
+  {
+    path: 'admin-dashboard',
+    pathMatch: 'full',
+    redirectTo: 'admin'
+  },
+  {
+    path: 'admin',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./components/admin/admin-dashboard/admin-dashboard.component').then(m => m.AdminDashboardComponent)
+  },
+  {
+    path: 'admin/products',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./components/admin/admin-products/admin-products.component').then(m => m.AdminProductsComponent)
+  },
+  {
+    path: 'admin/varieties',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./components/admin/admin-varieties/admin-varieties.component').then(m => m.AdminVarietiesComponent)
+  },
+  {
+    path: 'admin/orders',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./components/admin/admin-orders/admin-orders.component').then(m => m.AdminOrdersComponent)
+  },
+  {
+    path: 'admin/customers',
+    canActivate: [authGuard, adminGuard],
+    loadComponent: () =>
+      import('./components/admin/admin-customers/admin-customers.component').then(m => m.AdminCustomersComponent)
   },
   { path: '**', redirectTo: '' }
 ];

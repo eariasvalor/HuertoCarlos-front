@@ -60,4 +60,12 @@
 
     &:hover { background: rgba(255,255,255,0.15); }
   }
+  
+  &.nav-btn-admin {
+  background: rgba(255,255,255,0.3);
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.4);
+
+  &:hover { background: rgba(255,255,255,0.4); }
+}
 }

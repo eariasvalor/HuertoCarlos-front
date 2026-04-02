@@ -9,8 +9,12 @@
   <div class="nav-actions">
     @if (isAuthenticated()) {
       <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catalogue</a>
-      <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
-      <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
+      @if (isAdmin()) {
+        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Admin</a>
+      } @else {
+        <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
+        <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
+      }
       <button class="nav-btn nav-btn-signout" (click)="logout()">Sign out</button>
     } @else {
       <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>

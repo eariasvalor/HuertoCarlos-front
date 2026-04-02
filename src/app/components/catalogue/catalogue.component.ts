@@ -17,7 +17,7 @@ interface CartItem {
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.scss'
 })
