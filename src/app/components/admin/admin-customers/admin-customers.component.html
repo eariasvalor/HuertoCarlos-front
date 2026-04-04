@@ -1,1 +1,97 @@
-<p>admin-customers.component works!</p>,
+<div class="customers-wrapper">
+
+  <app-navbar />
+
+  <div class="header">
+    <div class="header-left">
+      <h1>Customers</h1>
+      <p>Manage your customers</p>
+    </div>
+    <button class="btn-add" (click)="openCreate()">+ Add customer</button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="alert-error">{{ errorMessage() }}</div>
+  }
+
+  @if (successMessage()) {
+    <div class="alert-success">{{ successMessage() }}</div>
+  }
+
+  <div class="search-bar">
+    <input
+      class="search-input"
+      type="text"
+      placeholder="Search by name or email..."
+      [ngModel]="searchTerm()"
+      (ngModelChange)="searchTerm.set($event)"
+    />
+    <span class="count">{{ filteredCustomers().length }} customers</span>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading">Loading customers...</div>
+  } @else if (filteredCustomers().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">👤</div>
+      <p>No customers found</p>
+    </div>
+  } @else {
+    <div class="customers-list">
+      @for (customer of filteredCustomers(); track customer.id) {
+        <div class="customer-card">
+          <div class="customer-info">
+            <div class="customer-name">{{ customer.name }}</div>
+            <div class="customer-meta">{{ customer.email }} · Since {{ customer.createdAt | date:'dd MMM yyyy' }}</div>
+          </div>
+          <div class="product-actions">
+            @if (confirmDeleteId() === customer.id) {
+              <span class="confirm-text">Are you sure?</span>
+              <button class="action-btn danger" (click)="confirmDelete(customer.id)">Confirm</button>
+              <button class="action-btn" (click)="cancelDelete()">Cancel</button>
+            } @else {
+              <button class="action-btn" (click)="openEdit(customer)">Edit</button>
+              <button class="action-btn danger"
+                [disabled]="deletingId() === customer.id"
+                (click)="requestDelete(customer.id)">
+                {{ deletingId() === customer.id ? 'Deleting...' : 'Delete' }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (modalMode()) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <h2>{{ modalMode() === 'create' ? 'Add customer' : 'Edit customer' }}</h2>
+
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="formName" placeholder="Carlos García" />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="formEmail" placeholder="carlos@huerto.com"
+            [disabled]="modalMode() === 'edit'" />
+        </div>
+
+        <div class="form-group">
+          <label>{{ modalMode() === 'create' ? 'Password' : 'New password (leave blank to keep)' }}</label>
+          <input type="password" [(ngModel)]="formPassword" placeholder="••••••••" />
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+          <button class="btn-save" [disabled]="isSaving()" (click)="save()">
+            @if (isSaving()) { Saving... } @else { Save customer }
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

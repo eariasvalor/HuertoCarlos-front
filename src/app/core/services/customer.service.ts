@@ -10,6 +10,11 @@ export interface UpdateCustomerRequest {
   name: string;
   rawPassword?: string | null;
 }
+export interface CreateCustomerRequest {
+  name: string;
+  email: string;
+  password: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class CustomerService {
@@ -31,4 +36,12 @@ export class CustomerService {
     .set('size', size);
   return this.http.get<PageResponse<Customer>>(`${this.API}/customers`, { params });
 }
+
+create(request: CreateCustomerRequest): Observable<Customer> {
+    return this.http.post<Customer>(`${this.API}/customers`, request);
+  }
+
+   delete(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.API}/customers/${id}`);
+  }
 }

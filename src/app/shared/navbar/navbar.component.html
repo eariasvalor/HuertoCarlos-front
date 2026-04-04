@@ -10,7 +10,8 @@
     @if (isAuthenticated()) {
       <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catalogue</a>
       @if (isAdmin()) {
-        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Admin</a>
+        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
+        <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
       } @else {
         <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
         <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
