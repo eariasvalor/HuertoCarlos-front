@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* Fuente base */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* Títulos más “orgánicos” */
+  h1, h2, h3 {
+    font-family: 'Nunito', sans-serif;
+  }
