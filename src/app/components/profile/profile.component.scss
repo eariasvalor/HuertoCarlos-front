@@ -224,3 +224,35 @@
   color: #A32D2D;
   font-size: 16px;
 }
+
+.section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #501313;
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+  border-top: 0.5px solid #F7C1C1;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+
+  .form-group { flex: 1; }
+}
+
+.phone-row {
+  display: flex;
+  gap: 8px;
+
+  .phone-prefix {
+    width: 70px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .phone-number {
+    flex: 1;
+    box-sizing: border-box;
+  }
+}

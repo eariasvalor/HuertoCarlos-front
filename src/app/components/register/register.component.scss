@@ -56,21 +56,22 @@
     margin-bottom: 6px;
   }
 
-  input {
-    width: 100%;
-    padding: 11px 14px;
-    border: 1.5px solid #F0C0C0;
-    border-radius: 10px;
-    font-size: 14px;
-    color: #2C2C2A;
-    outline: none;
-    background: white;
-    transition: border-color 0.15s;
+input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #F0C0C0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #2C2C2A;
+  outline: none;
+  background: white;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
 
-    &:focus { border-color: #A32D2D; }
-    &.error { border-color: #E24B4A; }
-    &::placeholder { color: #B4B2A9; }
-  }
+  &:focus { border-color: #A32D2D; }
+  &.error { border-color: #E24B4A; }
+  &::placeholder { color: #B4B2A9; }
+}
 }
 
 .error-msg {
@@ -130,4 +131,20 @@ button[type="submit"] {
   padding-top: 1.25rem;
   border-top: 0.5px solid #F7C1C1;
   letter-spacing: 0.02em;
+}
+
+.phone-row {
+  display: flex;
+  gap: 8px;
+
+  .phone-prefix {
+    width: 70px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  .phone-number {
+    flex: 1;
+    box-sizing: border-box;
+  }
 }

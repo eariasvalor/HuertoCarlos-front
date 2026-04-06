@@ -18,9 +18,7 @@
   @if (customer(); as user) {
     <div class="profile-card">
 
-      <div class="avatar">
-        {{ user.name.charAt(0).toUpperCase() }}
-      </div>
+      <div class="avatar">{{ user.name.charAt(0).toUpperCase() }}</div>
 
       @if (!isEditing()) {
         <div class="profile-info">
@@ -32,6 +30,22 @@
             <span class="info-label">Email</span>
             <span class="info-value">{{ user.email }}</span>
           </div>
+          @if (user.phoneNumber) {
+            <div class="info-row">
+              <span class="info-label">Phone</span>
+              <span class="info-value">{{ user.phoneCountryCode }} {{ user.phoneNumber }}</span>
+            </div>
+          }
+          @if (user.addressCity) {
+            <div class="info-row">
+              <span class="info-label">Address</span>
+              <span class="info-value">
+                {{ user.addressStreetType }} {{ user.addressStreet }}, {{ user.addressNumber }}
+                @if (user.addressFloor) { · {{ user.addressFloor }} }
+                · {{ user.addressPostalCode }} {{ user.addressCity }}, {{ user.addressProvince }}
+              </span>
+            </div>
+          }
           <div class="info-row">
             <span class="info-label">Member since</span>
             <span class="info-value">{{ user.createdAt | date:'dd MMM yyyy' }}</span>
@@ -44,36 +58,83 @@
         <form [formGroup]="form" (ngSubmit)="saveProfile()" novalidate>
 
           <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              id="name"
-              type="text"
-              formControlName="name"
-              [class.error]="name?.invalid && name?.touched"
-            />
+            <label>Name</label>
+            <input type="text" formControlName="name"
+              [class.error]="name?.invalid && name?.touched" />
             @if (name?.invalid && name?.touched) {
               <span class="error-msg">Name must be at least 2 characters</span>
             }
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" type="email" [value]="user.email" disabled />
+            <label>Email</label>
+            <input type="email" [value]="user.email" disabled />
             <span class="field-hint">Email cannot be changed</span>
           </div>
 
           <div class="form-group">
-            <label for="rawPassword">New password <span class="optional">(optional)</span></label>
-            <input
-              id="rawPassword"
-              type="password"
-              formControlName="rawPassword"
+            <label>New password <span class="optional">(optional)</span></label>
+            <input type="password" formControlName="rawPassword"
               placeholder="Leave blank to keep current"
-              [class.error]="rawPassword?.invalid && rawPassword?.touched"
-            />
+              [class.error]="rawPassword?.invalid && rawPassword?.touched" />
             @if (rawPassword?.invalid && rawPassword?.touched) {
               <span class="error-msg">Password must be at least 8 characters</span>
             }
+          </div>
+
+          <div class="form-group">
+            <label>Phone</label>
+            <div class="phone-row">
+              <input type="text" formControlName="phoneCountryCode" placeholder="+34"
+                class="phone-prefix"
+                [class.error]="phoneCountryCode?.invalid && phoneCountryCode?.touched" />
+              <input type="tel" formControlName="phoneNumber" placeholder="600 123 456"
+                class="phone-number"
+                [class.error]="phoneNumber?.invalid && phoneNumber?.touched" />
+            </div>
+            @if ((phoneCountryCode?.invalid || phoneNumber?.invalid) && (phoneCountryCode?.touched || phoneNumber?.touched)) {
+              <span class="error-msg">Please enter a valid phone number</span>
+            }
+          </div>
+
+          <div class="section-title">Address <span class="optional">(optional)</span></div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Street type</label>
+              <input type="text" formControlName="addressStreetType" placeholder="Calle, Avenida..." />
+            </div>
+            <div class="form-group">
+              <label>Street</label>
+              <input type="text" formControlName="addressStreet" placeholder="Street name" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Number</label>
+              <input type="text" formControlName="addressNumber" placeholder="12" />
+            </div>
+            <div class="form-group">
+              <label>Floor <span class="optional">(optional)</span></label>
+              <input type="text" formControlName="addressFloor" placeholder="2º A" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Postal code</label>
+              <input type="text" formControlName="addressPostalCode" placeholder="03001" />
+            </div>
+            <div class="form-group">
+              <label>City</label>
+              <input type="text" formControlName="addressCity" placeholder="Alicante" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Province</label>
+            <input type="text" formControlName="addressProvince" placeholder="Alicante" />
           </div>
 
           <div class="form-actions">

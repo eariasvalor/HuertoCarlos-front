@@ -37,36 +37,118 @@
       <p>No customers found</p>
     </div>
   } @else {
-    <div class="customers-list">
-      @for (customer of filteredCustomers(); track customer.id) {
-        <div class="customer-card">
-          <div class="customer-info">
-            <div class="customer-name">{{ customer.name }}</div>
-            <div class="customer-meta">{{ customer.email }} · Since {{ customer.createdAt | date:'dd MMM yyyy' }}</div>
-          </div>
-          <div class="product-actions">
-            @if (confirmDeleteId() === customer.id) {
-              <span class="confirm-text">Are you sure?</span>
-              <button class="action-btn danger" (click)="confirmDelete(customer.id)">Confirm</button>
-              <button class="action-btn" (click)="cancelDelete()">Cancel</button>
-            } @else {
-              <button class="action-btn" (click)="openEdit(customer)">Edit</button>
-              <button class="action-btn danger"
-                [disabled]="deletingId() === customer.id"
-                (click)="requestDelete(customer.id)">
-                {{ deletingId() === customer.id ? 'Deleting...' : 'Delete' }}
-              </button>
-            }
-          </div>
-        </div>
-      }
+    <div class="table-wrapper">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Member since</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (customer of filteredCustomers(); track customer.id) {
+            <tr class="clickable-row" (click)="openDetail(customer)">
+              <td class="td-name">{{ customer.name }}</td>
+              <td class="td-email">{{ customer.email }}</td>
+              <td class="td-phone">
+                @if (customer.phoneNumber) {
+                  {{ customer.phoneCountryCode }} {{ customer.phoneNumber }}
+                } @else {
+                  <span class="td-empty">—</span>
+                }
+              </td>
+              <td class="td-date">{{ customer.createdAt | date:'dd MMM yyyy' }}</td>
+              <td class="td-actions" (click)="$event.stopPropagation()" autocomplete="off">
+                @if (confirmDeleteId() === customer.id) {
+                  <span class="confirm-text">Are you sure?</span>
+                  <button class="action-btn danger" (click)="confirmDelete(customer.id)">Confirm</button>
+                  <button class="action-btn" (click)="cancelDelete()">Cancel</button>
+                } @else {
+                  <button class="action-btn" (click)="openEdit(customer)">Edit</button>
+                  <button class="action-btn danger"
+                    [disabled]="deletingId() === customer.id"
+                    (click)="requestDelete(customer.id)">
+                    {{ deletingId() === customer.id ? 'Deleting...' : 'Delete' }}
+                  </button>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </div>
   }
 
+  <!-- Detail modal -->
+  @if (detailCustomer(); as customer) {
+    <div class="modal-overlay" (click)="closeDetail()">
+      <div class="modal" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+          <h2>{{ customer.name }}</h2>
+          <button class="modal-close" (click)="closeDetail()">✕</button>
+        </div>
+
+        <div class="detail-section">
+          <div class="detail-row">
+            <span class="detail-label">Email</span>
+            <span class="detail-value">{{ customer.email }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Phone</span>
+            <span class="detail-value">
+              @if (customer.phoneNumber) {
+                {{ customer.phoneCountryCode }} {{ customer.phoneNumber }}
+              } @else { — }
+            </span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Member since</span>
+            <span class="detail-value">{{ customer.createdAt | date:'dd MMM yyyy' }}</span>
+          </div>
+        </div>
+
+        @if (customer.addressCity) {
+          <div class="detail-section">
+            <div class="detail-section-title">Address</div>
+            <div class="detail-row">
+              <span class="detail-label">Street</span>
+              <span class="detail-value">
+                {{ customer.addressStreetType }} {{ customer.addressStreet }}, {{ customer.addressNumber }}
+                @if (customer.addressFloor) { · {{ customer.addressFloor }} }
+              </span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">City</span>
+              <span class="detail-value">{{ customer.addressPostalCode }} {{ customer.addressCity }}</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Province</span>
+              <span class="detail-value">{{ customer.addressProvince }}</span>
+            </div>
+          </div>
+        } @else {
+          <div class="detail-empty">No address on file</div>
+        }
+
+        <div class="modal-actions">
+          <button class="btn-cancel" (click)="closeDetail()">Close</button>
+          <button class="btn-save" (click)="openEdit(detailCustomer()!); closeDetail()">Edit</button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Create / Edit modal -->
   @if (modalMode()) {
     <div class="modal-overlay" (click)="closeModal()">
       <div class="modal" (click)="$event.stopPropagation()">
-        <h2>{{ modalMode() === 'create' ? 'Add customer' : 'Edit customer' }}</h2>
+        <div class="modal-header">
+          <h2>{{ modalMode() === 'create' ? 'Add customer' : 'Edit customer' }}</h2>
+          <button class="modal-close" (click)="closeModal()">✕</button>
+        </div>
 
         <div class="form-group">
           <label>Name</label>
@@ -82,6 +164,56 @@
         <div class="form-group">
           <label>{{ modalMode() === 'create' ? 'Password' : 'New password (leave blank to keep)' }}</label>
           <input type="password" [(ngModel)]="formPassword" placeholder="••••••••" />
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          <div class="phone-row">
+            <input type="text" [(ngModel)]="formPhoneCountryCode" placeholder="+34" class="phone-prefix" />
+            <input type="tel" [(ngModel)]="formPhoneNumber" placeholder="600 123 456" class="phone-number" />
+          </div>
+        </div>
+
+        <div class="detail-section-title" style="margin-top: 1rem">
+          Address <span style="font-weight:400; text-transform:none; font-size:12px; color:#B4B2A9">(optional)</span>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Street type</label>
+            <input type="text" [(ngModel)]="formAddressStreetType" placeholder="Calle, Avenida..." />
+          </div>
+          <div class="form-group">
+            <label>Street</label>
+            <input type="text" [(ngModel)]="formAddressStreet" placeholder="Street name" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Number</label>
+            <input type="text" [(ngModel)]="formAddressNumber" placeholder="12" />
+          </div>
+          <div class="form-group">
+            <label>Floor <span style="font-weight:400; color:#B4B2A9">(optional)</span></label>
+            <input type="text" [(ngModel)]="formAddressFloor" placeholder="2º A" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Postal code</label>
+            <input type="text" [(ngModel)]="formAddressPostalCode" placeholder="03001" />
+          </div>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" [(ngModel)]="formAddressCity" placeholder="Alicante" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Province</label>
+          <input type="text" [(ngModel)]="formAddressProvince" placeholder="Alicante" />
         </div>
 
         <div class="modal-actions">

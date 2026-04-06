@@ -9,11 +9,29 @@ import { PageResponse } from '../model/product.model';
 export interface UpdateCustomerRequest {
   name: string;
   rawPassword?: string | null;
+  phoneCountryCode: string;
+  phoneNumber: string;
+  addressStreetType?: string;
+  addressStreet?: string;
+  addressNumber?: string;
+  addressFloor?: string;
+  addressCity?: string;
+  addressPostalCode?: string;
+  addressProvince?: string;
 }
 export interface CreateCustomerRequest {
   name: string;
   email: string;
   password: string;
+  phoneCountryCode: string;
+  phoneNumber: string;
+  addressStreetType?: string;
+  addressStreet?: string;
+  addressNumber?: string;
+  addressFloor?: string;
+  addressCity?: string;
+  addressPostalCode?: string;
+  addressProvince?: string;
 }
 
 @Injectable({ providedIn: 'root' })

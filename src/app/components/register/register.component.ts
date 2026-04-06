@@ -22,7 +22,9 @@ export class RegisterComponent {
   readonly form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
-    rawPassword: ['', [Validators.required, Validators.minLength(8)]]
+    rawPassword: ['', [Validators.required, Validators.minLength(8)]],
+    phoneCountryCode: ['+34', [Validators.required]],
+    phoneNumber: ['', [Validators.required]]
   });
 
   onSubmit() {
@@ -47,4 +49,6 @@ export class RegisterComponent {
   get name() { return this.form.get('name'); }
   get email() { return this.form.get('email'); }
   get rawPassword() { return this.form.get('rawPassword'); }
+  get phoneCountryCode() { return this.form.get('phoneCountryCode'); }
+  get phoneNumber() { return this.form.get('phoneNumber'); }
 }

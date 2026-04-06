@@ -51,6 +51,29 @@
         }
       </div>
 
+      <div class="form-group">
+        <label>Phone</label>
+        <div class="phone-row">
+          <input
+            type="text"
+            formControlName="phoneCountryCode"
+            placeholder="+34"
+            class="phone-prefix"
+            [class.error]="phoneCountryCode?.invalid && phoneCountryCode?.touched"
+          />
+          <input
+            type="tel"
+            formControlName="phoneNumber"
+            placeholder="600 123 456"
+            class="phone-number"
+            [class.error]="phoneNumber?.invalid && phoneNumber?.touched"
+          />
+        </div>
+        @if ((phoneCountryCode?.invalid || phoneNumber?.invalid) && (phoneCountryCode?.touched || phoneNumber?.touched)) {
+          <span class="error-msg">Please enter a valid phone number</span>
+        }
+      </div>
+
       @if (errorMessage()) {
         <div class="alert-error">{{ errorMessage() }}</div>
       }
