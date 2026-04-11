@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://dominio.com/api/v1'
+  apiUrl: 'https://huerto-api.up.railway.app/api/v1'
 };

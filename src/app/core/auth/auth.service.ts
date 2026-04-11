@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { LoginRequest, RegisterRequest, TokenResponse } from '../model/auth.model';
 import { Customer } from '../model/customer.model';
+import { environment } from '../../../environments/environment';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
-  private readonly API = 'http://localhost:8080/api/v1';
+  private readonly API = environment.apiUrl;
   private readonly TOKEN_KEY = 'huerto_token';
   private readonly USER_KEY = 'huerto_user';
   
