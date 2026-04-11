@@ -2,13 +2,14 @@
   <div class="nav-left">
     <a routerLink="/" class="nav-brand">
       <span class="nav-icon">🍅</span>
-      El Huerto de Carlos
+      <span class="brand-text">El Huerto de Carlos</span>
     </a>
   </div>
 
   <div class="nav-actions">
     @if (isAuthenticated()) {
       <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catalogue</a>
+
       @if (isAdmin()) {
         <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
         <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
@@ -16,6 +17,7 @@
         <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
         <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
       }
+
       <button class="nav-btn nav-btn-signout" (click)="logout()">Sign out</button>
     } @else {
       <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>

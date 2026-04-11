@@ -25,6 +25,38 @@ export class OrdersComponent implements OnInit {
   readonly errorMessage = signal<string | null>(null);
   readonly cancellingId = signal<string | null>(null);
 
+  public steps = ['pending', 'confirmed', 'preparation', 'ready'];
+
+  mapStatus(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'pending confirmation':
+      case 'pending':
+        return 'pending';
+  
+      case 'confirmed':
+        return 'confirmed';
+  
+      case 'in preparation':
+      case 'preparation':
+        return 'preparation';
+  
+      case 'ready':
+        return 'ready';
+  
+      default:
+        return 'pending';
+    }
+  }
+  
+  isStepDone(current: string, step: string): boolean {
+    const mapped = this.mapStatus(current);
+    return this.steps.indexOf(step) < this.steps.indexOf(mapped);
+  }
+  
+  isStepActive(current: string, step: string): boolean {
+    return this.mapStatus(current) === step;
+  }
+
   ngOnInit() {
     this.loadOrders();
   }

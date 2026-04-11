@@ -15,54 +15,107 @@
   @if (isLoading()) {
     <div class="loading">Loading your orders...</div>
   } @else if (orders().length === 0) {
+
     <div class="empty-state">
       <div class="empty-icon">🛒</div>
       <p>No orders yet</p>
       <a routerLink="/" class="btn-primary">Browse catalogue</a>
     </div>
+
   } @else {
+
     <div class="orders-list">
       @for (order of orders(); track order.id) {
+
         <div class="order-card">
+
           <div class="order-header">
             <div>
-              <div class="order-id">{{ order.visibleId }}</div>
+              <div class="order-id">Order {{ order.visibleId }}</div>
               <div class="order-date">{{ order.createdAt | date:'dd MMM yyyy, HH:mm' }}</div>
             </div>
+
             <span class="status-badge" [ngClass]="statusClass(order.status)">
               {{ statusLabel(order.status) }}
             </span>
           </div>
 
+          <!-- 🔥 TIMELINE -->
+          <div class="order-timeline">
+
+            <div class="timeline-step"
+                 [class.active]="isStepActive(order.status, 'pending')"
+                 [class.done]="isStepDone(order.status, 'pending')">
+              <div class="dot"></div>
+              <span>Pending</span>
+            </div>
+
+            <div class="timeline-step"
+                 [class.active]="isStepActive(order.status, 'confirmed')"
+                 [class.done]="isStepDone(order.status, 'confirmed')">
+              <div class="dot"></div>
+              <span>Confirmed</span>
+            </div>
+
+            <div class="timeline-step"
+                 [class.active]="isStepActive(order.status, 'preparation')"
+                 [class.done]="isStepDone(order.status, 'preparation')">
+              <div class="dot"></div>
+              <span>Prep</span>
+            </div>
+
+            <div class="timeline-step"
+                 [class.active]="isStepActive(order.status, 'ready')"
+                 [class.done]="isStepDone(order.status, 'ready')">
+              <div class="dot"></div>
+              <span>Ready</span>
+            </div>
+
+          </div>
+
+          <!-- LÍNEAS -->
           <div class="order-lines">
             @for (line of order.lines; track line.id) {
+
               <div class="order-line">
-                <div class="line-product">
-                  <span class="line-name">{{ line.productName }}</span>
-                  <span class="line-variety">{{ line.productVariety }}</span>
+                <div class="line-main">
+                  <div class="line-name">{{ line.productName }}</div>
+                  <div class="line-variety">{{ line.productVariety }}</div>
                 </div>
-                <span class="line-price">{{ line.productPrice | number:'1.2-2' }} € / {{ line.productUnit | lowercase }}</span>
-                <span class="line-qty">× {{ line.quantity }}</span>
-                <span class="line-subtotal">{{ line.subtotal | number:'1.2-2' }} €</span>
+
+                <div class="line-meta">
+                  <div class="line-qty">× {{ line.quantity }}</div>
+                  <div class="line-subtotal">{{ line.subtotal | number:'1.2-2' }} €</div>
+                </div>
               </div>
+
             }
           </div>
 
           <div class="order-footer">
-            <div class="order-total">Total: {{ order.total | number:'1.2-2' }} €</div>
+            <div class="order-total">{{ order.total | number:'1.2-2' }} €</div>
+
             @if (canCancel(order)) {
               <button
                 class="btn-cancel"
                 (click)="cancelOrder(order.id)"
                 [disabled]="cancellingId() === order.id">
-                @if (cancellingId() === order.id) { Cancelling... } @else { Cancel }
+
+                @if (cancellingId() === order.id) {
+                  Cancelling...
+                } @else {
+                  Cancel order
+                }
+
               </button>
             }
           </div>
 
         </div>
+
       }
     </div>
+
   }
 
 </div>

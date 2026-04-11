@@ -1,71 +1,103 @@
 .navbar {
-  background: #791F1F;
+  background: #b91c1c;
   padding: 0 1.5rem;
-  height: 56px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
 }
+
+/* BRAND */
 
 .nav-brand {
   color: white;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   text-decoration: none;
+  letter-spacing: -0.2px;
 }
 
-.nav-icon { font-size: 20px; }
+.nav-icon {
+  font-size: 22px;
+}
+
+.brand-text {
+  font-weight: 600;
+}
+
+/* ACTIONS */
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
+/* BUTTONS */
+
 .nav-btn {
-  background: rgba(255,255,255,0.15);
   border: none;
   color: white;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: 999px; // pill style
   font-size: 12px;
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.15s;
+  background: transparent;
+  transition: all 0.2s;
 
-  &:hover { background: rgba(255,255,255,0.25); }
+  &:hover {
+    background: rgba(255,255,255,0.15);
+  }
 
   &.active {
-    background: rgba(255,255,255,0.25);
-    font-weight: 500;
+    background: white;
+    color: #b91c1c;
+    font-weight: 600;
   }
 
   &.nav-btn-primary {
     background: white;
-    color: #791F1F;
-    font-weight: 500;
+    color: #b91c1c;
+    font-weight: 600;
 
-    &:hover { background: #FCEBEB; }
+    &:hover {
+      opacity: 0.9;
+    }
   }
 
   &.nav-btn-signout {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.4);
 
-    &:hover { background: rgba(255,255,255,0.15); }
+    &:hover {
+      background: rgba(255,255,255,0.2);
+    }
   }
-  
-  &.nav-btn-admin {
-  background: rgba(255,255,255,0.3);
-  font-weight: 500;
-  border: 1px solid rgba(255,255,255,0.4);
 
-  &:hover { background: rgba(255,255,255,0.4); }
+  &.nav-btn-admin {
+    background: rgba(255,255,255,0.2);
+  }
 }
+
+/* 📱 MOBILE TWEAK */
+
+@media (max-width: 768px) {
+  .nav-actions {
+    gap: 4px;
+  }
+
+  .nav-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .brand-text {
+    display: none;
+  }
 }
