@@ -1,125 +1,202 @@
 .dashboard-wrapper {
   min-height: 100vh;
-  background: #FCEBEB;
+  background: #ffffff;
   padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
+/* 🔥 background glow (consistente con login/register) */
+.dashboard-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(185, 28, 28, 0.06),
+    transparent 60%
+  );
+  top: -250px;
+  right: -250px;
+  z-index: 0;
+}
+
+/* HEADER */
 .header {
   padding: 1.5rem 1.5rem 1rem;
-
-  h1 {
-    font-size: 22px;
-    font-weight: 500;
-    color: #501313;
-    margin-bottom: 4px;
-  }
-
-  p { font-size: 13px; color: #A32D2D; }
+  position: relative;
+  z-index: 1;
 }
+
+.header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.header p {
+  font-size: 13px;
+  color: #666;
+}
+
+/* =========================
+   STATS GRID (MODERNO)
+========================= */
 
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
   padding: 0 1.5rem 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .stat-card {
   background: white;
-  border-radius: 10px;
-  border: 0.5px solid #F7C1C1;
+  border-radius: 16px;
   padding: 1rem;
 
-  &.pending .stat-value   { color: #854F0B; }
-  &.confirmed .stat-value { color: #27500A; }
-  &.preparation .stat-value { color: #185FA5; }
-  &.ready .stat-value     { color: #085041; }
-  &.cancelled .stat-value { color: #5F5E5A; }
+  border: 1px solid #f1f1f1;
 
-  &.total {
-    grid-column: span 1;
-    background: #791F1F;
-    border-color: #791F1F;
+  /* 🔥 profundidad moderna */
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.05),
+    0 2px 8px rgba(0,0,0,0.03);
 
-    .stat-label { color: rgba(255,255,255,0.7); }
-    .stat-value { color: white; font-size: 36px; }
-  }
+  transition: transform 0.15s ease;
 }
 
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+/* colores sutiles (no chillones) */
+.stat-card.pending .stat-value { color: #a16207; }
+.stat-card.confirmed .stat-value { color: #166534; }
+.stat-card.preparation .stat-value { color: #1d4ed8; }
+.stat-card.ready .stat-value { color: #065f46; }
+.stat-card.cancelled .stat-value { color: #525252; }
+
+/* TOTAL CARD (highlight real) */
+.stat-card.total {
+  grid-column: span 2;
+  background: #b91c1c;
+  border: none;
+
+  box-shadow: 0 15px 35px rgba(185, 28, 28, 0.25);
+}
+
+.stat-card.total .stat-label {
+  color: rgba(255,255,255,0.75);
+}
+
+.stat-card.total .stat-value {
+  color: white;
+  font-size: 34px;
+}
+
+/* TEXTOS */
 .stat-label {
   font-size: 11px;
-  color: #888780;
+  color: #888;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   margin-bottom: 6px;
 }
 
 .stat-value {
   font-size: 28px;
-  font-weight: 500;
-  color: #501313;
+  font-weight: 600;
+  color: #111;
 }
 
+/* =========================
+   SECTION TITLE
+========================= */
+
 .section-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: #501313;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
   padding: 0 1.5rem;
   margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
 }
+
+/* =========================
+   QUICK LINKS (REDISEÑO PRO)
+========================= */
 
 .quick-links {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .quick-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 14px 1rem;
   background: white;
-  border-radius: 8px;
-  border: 0.5px solid #F7C1C1;
-  text-decoration: none;
-  transition: background 0.15s;
 
-  &:hover { background: #FDF5F5; }
+  border-radius: 14px;
+  border: 1px solid #f1f1f1;
+
+  text-decoration: none;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+
+  transition: all 0.15s ease;
+}
+
+.quick-link:hover {
+  transform: translateY(-2px);
+  border-color: #f3f3f3;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.06);
 }
 
 .link-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .link-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: #FCEBEB;
+  width: 40px;
+  height: 40px;
+
+  border-radius: 12px;
+  background: #fef2f2;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 18px;
-  flex-shrink: 0;
 }
 
 .link-name {
   font-size: 14px;
-  font-weight: 500;
-  color: #2C2C2A;
+  font-weight: 600;
+  color: #111;
 }
 
 .link-sub {
   font-size: 11px;
-  color: #888780;
+  color: #777;
   margin-top: 2px;
 }
 
 .arrow {
-  color: #A32D2D;
-  font-size: 16px;
+  color: #b91c1c;
+  font-size: 18px;
 }
