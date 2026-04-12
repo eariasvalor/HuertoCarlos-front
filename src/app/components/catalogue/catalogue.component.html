@@ -27,7 +27,22 @@
   </div>
 
   @if (isLoading()) {
-    <div class="loading">Loading products...</div>
+    <div class="plant-loader">
+      <svg class="plant-svg" viewBox="0 0 100 100">
+  
+        <path d="M20 80 Q50 95 80 80" class="soil" />
+  
+        <line x1="50" y1="80" x2="50" y2="40" class="stem" />
+
+        <path d="M50 55 Q30 45 40 30 Q50 40 50 55" class="leaf left" />
+  
+
+        <path d="M50 55 Q70 45 60 30 Q50 40 50 55" class="leaf right" />
+  
+      </svg>
+  
+      <div class="loading-text">Growing fresh products...</div>
+    </div>
   } @else {
 
     <!-- CARRUSEL -->

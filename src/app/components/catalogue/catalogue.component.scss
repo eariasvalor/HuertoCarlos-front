@@ -228,6 +228,80 @@
   }
 }
 
+.plant-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.plant-svg {
+  width: 120px;
+  height: 120px;
+}
+
+.soil {
+  fill: none;
+  stroke: #8b5e3c;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw 1.2s ease-out forwards;
+}
+
+/* TALLO */
+.stem {
+  stroke: #16a34a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: draw 1.2s ease-out 0.3s forwards;
+}
+
+
+.leaf {
+  fill: #22c55e;
+  opacity: 0;
+  transform-origin: center;
+  animation: growLeaf 1.5s ease-out 0.8s forwards;
+}
+
+.leaf.right {
+  animation-delay: 1s;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  font-size: 14px;
+  color: #16a34a;
+  font-weight: 500;
+}
+
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes growLeaf {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* =========================
    DESKTOP
 ========================= */
