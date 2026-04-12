@@ -66,6 +66,32 @@ export class CatalogueComponent implements OnInit {
 
   readonly isAuthenticated = computed(() => this.authService.isAuthenticated());
 
+  readonly isMobile = signal(window.innerWidth < 768);
+
+readonly viewMode = signal<'1' | '2' | 'grid'>('1');
+
+constructor() {
+  window.addEventListener('resize', () => {
+    const mobile = window.innerWidth < 768;
+    this.isMobile.set(mobile);
+
+    if (mobile && this.viewMode() === 'grid') {
+      this.viewMode.set('1');
+    }
+  });
+}
+
+setView(mode: '1' | '2' | 'grid') {
+
+
+  if (this.isMobile()) {
+    if (mode === 'grid') return;
+  } else {
+  }
+
+  this.viewMode.set(mode);
+}
+
   ngOnInit() {
     this.loadProducts();
   }

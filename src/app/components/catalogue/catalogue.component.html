@@ -27,28 +27,55 @@
   </div>
 
   @if (isLoading()) {
+
     <div class="plant-loader">
       <svg class="plant-svg" viewBox="0 0 100 100">
-  
         <path d="M20 80 Q50 95 80 80" class="soil" />
-  
         <line x1="50" y1="80" x2="50" y2="40" class="stem" />
-
         <path d="M50 55 Q30 45 40 30 Q50 40 50 55" class="leaf left" />
-  
-
         <path d="M50 55 Q70 45 60 30 Q50 40 50 55" class="leaf right" />
-  
       </svg>
-  
+
       <div class="loading-text">Growing fresh products...</div>
     </div>
+
   } @else {
 
-    <!-- CARRUSEL -->
-    <div class="carousel">
+    <!-- VIEW SWITCHER -->
+    <div class="view-switcher">
+
+      <button
+        class="mobile-only"
+        (click)="setView('1')"
+        [class.active]="viewMode() === '1'">
+        1
+      </button>
+    
+      <button
+        (click)="setView('2')"
+        [class.active]="viewMode() === '2'">
+        2
+      </button>
+    
+      <button
+        (click)="setView('grid')"
+        [class.active]="viewMode() === 'grid'">
+        ▦
+      </button>
+    
+    </div>
+
+    <!-- GRID -->
+    <div class="products-grid" [ngClass]="{
+      'cols-1': viewMode() === '1',
+      'cols-2': viewMode() === '2',
+      'cols-3': viewMode() === 'grid'
+    }">
+
       @for (product of filteredProducts(); track product.id) {
+
         <div class="product-card">
+
           <div class="product-image">
             <img [src]="getImage(product)" [alt]="product.name" />
           </div>
@@ -68,16 +95,20 @@
               <button class="qty-btn plus" (click)="increase(product)">+</button>
             </div>
           </div>
+
         </div>
+
       }
+
     </div>
+
   }
 
   @if (hasItemsInCart()) {
     <div class="order-bar">
       <div class="order-info">
         <div class="order-items">
-          {{ cartItemCount() }} {{ cartItemCount() === 1 ? 'product' : 'products' }} selected
+          {{ cartItemCount() }} products selected
         </div>
         <div class="order-total">{{ cartTotal() }} €</div>
       </div>
