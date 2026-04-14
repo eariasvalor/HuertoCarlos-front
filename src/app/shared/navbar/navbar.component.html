@@ -13,8 +13,9 @@
       </a>
 
       @if (isAdmin()) {
-        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
+        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Orders</a>
         <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
+        <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">Notifications</a>
       } @else {
         <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
         <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
