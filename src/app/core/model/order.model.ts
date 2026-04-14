@@ -34,10 +34,10 @@ export interface CreateOrderRequest {
 }
 
 export interface OrderStats {
-  pendingConfirmation: number;
+  pending: number;
   confirmed: number;
-  inPreparation: number;
-  readyForPickup: number;
+  delivered: number;
+  ready: number;
   cancelled: number;
   total: number;
 }
