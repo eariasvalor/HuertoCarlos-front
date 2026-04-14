@@ -361,3 +361,8 @@
   margin-bottom: 12px;
   font-size: 13px;
 }
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #b91c1c;
+  background: #fef2f2;
+}
