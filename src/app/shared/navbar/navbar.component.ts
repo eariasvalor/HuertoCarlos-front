@@ -18,6 +18,16 @@ export class NavbarComponent {
 
   readonly isAuthenticated = computed(() => this.authService.isAuthenticated());
 
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
   goBack() {
     this.location.back();
   }

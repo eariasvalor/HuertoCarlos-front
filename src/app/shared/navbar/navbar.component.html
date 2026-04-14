@@ -6,6 +6,7 @@
     </a>
   </div>
 
+  <!-- DESKTOP ACTIONS -->
   <div class="nav-actions">
     @if (isAuthenticated()) {
       <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
@@ -13,7 +14,7 @@
       </a>
 
       @if (isAdmin()) {
-        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Orders</a>
+        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
         <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
         <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">Notifications</a>
       } @else {
@@ -26,5 +27,36 @@
       <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>
       <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">Register</a>
     }
+  </div>
+
+  <!-- HAMBURGER -->
+  <button class="hamburger" (click)="toggleMenu()">
+    ☰
+  </button>
+
+  <!-- OVERLAY -->
+  <div class="overlay" [class.open]="menuOpen" (click)="closeMenu()"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" [class.open]="menuOpen">
+
+    @if (isAuthenticated()) {
+      <a routerLink="/" (click)="closeMenu()">Catalogue</a>
+
+      @if (isAdmin()) {
+        <a routerLink="/admin" (click)="closeMenu()">Orders</a>
+        <a routerLink="/admin/customers" (click)="closeMenu()">Customers</a>
+        <a routerLink="/admin/notifications/new" (click)="closeMenu()">Notifications</a>
+      } @else {
+        <a routerLink="/orders" (click)="closeMenu()">My orders</a>
+        <a routerLink="/profile" (click)="closeMenu()">Profile</a>
+      }
+
+      <button (click)="logout(); closeMenu()">Sign out</button>
+    } @else {
+      <a routerLink="/login" (click)="closeMenu()">Sign in</a>
+      <a routerLink="/register" (click)="closeMenu()">Register</a>
+    }
+
   </div>
 </nav>
