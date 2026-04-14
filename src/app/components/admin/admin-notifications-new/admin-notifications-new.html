@@ -1,0 +1,102 @@
+<div class="customers-wrapper">
+  
+    <app-navbar/>
+    <div class="header">
+      <div class="header-left">
+        <h1>Send notification</h1>
+        <p>Notify your customers instantly</p>
+      </div>
+    </div>
+
+    <div class="notifications-layout">
+  
+      <div class="panel">
+  
+        <div class="panel-header">
+          <label class="customer-item">
+            <input type="checkbox" (change)="toggleAll($event)" />
+            Select all
+          </label>
+          <span>{{ selectedIds().length }} selected</span>
+        </div>
+  
+        @if (isLoading()) {
+          <div class="loading">Loading customers...</div>
+        } @else {
+  
+          <div class="customers-list">
+            @for (c of customers(); track c.id) {
+              <label class="customer-item">
+                <input
+                  type="checkbox"
+                  [checked]="isSelected(c.id)"
+                  (change)="toggleCustomer(c.id)" />
+  
+                <div class="customer-info">
+                  <div class="name">{{ c.name }}</div>
+                  <div class="phone">
+                    {{ c.phoneCountryCode }} {{ c.phoneNumber }}
+                  </div>
+                </div>
+              </label>
+            }
+          </div>
+  
+        }
+  
+      </div>
+  
+      <div class="panel">
+
+        <div class="form-group">
+          <label>Message: </label>
+          <quill-editor
+            [ngModel]="editorContent()"
+            (ngModelChange)="onEditorChange($event)"
+            [modules]="quillConfig"
+            placeholder="Write your message..."
+          >
+          </quill-editor>
+        
+        <div class="counter">
+          {{ editorContent().length }} / {{ maxLength }}
+        </div>
+
+        </div>
+  
+        <div class="form-group">
+          <label>Photo </label>
+          <input type="file" (change)="onFileSelected($event)" />
+  
+         
+        </div>
+
+        <div class="preview-box">
+          <div class="bubble">
+            @if (previewUrl()) {
+              <img [src]="previewUrl()" />
+            }
+            <div [innerHTML]="message() || 'Your message preview...'"></div>
+          </div>
+        </div>
+  
+        <button
+          class="btn-add"
+          [disabled]="isDisabled()"
+          (click)="send()">
+  
+          @if (sending()) { Sending... } @else { Send notification }
+  
+        </button>
+  
+        @if (resultMessage()) {
+          <div class="success">
+            {{ resultMessage() }}
+          </div>
+        }
+  
+      </div>
+  
+    </div>
+  
+  </div>
