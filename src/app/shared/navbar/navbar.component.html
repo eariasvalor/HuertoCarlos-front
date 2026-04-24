@@ -4,7 +4,7 @@
   <div class="nav-left">
     <a routerLink="/" class="nav-brand">
       <span class="nav-icon"></span>
-      <span class="brand-text">Eco Huerto Montgó</span>
+      <span class="brand-text">{{ 'navbar.brand' | transloco }}</span>
     </a>
   </div>
 
@@ -16,22 +16,22 @@
 
       @if (isAuthenticated()) {
         <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          Catalogue
+          {{ 'navbar.nav.catalogue' | transloco }}
         </a>
 
         @if (isAdmin()) {
-          <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
-          <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
-          <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">Notifications</a>
+          <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">{{ 'navbar.nav.orders' | transloco }}</a>
+          <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">{{ 'navbar.nav.customers' | transloco }}</a>
+          <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">{{ 'navbar.nav.notifications' | transloco }}</a>
         } @else {
-          <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
-          <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
+          <a routerLink="/orders" class="nav-btn" routerLinkActive="active">{{ 'navbar.nav.my_orders' | transloco }}</a>
+          <a routerLink="/profile" class="nav-btn" routerLinkActive="active">{{ 'navbar.nav.profile' | transloco }}</a>
         }
 
-        <button class="nav-btn nav-btn-signout" (click)="logout()">Sign out</button>
+        <button class="nav-btn nav-btn-signout" (click)="logout()">{{ 'navbar.nav.sign_out' | transloco }}</button>
       } @else {
-        <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>
-        <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">Register</a>
+        <a routerLink="/login" class="nav-btn" routerLinkActive="active">{{ 'navbar.nav.sign_in' | transloco }}</a>
+        <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">{{ 'navbar.nav.register' | transloco }}</a>
       }
 
     </div>
@@ -80,21 +80,21 @@
   <div class="mobile-menu" [class.open]="menuOpen">
 
     @if (isAuthenticated()) {
-      <a routerLink="/" (click)="closeMenu()">Catalogue</a>
+      <a routerLink="/" (click)="closeMenu()">{{ 'navbar.nav.catalogue' | transloco }}</a>
 
       @if (isAdmin()) {
-        <a routerLink="/admin" (click)="closeMenu()">Orders</a>
-        <a routerLink="/admin/customers" (click)="closeMenu()">Customers</a>
-        <a routerLink="/admin/notifications/new" (click)="closeMenu()">Notifications</a>
+        <a routerLink="/admin" (click)="closeMenu()">{{ 'navbar.nav.orders' | transloco }}</a>
+        <a routerLink="/admin/customers" (click)="closeMenu()">{{ 'navbar.nav.customers' | transloco }}</a>
+        <a routerLink="/admin/notifications/new" (click)="closeMenu()">{{ 'navbar.nav.notifications' | transloco }}</a>
       } @else {
-        <a routerLink="/orders" (click)="closeMenu()">My orders</a>
-        <a routerLink="/profile" (click)="closeMenu()">Profile</a>
+        <a routerLink="/orders" (click)="closeMenu()">{{ 'navbar.nav.my_orders' | transloco }}</a>
+        <a routerLink="/profile" (click)="closeMenu()">{{ 'navbar.nav.profile' | transloco }}</a>
       }
 
-      <button (click)="logout(); closeMenu()">Sign out</button>
+      <button (click)="logout(); closeMenu()">{{ 'navbar.nav.sign_out' | transloco }}</button>
     } @else {
-      <a routerLink="/login" (click)="closeMenu()">Sign in</a>
-      <a routerLink="/register" (click)="closeMenu()">Register</a>
+      <a routerLink="/login" (click)="closeMenu()">{{ 'navbar.nav.sign_in' | transloco }}</a>
+      <a routerLink="/register" (click)="closeMenu()">{{ 'navbar.nav.register' | transloco }}</a>
     }
 
   </div>
@@ -103,7 +103,7 @@
   <div class="cart-drawer" [class.open]="cartOpen">
 
     <div class="cart-header">
-      <h3>Carrito</h3>
+      <h3>{{ 'navbar.basket.title' | transloco }}</h3>
       <button (click)="toggleCart()">✕</button>
     </div>
 
@@ -130,11 +130,11 @@
 
     <div class="cart-footer">
       <div class="total">
-        Total: {{ total() }} €  
+        {{ 'navbar.basket.total' | transloco }}: {{ total() }} €  
       </div>
 
-      <button class="checkout-btn" (click)="checkout()">
-        Checkout
+      <button class="checkout-btn">
+        {{ 'navbar.basket.checkout' | transloco }}
       </button>
     </div>
 

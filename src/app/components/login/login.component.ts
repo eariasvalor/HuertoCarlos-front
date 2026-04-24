@@ -2,11 +2,13 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
+import { TranslocoModule } from '@ngneat/transloco';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslocoModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -34,10 +36,10 @@ export class LoginComponent {
       next: () => this.router.navigate(['/']),
       error: err => {
         this.errorMessage.set(
-          err.status === 401
-            ? 'Incorrect Email or password'
-            : 'Login error. Try again.'
-        );
+        err.status === 401
+          ? 'login.errors.auth_failed'
+          : 'login.errors.generic_error'
+      );
         this.isLoading.set(false);
       }
     });
