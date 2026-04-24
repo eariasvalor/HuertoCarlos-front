@@ -3,55 +3,55 @@
 
     <div class="login-header">
       <div class="tomato-icon">🍅</div>
-      <h1>Eco Huerto Montgó</h1>
-      <p>Sign in to place your order</p>
+      <h1>{{ 'login.header.title' | transloco }}</h1>
+      <p>{{ 'login.header.subtitle' | transloco }}</p>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">{{ 'login.form.email_label' | transloco }}</label>
         <input
           id="email"
           type="email"
           formControlName="email"
-          placeholder="your@email.com"
+          placeholder="{{ 'login.form.email_placeholder' | transloco }}"
           [class.error]="email?.invalid && email?.touched"
         />
         @if (email?.invalid && email?.touched) {
-          <span class="error-msg">Please enter a valid email</span>
+          <span class="error-msg">{{ 'login.errors.invalid_email' | transloco }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label for="rawPassword">Password</label>
+        <label for="rawPassword">{{ 'login.form.password_label' | transloco }}</label>
         <input
           id="rawPassword"
           type="password"
           formControlName="rawPassword"
-          placeholder="••••••••"
+          placeholder="{{ 'login.form.password_placeholder' | transloco }}"
           [class.error]="rawPassword?.invalid && rawPassword?.touched"
         />
         @if (rawPassword?.invalid && rawPassword?.touched) {
-          <span class="error-msg">Password must be at least 8 characters</span>
+          <span class="error-msg">{{ 'login.errors.password_length' | transloco }}</span>
         }
       </div>
 
       @if (errorMessage()) {
-        <div class="alert-error">{{ errorMessage() }}</div>
-      }
+  <div class="alert-error">{{ errorMessage() | transloco }}</div>
+}
 
       <button type="submit" [disabled]="form.invalid || isLoading()">
-        @if (isLoading()) { Signing in... } @else { Sign in }
+        @if (isLoading()) { {{ 'login.form.submitting' | transloco }} } @else { {{ 'login.form.submit' | transloco }} }
       </button>
 
     </form>
 
     <div class="login-footer">
-      <p>Don't have an account? <a routerLink="/register">Register</a></p>
+      <p>{{ 'login.footer.no_account' | transloco }} <a routerLink="/register">{{ 'login.footer.register_link' | transloco }}</a></p>
     </div>
 
-    <div class="tagline">Seasonal tomatoes · Straight from the field</div>
+    <div class="tagline">{{ 'login.tagline' | transloco }}</div>
 
   </div>
 </div>

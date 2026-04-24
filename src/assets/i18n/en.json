@@ -34,6 +34,30 @@
       "checkout": "Make Order",
       "empty": "Your cart is empty"
     }
+  },
+
+  "login": {
+    "header": {
+      "title": "Eco Huerto Montgó",
+      "subtitle": "Sign in to place your order"
+    },
+    "form": {
+      "email_label": "Email",
+      "email_placeholder": "your@email.com",
+      "password_label": "Password",
+      "password_placeholder": "••••••••",
+      "submit": "Sign in",
+      "submitting": "Signing in..."
+    },
+    "errors": {
+      "invalid_email": "Please enter a valid email",
+      "password_length": "Password must be at least 8 characters"
+    },
+    "footer": {
+      "no_account": "Don't have an account?",
+      "register_link": "Register"
+    },
+    "tagline": "Seasonal tomatoes · Straight from the field"
   }
 
 }
