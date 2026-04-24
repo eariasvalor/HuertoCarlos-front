@@ -103,7 +103,7 @@
   <div class="cart-drawer" [class.open]="cartOpen">
 
     <div class="cart-header">
-      <h3>{{ 'navbar.cart.title' | transloco }}</h3>
+      <h3>{{ 'navbar.basket.title' | transloco }}</h3>
       <button (click)="toggleCart()">✕</button>
     </div>
 
@@ -130,11 +130,11 @@
 
     <div class="cart-footer">
       <div class="total">
-        {{ 'navbar.cart.total' | transloco }}: {{ total() }} €  
+        {{ 'navbar.basket.total' | transloco }}: {{ total() }} €  
       </div>
 
       <button class="checkout-btn">
-        {{ 'navbar.cart.checkout' | transloco }}
+        {{ 'navbar.basket.checkout' | transloco }}
       </button>
     </div>
 
