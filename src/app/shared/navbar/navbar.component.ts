@@ -68,14 +68,14 @@ export class NavbarComponent {
   private resolveImage(name: string): string {
     console.log('Resolving image for:', name);
     const key = name.toLowerCase().trim();
-
+  
     const mapped = this.imageMap[key];
-
+  
     if (mapped) {
       return `images/products/${mapped}.jpg`;
     }
-
-    return `images/products/placeholder.jpg`;
+  
+    return `images/products/tomato-default.jpg`;
   }
 
   readonly cartItemsDetailed = computed(() => {
