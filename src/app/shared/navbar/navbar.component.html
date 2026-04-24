@@ -57,6 +57,11 @@
 
   </div>
 
+  <button class="cart-btn" (click)="toggleCart()">
+    🛒
+    <span class="cart-count">{{ cartItemCount() }}</span>
+  </button>
+
   <!-- HAMBURGER -->
   <button class="hamburger" (click)="toggleMenu()">
     ☰
@@ -88,4 +93,47 @@
 
   </div>
 
+  <div class="cart-drawer" [class.open]="cartOpen">
+
+    <div class="cart-header">
+      <h3>Carrito</h3>
+      <button (click)="toggleCart()">✕</button>
+    </div>
+  
+    <div class="cart-content">
+
+      @for (item of cartItemsDetailed(); track item.productId) {
+        <div class="cart-item">
+    
+          <img class="item-img" [src]="item.image" alt="{{ item.name }}" />
+    
+          <div class="item-info">
+            <span class="name">{{ item.name }}</span>
+            <span class="price">{{ item.price }} €</span>
+          </div>
+    
+          <div class="qty">
+            x{{ item.qty }}
+          </div>
+    
+        </div>
+      }
+    
+    </div>
+  
+    <div class="cart-footer">
+      <div class="total">
+        Total: {{ total() }} €
+      </div>
+  
+      <button class="checkout-btn">
+        Checkout
+      </button>
+    </div>
+  
+  </div>
+  
+  <div class="cart-overlay" [class.open]="cartOpen" (click)="toggleCart()"></div>
+
 </nav>
+

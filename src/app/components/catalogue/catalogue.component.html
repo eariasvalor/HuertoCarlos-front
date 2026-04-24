@@ -117,23 +117,6 @@
 
   }
 
-  @if (hasItemsInCart()) {
-    <div class="order-bar">
-      <div class="order-info">
-        <div class="order-items">
-          {{ cartItemCount() }} {{ 'catalogue.selected' | transloco }}
-        </div>
-        <div class="order-total">{{ cartTotal() }} €</div>
-      </div>
 
-      <button class="order-btn" (click)="placeOrder()" [disabled]="isOrdering()">
-        @if (isOrdering()) {
-          {{ 'catalogue.placing_order' | transloco }}
-        } @else {
-          {{ 'catalogue.place_order' | transloco }}
-        }
-      </button>
-    </div>
-  }
 
 </div>

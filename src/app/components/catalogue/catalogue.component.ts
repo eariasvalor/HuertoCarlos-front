@@ -8,6 +8,7 @@ import { Product } from '../../core/model/product.model';
 import { getProductImage } from '../../core/utils/product-image.util';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { CartService } from '../../core/services/cart-service';
 
 
 interface CartItem {
@@ -30,6 +31,7 @@ export class CatalogueComponent implements OnInit {
   private readonly orderService = inject(OrderService);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly cartService = inject(CartService);
 
   readonly products = signal<Product[]>([]);
   readonly cart = signal<Map<string, number>>(new Map());
@@ -118,30 +120,20 @@ setView(mode: '1' | '2' | 'grid') {
     return getProductImage(product.variety, product.category);
   }
 
-  getQuantity(productId: string): number {
-    return this.cart().get(productId) ?? 0;
+  getQuantity(productId: string) {
+    return this.cartService.getQuantity(productId);
   }
-
+  
   increase(product: Product) {
     if (!this.isAuthenticated()) {
       this.router.navigate(['/login']);
       return;
     }
-    const newCart = new Map(this.cart());
-    newCart.set(product.id, (newCart.get(product.id) ?? 0) + 1);
-    this.cart.set(newCart);
+    this.cartService.increase(product.id);
   }
-
+  
   decrease(product: Product) {
-    const current = this.cart().get(product.id) ?? 0;
-    if (current === 0) return;
-    const newCart = new Map(this.cart());
-    if (current === 1) {
-      newCart.delete(product.id);
-    } else {
-      newCart.set(product.id, current - 1);
-    }
-    this.cart.set(newCart);
+    this.cartService.decrease(product.id);
   }
 
   selectCategory(category: string) {

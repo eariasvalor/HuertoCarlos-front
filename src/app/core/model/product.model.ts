@@ -11,6 +11,7 @@ export interface Product {
   unit: Unit;
   stock: number;
   available: boolean;
+  image: string;
 }
 
 export interface PageResponse<T> {
