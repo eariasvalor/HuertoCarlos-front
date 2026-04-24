@@ -1,5 +1,5 @@
 import { Component, inject, computed } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/auth/auth.service';
 import { TranslocoService } from '@ngneat/transloco';
@@ -9,6 +9,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Product } from '../../core/model/product.model';
 import { TranslocoModule } from '@ngneat/transloco';
+import { OrderService } from '../../core/services/order.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,6 +25,8 @@ export class NavbarComponent {
   private readonly cartService = inject(CartService);
   private readonly productService = inject(ProductService);
   private readonly transloco = inject(TranslocoService);
+  private readonly orderService = inject(OrderService);
+  private readonly router = inject(Router);
 
   // =========================
   // AUTH
@@ -69,14 +72,14 @@ export class NavbarComponent {
   private resolveImage(name: string): string {
     console.log('Resolving image for:', name);
     const key = name.toLowerCase().trim();
-
+  
     const mapped = this.imageMap[key];
-
+  
     if (mapped) {
       return `images/products/${mapped}.jpg`;
     }
-
-    return `images/products/placeholder.jpg`;
+  
+    return `images/products/tomato-default.jpg`;
   }
 
   readonly cartItemsDetailed = computed(() => {
@@ -145,5 +148,36 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
+  }
+
+  checkout() {
+    const customer = this.authService.currentUser();
+  
+    if (!customer) {
+      this.router.navigate(['/login']);
+      return;
+    }
+  
+    const cart = this.cartService.items();
+  
+    const lines = cart.map(item => ({
+      productId: item.productId,
+      quantity: item.qty
+    }));
+  
+    if (lines.length === 0) return;
+  
+    this.orderService.create({
+      customerId: customer.id,
+      lines
+    }).subscribe({
+      next: () => {
+        this.cartService.clear?.();
+        this.cartOpen = false;
+      },
+      error: () => {
+        console.error('Error placing order');
+      }
+    });
   }
 }
