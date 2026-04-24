@@ -52,7 +52,7 @@ export class NavbarComponent {
   // PRODUCTS (API → SIGNAL)
   // =========================
   readonly products = toSignal(
-    this.productService.getAll().pipe(
+    this.productService.getAvailable().pipe(
       map(res => res.content)
     ),
     { initialValue: [] as Product[] }

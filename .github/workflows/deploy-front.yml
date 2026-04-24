@@ -23,8 +23,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build producción
-        run: npm run build -- --configuration=production --base-href="https://eariasvalor.github.io/HuertoCarlos-front/"
-
+        run: npm run build -- --configuration=production --base-href=/HuertoCarlos-front/
       - name: Desplegar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
