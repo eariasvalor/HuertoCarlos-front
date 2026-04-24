@@ -1,0 +1,190 @@
+{
+  "order": {
+    "placed_success": "Bestelling succesvol geplaatst!",
+    "placed_duplicate": "Bestelling geplaatst! Lijkt op een herhaling — controleer je bestellingen voor de zekerheid.",
+    "place_error": "Bestelling kon niet worden geplaatst. Probeer het opnieuw."
+  },
+  "products": {
+    "load_error": "Producten konden niet worden geladen. Probeer het opnieuw."
+  },
+  "catalogue": {
+    "title": "Aanbod van vandaag",
+    "subtitle": "Verse producten, vanochtend geplukt",
+    "loading": "De oogst van vandaag laden...",
+    "selected": "artikelen in je mand",
+    "place_order": "Bestelling plaatsen",
+    "placing_order": "Bestelling wordt geplaatst...",
+    "filter_all": "Alles"
+  },
+  "navbar": {
+    "brand": "Eco Huerto Montgó",
+    "nav": {
+      "catalogue": "Aanbod",
+      "orders": "Bestellingen",
+      "customers": "Klanten",
+      "notifications": "Meldingen",
+      "my_orders": "Mijn bestellingen",
+      "profile": "Profiel",
+      "sign_in": "Inloggen",
+      "register": "Registreren",
+      "sign_out": "Uitloggen"
+    },
+    "basket": {
+      "title": "Mand",
+      "total": "Totaal",
+      "checkout": "Bestelling plaatsen",
+      "empty": "Je mand is leeg"
+    }
+  },
+  "login": {
+    "header": {
+      "title": "Eco Huerto Montgó",
+      "subtitle": "Log in om je bestelling te plaatsen"
+    },
+    "form": {
+      "email_label": "E-mailadres",
+      "email_placeholder": "jouw@email.com",
+      "password_label": "Wachtwoord",
+      "password_placeholder": "••••••••",
+      "submit": "Inloggen",
+      "submitting": "Bezig met inloggen..."
+    },
+    "errors": {
+      "invalid_email": "Voer een geldig e-mailadres in",
+      "password_length": "Het wachtwoord moet minimaal 8 tekens bevatten",
+      "auth_failed": "E-mailadres of wachtwoord onjuist",
+      "generic_error": "Inlogfout. Probeer het opnieuw."
+    },
+    "footer": {
+      "no_account": "Nog geen account?",
+      "register_link": "Registreer je"
+    },
+    "tagline": "Seizoenstomaten · Rechtstreeks van het veld"
+  },
+  "orders": {
+    "header": {
+      "back": "Terug",
+      "title": "Mijn bestellingen",
+      "subtitle": "Volg je bestellingen van het veld tot aan je deur"
+    },
+    "states": {
+      "loading": "Je bestellingen laden...",
+      "empty": "Nog geen bestellingen.",
+      "browse": "Bekijk aanbod",
+      "load_error": "Bestellingen konden niet worden geladen. Probeer het opnieuw.",
+      "cancel_error": "Bestelling kon niet worden geannuleerd. Probeer het opnieuw."
+    },
+    "timeline": {
+      "pending": "In afwachting",
+      "confirmed": "Bevestigd",
+      "in_progress": "In voorbereiding",
+      "ready": "Klaar"
+    },
+    "card": {
+      "order_number": "Bestelling",
+      "cancel_btn": "Bestelling annuleren",
+      "cancelling": "Annuleren..."
+    },
+    "status": {
+      "pending": "In afwachting",
+      "confirmed": "Bevestigd",
+      "preparation": "In voorbereiding",
+      "ready": "Klaar",
+      "cancelled": "Geannuleerd",
+      "delivered": "Bezorgd"
+    }
+  },
+  "profile": {
+    "header": {
+      "title": "Mijn profiel",
+      "subtitle": "Jouw accountgegevens"
+    },
+    "info": {
+      "name": "Naam",
+      "email": "E-mailadres",
+      "phone": "Telefoon",
+      "address": "Adres",
+      "member_since": "Klant sinds"
+    },
+    "form": {
+      "name_label": "Naam",
+      "email_label": "E-mailadres",
+      "email_hint": "E-mailadres kan niet worden gewijzigd",
+      "password_label": "Wachtwoord",
+      "password_optional": "(optioneel)",
+      "password_placeholder": "Laat leeg om het te behouden",
+      "phone_label": "Telefoon",
+      "phone_prefix_placeholder": "+34",
+      "phone_number_placeholder": "600 123 456",
+      "address_section": "Adres",
+      "address_optional": "(optioneel)",
+      "street_type_label": "Soort straat",
+      "street_type_placeholder": "Straat, Laan...",
+      "street_label": "Straatnaam",
+      "street_placeholder": "Naam van de straat",
+      "number_label": "Nummer",
+      "number_placeholder": "12",
+      "floor_label": "Verdieping",
+      "floor_optional": "(optioneel)",
+      "floor_placeholder": "2e A",
+      "postal_code_label": "Postcode",
+      "postal_code_placeholder": "03001",
+      "city_label": "Stad",
+      "city_placeholder": "Alicante",
+      "province_label": "Provincie",
+      "province_placeholder": "Alicante"
+    },
+    "errors": {
+      "name_length": "De naam moet minimaal 2 tekens bevatten",
+      "password_length": "Het wachtwoord moet minimaal 8 tekens bevatten",
+      "phone_invalid": "Voer een geldig telefoonnummer in",
+      "load_error": "Profiel kon niet worden geladen.",
+      "update_error": "Profiel kon niet worden bijgewerkt. Probeer het opnieuw."
+    },
+    "actions": {
+      "edit": "Profiel bewerken",
+      "cancel": "Annuleren",
+      "save": "Wijzigingen opslaan",
+      "saving": "Opslaan..."
+    },
+    "quick_links": {
+      "my_orders": "Mijn bestellingen",
+      "back_to_catalogue": "Terug naar het aanbod"
+    },
+    "success": {
+      "updated": "Profiel succesvol bijgewerkt"
+    }
+  },
+  "register": {
+    "header": {
+      "title": "Eco Huerto Montgó",
+      "subtitle": "Word lid van Eco Huerto Montgó"
+    },
+    "form": {
+      "name_label": "Naam",
+      "name_placeholder": "Jouw naam",
+      "email_label": "E-mailadres",
+      "email_placeholder": "jouw@email.com",
+      "password_label": "Wachtwoord",
+      "password_placeholder": "••••••••",
+      "phone_label": "Telefoon",
+      "phone_prefix_placeholder": "+34",
+      "phone_number_placeholder": "600 123 456",
+      "submit": "Account aanmaken",
+      "submitting": "Account wordt aangemaakt..."
+    },
+    "errors": {
+      "name_length": "De naam moet minimaal 2 tekens bevatten",
+      "invalid_email": "Voer een geldig e-mailadres in",
+      "password_length": "Het wachtwoord moet minimaal 8 tekens bevatten",
+      "phone_invalid": "Voer een geldig telefoonnummer in",
+      "email_taken": "Dit e-mailadres is al geregistreerd",
+      "generic_error": "Account aanmaken mislukt. Probeer het opnieuw."
+    },
+    "footer": {
+      "has_account": "Heb je al een account?",
+      "sign_in_link": "Log in"
+    },
+    "tagline": "Seizoenstomaten · Rechtstreeks van het veld"
+  }
+}
