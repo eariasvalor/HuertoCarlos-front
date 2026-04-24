@@ -73,18 +73,31 @@ export class CatalogueComponent implements OnInit {
 
   readonly isMobile = signal(window.innerWidth < 768);
 
-readonly viewMode = signal<'1' | '2' | 'grid'>('1');
+  readonly viewMode = signal<'1' | '2' | 'grid'>(
+    window.innerWidth < 768 ? '1' : 'grid'
+  );
 
-constructor() {
-  window.addEventListener('resize', () => {
+  constructor() {
     const mobile = window.innerWidth < 768;
     this.isMobile.set(mobile);
-
-    if (mobile && this.viewMode() === 'grid') {
-      this.viewMode.set('1');
-    }
-  });
-}
+  
+    this.viewMode.set(mobile ? '1' : 'grid');
+  
+    window.addEventListener('resize', () => {
+      const mobileNow = window.innerWidth < 768;
+      this.isMobile.set(mobileNow);
+  
+      if (mobileNow) {
+        if (this.viewMode() === 'grid') {
+          this.viewMode.set('1');
+        }
+      } else {
+        if (this.viewMode() !== 'grid') {
+          this.viewMode.set('grid');
+        }
+      }
+    });
+  }
 
 
 setView(mode: '1' | '2' | 'grid') {
