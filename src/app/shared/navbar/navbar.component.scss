@@ -436,3 +436,66 @@
   opacity: 1;
   pointer-events: all;
 }
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 64px;
+  padding: 0 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: 'Inter', sans-serif;
+
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.06), transparent 40%),
+    radial-gradient(circle at 90% 40%, rgba(255,255,255,0.04), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(0,0,0,0.08), transparent 50%),
+    #b91c1c;
+
+  overflow: visible;
+}
+
+/* ✅ NUEVO CONTENEDOR DERECHA */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* todo pegado a la derecha pero con espacio entre elementos */
+}
+
+/* acciones ya no empujan layout raro */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* opcional: evitar que todo se vaya a extremos raros */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+/* móvil: sigue ocultando acciones */
+@media (max-width: 768px) {
+
+  .nav-actions {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-brand {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  .brand-text {
+    font-size: 14px;
+  }
+}

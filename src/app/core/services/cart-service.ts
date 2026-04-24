@@ -10,7 +10,6 @@ export class CartService {
 
   private readonly cart = signal<Map<string, number>>(new Map());
 
-  // 👉 array usable en UI
   readonly items = computed<CartItem[]>(() => {
     return Array.from(this.cart().entries()).map(([productId, qty]) => ({
       productId,

@@ -8,64 +8,70 @@
     </a>
   </div>
 
-  <!-- DESKTOP ACTIONS -->
-  <div class="nav-actions">
+  <!-- RIGHT SIDE (TODO AGRUPADO) -->
+  <div class="nav-right">
 
-    @if (isAuthenticated()) {
-      <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        Catalogue
-      </a>
+    <!-- DESKTOP ACTIONS -->
+    <div class="nav-actions">
 
-      @if (isAdmin()) {
-        <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
-        <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
-        <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">Notifications</a>
+      @if (isAuthenticated()) {
+        <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Catalogue
+        </a>
+
+        @if (isAdmin()) {
+          <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">Orders</a>
+          <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">Customers</a>
+          <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">Notifications</a>
+        } @else {
+          <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
+          <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
+        }
+
+        <button class="nav-btn nav-btn-signout" (click)="logout()">Sign out</button>
       } @else {
-        <a routerLink="/orders" class="nav-btn" routerLinkActive="active">My orders</a>
-        <a routerLink="/profile" class="nav-btn" routerLinkActive="active">Profile</a>
+        <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>
+        <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">Register</a>
       }
 
-      <button class="nav-btn nav-btn-signout" (click)="logout()">Sign out</button>
-    } @else {
-      <a routerLink="/login" class="nav-btn" routerLinkActive="active">Sign in</a>
-      <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">Register</a>
-    }
-
-  </div>
-
-  <!-- LANGUAGE DROPDOWN (NEXT TO HAMBURGER) -->
-  <div class="lang-dropdown" [class.open]="langOpen">
-
-    <button class="lang-toggle" (click)="toggleLang()">
-      <img [src]="'assets/flags/' + activeLang + '.svg'" [alt]="activeLang" />
-      <span class="chevron">▼</span>
-    </button>
-
-    <div class="lang-menu">
-      @for (l of langs; track l) {
-        <button
-          type="button"
-          (click)="setLanguage(l); closeLang()"
-          [class.active]="l === activeLang">
-
-          <img [src]="'assets/flags/' + l + '.svg'" [alt]="l" />
-          <span>{{ l.toUpperCase() }}</span>
-
-        </button>
-      }
     </div>
 
+    <!-- LANGUAGE -->
+    <div class="lang-dropdown" [class.open]="langOpen">
+
+      <button class="lang-toggle" (click)="toggleLang()">
+        <img [src]="'assets/flags/' + activeLang + '.svg'" [alt]="activeLang" />
+        <span class="chevron">▼</span>
+      </button>
+
+      <div class="lang-menu">
+        @for (l of langs; track l) {
+          <button
+            type="button"
+            (click)="setLanguage(l); closeLang()"
+            [class.active]="l === activeLang">
+
+            <img [src]="'assets/flags/' + l + '.svg'" [alt]="l" />
+            <span>{{ l.toUpperCase() }}</span>
+
+          </button>
+        }
+      </div>
+
+    </div>
+
+    <!-- CART -->
+    <button class="cart-btn" (click)="toggleCart()">
+      🛒
+      <span class="cart-count">{{ cartItemCount() }}</span>
+    </button>
+
+    <!-- HAMBURGER -->
+    <button class="hamburger" (click)="toggleMenu()">
+      ☰
+    </button>
+
   </div>
-
-  <button class="cart-btn" (click)="toggleCart()">
-    🛒
-    <span class="cart-count">{{ cartItemCount() }}</span>
-  </button>
-
-  <!-- HAMBURGER -->
-  <button class="hamburger" (click)="toggleMenu()">
-    ☰
-  </button>
 
   <!-- OVERLAY -->
   <div class="overlay" [class.open]="menuOpen" (click)="closeMenu()"></div>
@@ -93,47 +99,47 @@
 
   </div>
 
+  <!-- CART DRAWER -->
   <div class="cart-drawer" [class.open]="cartOpen">
 
     <div class="cart-header">
       <h3>Carrito</h3>
       <button (click)="toggleCart()">✕</button>
     </div>
-  
+
     <div class="cart-content">
 
       @for (item of cartItemsDetailed(); track item.productId) {
         <div class="cart-item">
-    
+
           <img class="item-img" [src]="item.image" alt="{{ item.name }}" />
-    
+
           <div class="item-info">
             <span class="name">{{ item.name }}</span>
             <span class="price">{{ item.price }} €</span>
           </div>
-    
+
           <div class="qty">
             x{{ item.qty }}
           </div>
-    
+
         </div>
       }
-    
+
     </div>
-  
+
     <div class="cart-footer">
       <div class="total">
-        Total: {{ total() }} €
+        Total: {{ total() }} €  
       </div>
-  
+
       <button class="checkout-btn">
         Checkout
       </button>
     </div>
-  
+
   </div>
-  
+
   <div class="cart-overlay" [class.open]="cartOpen" (click)="toggleCart()"></div>
 
 </nav>
-
