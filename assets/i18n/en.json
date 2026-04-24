@@ -1,7 +1,7 @@
 {
   "order": {
     "placed_success": "Order placed successfully!",
-    "placed_duplicate": "Order placed! It looks similar to a previous one — check your orders if needed.",
+    "placed_duplicate": "Order placed! Looks like a repeat — double-check your orders just in case.",
     "place_error": "Could not place order. Please try again."
   },
   "products": {
@@ -188,9 +188,6 @@
     "sign_in_link": "Sign in"
   },
   "tagline": "Seasonal tomatoes · Straight from the field"
-},
-"notifications": {
-  "result": "Sent: {{sent}}, Failed: {{failed}}",
-  "error": "Error sending notification"
 }
+
 }
