@@ -188,6 +188,9 @@
     "sign_in_link": "Sign in"
   },
   "tagline": "Seasonal tomatoes · Straight from the field"
+},
+"notifications": {
+  "result": "Sent: {{sent}}, Failed: {{failed}}",
+  "error": "Error sending notification"
 }
-
 }
