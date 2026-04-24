@@ -1,7 +1,7 @@
 {
   "order": {
     "placed_success": "Order placed successfully!",
-    "placed_duplicate": "Order placed! Looks like a repeat — double-check your orders just in case.",
+    "placed_duplicate": "Order placed! It looks similar to a previous one — check your orders if needed.",
     "place_error": "Could not place order. Please try again."
   },
   "products": {

@@ -1,8 +1,8 @@
 {
   "order": {
     "placed_success": "¡Pedido realizado con éxito!",
-    "placed_duplicate": "¡Pedido realizado! Parece un duplicado, revisa tus pedidos por si acaso.",
-    "place_error": "No se ha podido realizar el pedido. Inténtalo de nuevo."
+    "placed_duplicate": "¡Pedido realizado! Parece similar a uno anterior — revisa tus pedidos si es necesario.",
+    "place_error": "No se pudo realizar el pedido. Intenta de nuevo."
   },
   "products": {
     "load_error": "No se han podido cargar los productos. Inténtalo de nuevo."
