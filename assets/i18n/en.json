@@ -14,5 +14,179 @@
     "selected": "products selected",
     "place_order": "Place order",
     "placing_order": "Placing order..."
+  },
+ "navbar": {
+    "brand": "Eco Huerto Montgó",
+    "nav": {
+      "catalogue": "Catalogue",
+      "orders": "Orders",
+      "customers": "Customers",
+      "notifications": "Notifications",
+      "my_orders": "My orders",
+      "profile": "Profile",
+      "sign_in": "Sign in",
+      "register": "Register",
+      "sign_out": "Sign out"
+    },
+    "basket": {
+      "title": "Basket",
+      "total": "Total",
+      "checkout": "Place Order",
+      "empty": "Your basket is empty"
+    }
+  },
+
+  "login": {
+    "header": {
+      "title": "Eco Huerto Montgó",
+      "subtitle": "Sign in to place your order"
+    },
+    "form": {
+      "email_label": "Email",
+      "email_placeholder": "your@email.com",
+      "password_label": "Password",
+      "password_placeholder": "••••••••",
+      "submit": "Sign in",
+      "submitting": "Signing in..."
+    },
+    "errors": {
+      "invalid_email": "Please enter a valid email",
+      "password_length": "Password must be at least 8 characters",
+      "auth_failed": "Incorrect Email or password",
+      "generic_error": "Login error. Try again."
+    },
+    "footer": {
+      "no_account": "Don't have an account?",
+      "register_link": "Register"
+    },
+    "tagline": "Seasonal tomatoes · Straight from the field"
+  },
+
+  "orders": {
+    "header": {
+      "back": "Back",
+      "title": "My Orders",
+      "subtitle": "Follow your orders from field to door"
+    },
+    "states": {
+      "loading": "Loading your orders...",
+      "empty": "You haven't placed any orders yet",
+      "browse": "Browse Catalogue",
+      "load_error": "Could not load your orders. Please try again.",
+    "cancel_error": "Could not cancel order. Please try again."
+    },
+    "timeline": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "in_progress": "Preparing",
+      "ready": "Ready"
+    },
+    "card": {
+      "order_number": "Order #",
+      "cancel_btn": "Cancel Order",
+      "cancelling": "Cancelling..."
+    },
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "preparation": "Preparing",
+      "ready": "Ready",
+      "cancelled": "Cancelled",
+      "delivered": "Delivered"
+    }
+  },
+  "profile": {
+  "header": {
+    "title": "My profile",
+    "subtitle": "Manage your account details"
+  },
+  "info": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "member_since": "Member since"
+  },
+  "form": {
+    "name_label": "Name",
+    "email_label": "Email",
+    "email_hint": "Email cannot be changed",
+    "password_label": "New password",
+    "password_optional": "(optional)",
+    "password_placeholder": "Leave blank to keep current",
+    "phone_label": "Phone",
+    "phone_prefix_placeholder": "+34",
+    "phone_number_placeholder": "600 123 456",
+    "address_section": "Address",
+    "address_optional": "(optional)",
+    "street_type_label": "Street type",
+    "street_type_placeholder": "Calle, Avenida...",
+    "street_label": "Street",
+    "street_placeholder": "Street name",
+    "number_label": "Number",
+    "number_placeholder": "12",
+    "floor_label": "Floor",
+    "floor_optional": "(optional)",
+    "floor_placeholder": "2º A",
+    "postal_code_label": "Postal code",
+    "postal_code_placeholder": "03001",
+    "city_label": "City",
+    "city_placeholder": "Alicante",
+    "province_label": "Province",
+    "province_placeholder": "Alicante"
+  },
+  "errors": {
+    "name_length": "Name must be at least 2 characters",
+    "password_length": "Password must be at least 8 characters",
+    "phone_invalid": "Please enter a valid phone number",
+    "load_error": "Could not load profile.",
+    "update_error": "Could not update profile. Please try again."
+  },
+  "actions": {
+    "edit": "Edit profile",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "saving": "Saving..."
+  },
+  "quick_links": {
+    "my_orders": "My orders",
+    "back_to_catalogue": "Back to catalogue"
+  },
+  "success": {
+    "updated": "Profile updated successfully"
   }
+},
+"register": {
+  "header": {
+    "title": "Eco Huerto Montgó",
+    "subtitle": "Create your account"
+  },
+  "form": {
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "password_label": "Password",
+    "password_placeholder": "••••••••",
+    "phone_label": "Phone",
+    "phone_prefix_placeholder": "+34",
+    "phone_number_placeholder": "600 123 456",
+    "submit": "Create account",
+    "submitting": "Creating account..."
+  },
+  "errors": {
+    "name_length": "Name must be at least 2 characters",
+    "invalid_email": "Please enter a valid email",
+    "password_length": "Password must be at least 8 characters",
+    "phone_invalid": "Please enter a valid phone number",
+    "email_taken": "This email is already registered",
+    "generic_error": "Registration failed. Please try again."
+  },
+  "footer": {
+    "has_account": "Already have an account?",
+    "sign_in_link": "Sign in"
+  },
+  "tagline": "Seasonal tomatoes · Straight from the field"
+}
+
 }
