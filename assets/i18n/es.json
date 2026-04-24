@@ -1,0 +1,18 @@
+{
+  "order": {
+    "placed_success": "¡Pedido realizado con éxito!",
+    "placed_duplicate": "¡Pedido realizado! Parece similar a uno anterior — revisa tus pedidos si es necesario.",
+    "place_error": "No se pudo realizar el pedido. Intenta de nuevo."
+  },
+  "products": {
+    "load_error": "No se pudieron cargar los productos. Intenta de nuevo."
+  },
+  "catalogue": {
+    "title": "Catálogo de hoy",
+    "subtitle": "Producto fresco, recogido esta mañana",
+    "loading": "Cultivando productos frescos...",
+    "selected": "productos seleccionados",
+    "place_order": "Realizar pedido",
+    "placing_order": "Realizando pedido..."
+  }
+}

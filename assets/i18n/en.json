@@ -1,0 +1,18 @@
+{
+  "order": {
+    "placed_success": "Order placed successfully!",
+    "placed_duplicate": "Order placed! It looks similar to a previous one — check your orders if needed.",
+    "place_error": "Could not place order. Please try again."
+  },
+  "products": {
+    "load_error": "Could not load products. Please try again."
+  },
+  "catalogue": {
+    "title": "Today's catalogue",
+    "subtitle": "Fresh produce, picked this morning",
+    "loading": "Growing fresh products...",
+    "selected": "products selected",
+    "place_order": "Place order",
+    "placing_order": "Placing order..."
+  }
+}
