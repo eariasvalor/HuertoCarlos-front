@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <button class="btn-edit" (click)="startEditing()">Edit profile</button>
+        <button class="btn-edit" (click)="startEditing()">{{ translocoService.translate('profile.actions.edit') }}</button>
 
       } @else {
         <form [formGroup]="form" (ngSubmit)="saveProfile()" novalidate>

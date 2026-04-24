@@ -37,7 +37,7 @@ export class NavbarComponent {
   // =========================
   // UI STATE
   // =========================
-  readonly langs = ['es', 'en'];
+  readonly langs = ['es', 'en', 'nl'];
   menuOpen = false;
   langOpen = false;
   cartOpen = false;

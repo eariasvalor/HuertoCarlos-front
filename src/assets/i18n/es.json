@@ -1,18 +1,190 @@
 {
   "order": {
     "placed_success": "¡Pedido realizado con éxito!",
-    "placed_duplicate": "¡Pedido realizado! Parece similar a uno anterior — revisa tus pedidos si es necesario.",
-    "place_error": "No se pudo realizar el pedido. Intenta de nuevo."
+    "placed_duplicate": "¡Pedido realizado! Parece un duplicado, revisa tus pedidos por si acaso.",
+    "place_error": "No se ha podido realizar el pedido. Inténtalo de nuevo."
   },
   "products": {
-    "load_error": "No se pudieron cargar los productos. Intenta de nuevo."
+    "load_error": "No se han podido cargar los productos. Inténtalo de nuevo."
   },
   "catalogue": {
     "title": "Catálogo de hoy",
-    "subtitle": "Producto fresco, recogido esta mañana",
-    "loading": "Cultivando productos frescos...",
-    "selected": "productos seleccionados",
+    "subtitle": "Productos frescos, recogidos esta mañana",
+    "loading": "Cargando la cosecha de hoy...",
+    "selected": "artículos en tu cesta",
     "place_order": "Realizar pedido",
-    "placing_order": "Realizando pedido..."
+    "placing_order": "Realizando pedido...",
+    "filter_all": "Todos"
+  },
+  "navbar": {
+    "brand": "Eco Huerto Montgó",
+    "nav": {
+      "catalogue": "Catálogo",
+      "orders": "Pedidos",
+      "customers": "Clientes",
+      "notifications": "Notificaciones",
+      "my_orders": "Mis pedidos",
+      "profile": "Perfil",
+      "sign_in": "Iniciar sesión",
+      "register": "Registro",
+      "sign_out": "Cerrar sesión"
+    },
+    "basket": {
+      "title": "Cesta",
+      "total": "Total",
+      "checkout": "Realizar pedido",
+      "empty": "Tu cesta está vacía"
+    }
+  },
+  "login": {
+    "header": {
+      "title": "Eco Huerto Montgó",
+      "subtitle": "Inicia sesión para hacer tu pedido"
+    },
+    "form": {
+      "email_label": "Correo electrónico",
+      "email_placeholder": "tu@correo.com",
+      "password_label": "Contraseña",
+      "password_placeholder": "••••••••",
+      "submit": "Iniciar sesión",
+      "submitting": "Iniciando sesión..."
+    },
+    "errors": {
+      "invalid_email": "Introduce un correo electrónico válido",
+      "password_length": "La contraseña debe tener al menos 8 caracteres",
+      "auth_failed": "Correo o contraseña incorrectos",
+      "generic_error": "Error al iniciar sesión. Inténtalo de nuevo."
+    },
+    "footer": {
+      "no_account": "¿No tienes cuenta?",
+      "register_link": "Regístrate"
+    },
+    "tagline": "Tomates de temporada · Directos del huerto"
+  },
+  "orders": {
+    "header": {
+      "back": "Atrás",
+      "title": "Mis pedidos",
+      "subtitle": "Sigue el estado de tus pedidos del campo a tu puerta"
+    },
+    "states": {
+      "loading": "Cargando tus pedidos...",
+      "empty": "Todavía no tienes pedidos.",
+      "browse": "Ver catálogo",
+      "load_error": "No se han podido cargar tus pedidos. Inténtalo de nuevo.",
+      "cancel_error": "No se ha podido cancelar el pedido. Inténtalo de nuevo."
+    },
+    "timeline": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmado",
+      "in_progress": "En preparación",
+      "ready": "Listo"
+    },
+    "card": {
+      "order_number": "Pedido",
+      "cancel_btn": "Cancelar pedido",
+      "cancelling": "Cancelando..."
+    },
+    "status": {
+      "pending": "Pendiente",
+      "confirmed": "Confirmado",
+      "preparation": "Preparando",
+      "ready": "Listo",
+      "cancelled": "Cancelado",
+      "delivered": "Entregado"
+    }
+  },
+  "profile": {
+    "header": {
+      "title": "Mi perfil",
+      "subtitle": "Los datos de tu cuenta"
+    },
+    "info": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "phone": "Teléfono",
+      "address": "Dirección",
+      "member_since": "Fecha de registro"
+    },
+    "form": {
+      "name_label": "Nombre",
+      "email_label": "Correo electrónico",
+      "email_hint": "El correo electrónico no se puede cambiar",
+      "password_label": "Contraseña",
+      "password_optional": "(opcional)",
+      "password_placeholder": "Deja en blanco para no cambiarla",
+      "phone_label": "Teléfono",
+      "phone_prefix_placeholder": "+34",
+      "phone_number_placeholder": "600 123 456",
+      "address_section": "Dirección",
+      "address_optional": "(opcional)",
+      "street_type_label": "Tipo de vía",
+      "street_type_placeholder": "Calle, Avenida...",
+      "street_label": "Calle",
+      "street_placeholder": "Nombre de la calle",
+      "number_label": "Número",
+      "number_placeholder": "12",
+      "floor_label": "Piso",
+      "floor_optional": "(opcional)",
+      "floor_placeholder": "2º A",
+      "postal_code_label": "Código postal",
+      "postal_code_placeholder": "03001",
+      "city_label": "Localidad",
+      "city_placeholder": "Alicante",
+      "province_label": "Provincia",
+      "province_placeholder": "Alicante"
+    },
+    "errors": {
+      "name_length": "El nombre debe tener al menos 2 caracteres",
+      "password_length": "La contraseña debe tener al menos 8 caracteres",
+      "phone_invalid": "Introduce un número de teléfono válido",
+      "load_error": "No se ha podido cargar el perfil.",
+      "update_error": "No se ha podido actualizar el perfil. Inténtalo de nuevo."
+    },
+    "actions": {
+      "edit": "Editar perfil",
+      "cancel": "Cancelar",
+      "save": "Guardar cambios",
+      "saving": "Guardando..."
+    },
+    "quick_links": {
+      "my_orders": "Mis pedidos",
+      "back_to_catalogue": "Volver al catálogo"
+    },
+    "success": {
+      "updated": "Perfil actualizado correctamente"
+    }
+  },
+  "register": {
+    "header": {
+      "title": "Eco Huerto Montgó",
+      "subtitle": "Únete a Eco Huerto Montgó"
+    },
+    "form": {
+      "name_label": "Nombre",
+      "name_placeholder": "Tu nombre",
+      "email_label": "Correo electrónico",
+      "email_placeholder": "tu@correo.com",
+      "password_label": "Contraseña",
+      "password_placeholder": "••••••••",
+      "phone_label": "Teléfono",
+      "phone_prefix_placeholder": "+34",
+      "phone_number_placeholder": "600 123 456",
+      "submit": "Crear cuenta",
+      "submitting": "Creando cuenta..."
+    },
+    "errors": {
+      "name_length": "El nombre debe tener al menos 2 caracteres",
+      "invalid_email": "Introduce un correo electrónico válido",
+      "password_length": "La contraseña debe tener al menos 8 caracteres",
+      "phone_invalid": "Introduce un número de teléfono válido",
+      "email_taken": "Este correo electrónico ya está registrado",
+      "generic_error": "Error al crear la cuenta. Inténtalo de nuevo."
+    },
+    "footer": {
+      "has_account": "¿Ya tienes cuenta?",
+      "sign_in_link": "Inicia sesión"
+    },
+    "tagline": "Tomates de temporada · Directos del huerto"
   }
 }

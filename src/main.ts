@@ -48,7 +48,7 @@ bootstrapApplication(App, {
 
     provideTransloco({
       config: translocoConfig({
-        availableLangs: ['en', 'es'],
+        availableLangs: ['en', 'es', 'nl'],
         defaultLang: 'es',
         fallbackLang: 'es',
         reRenderOnLangChange: true,
