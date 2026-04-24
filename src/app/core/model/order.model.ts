@@ -1,8 +1,8 @@
 export type OrderStatus =
-  | 'PENDING_CONFIRMATION'
+  | 'PENDING'
   | 'CONFIRMED'
-  | 'IN_PREPARATION'
   | 'READY_FOR_PICKUP'
+  | 'DELIVERED'
   | 'CANCELLED';
 
 export interface OrderLine {

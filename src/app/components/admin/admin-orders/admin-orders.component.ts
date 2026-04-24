@@ -113,48 +113,46 @@ export class AdminOrdersComponent implements OnInit {
 
   nextAction(status: OrderStatus): string | null {
     const actions: Partial<Record<OrderStatus, string>> = {
-      PENDING_CONFIRMATION: 'Confirm',
-      CONFIRMED: 'Start preparation',
-      IN_PREPARATION: 'Mark ready'
+      PENDING: 'Confirm',
+      CONFIRMED: 'Mark ready',
     };
     return actions[status] ?? null;
   }
-
+  
   canRevert(status: OrderStatus): boolean {
-    return status === 'CONFIRMED' || status === 'IN_PREPARATION';
+    return status === 'CONFIRMED';
   }
-
+  
   canCancel(status: OrderStatus): boolean {
-    return status !== 'CANCELLED' && status !== 'READY_FOR_PICKUP';
+    return status !== 'CANCELLED' && status !== 'DELIVERED';
   }
-
+  
   statusLabel(status: OrderStatus): string {
     const labels: Record<OrderStatus, string> = {
-      PENDING_CONFIRMATION: 'Pending',
+      PENDING: 'Pending',
       CONFIRMED: 'Confirmed',
-      IN_PREPARATION: 'In preparation',
       READY_FOR_PICKUP: 'Ready',
+      DELIVERED: 'Delivered',
       CANCELLED: 'Cancelled'
     };
     return labels[status];
   }
-
+  
   statusClass(status: OrderStatus): string {
     const classes: Record<OrderStatus, string> = {
-      PENDING_CONFIRMATION: 'status-pending',
+      PENDING: 'status-pending',
       CONFIRMED: 'status-confirmed',
-      IN_PREPARATION: 'status-preparation',
       READY_FOR_PICKUP: 'status-ready',
+      DELIVERED: 'status-delivered',
       CANCELLED: 'status-cancelled'
     };
     return classes[status];
   }
-
+  
   executeNextAction(order: Order) {
     const actions: Partial<Record<OrderStatus, (id: string) => void>> = {
-      PENDING_CONFIRMATION: id => this.confirm(id),
-      CONFIRMED: id => this.startPreparation(id),
-      IN_PREPARATION: id => this.markReady(id)
+      PENDING: id => this.confirm(id),
+      CONFIRMED: id => this.markReady(id),
     };
     actions[order.status]?.(order.id);
   }

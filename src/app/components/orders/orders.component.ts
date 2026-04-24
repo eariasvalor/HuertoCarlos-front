@@ -1,4 +1,4 @@
-import { Component, inject, signal, computed, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../core/services/order.service';
@@ -25,51 +25,23 @@ export class OrdersComponent implements OnInit {
   readonly errorMessage = signal<string | null>(null);
   readonly cancellingId = signal<string | null>(null);
 
-  public steps = ['pending', 'confirmed', 'preparation', 'ready'];
-
-  mapStatus(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'pending confirmation':
-      case 'pending':
-        return 'pending';
-  
-      case 'confirmed':
-        return 'confirmed';
-  
-      case 'in preparation':
-      case 'preparation':
-        return 'preparation';
-  
-      case 'ready':
-        return 'ready';
-  
-      default:
-        return 'pending';
-    }
-  }
-  
-  isStepDone(current: string, step: string): boolean {
-    const mapped = this.mapStatus(current);
-    return this.steps.indexOf(step) < this.steps.indexOf(mapped);
-  }
-  
-  isStepActive(current: string, step: string): boolean {
-    return this.mapStatus(current) === step;
-  }
+  // 🔥 Backend actual
+  public steps = ['pending', 'confirmed', 'ready', 'delivered'];
 
   ngOnInit() {
     this.loadOrders();
   }
 
   goBack() {
-  this.location.back();
-}
+    this.location.back();
+  }
 
   loadOrders() {
     const customer = this.authService.currentUser();
     if (!customer) return;
 
     this.isLoading.set(true);
+
     this.orderService.getMyOrders(customer.id).subscribe({
       next: res => {
         this.orders.set(res.content);
@@ -84,6 +56,7 @@ export class OrdersComponent implements OnInit {
 
   cancelOrder(orderId: string) {
     this.cancellingId.set(orderId);
+
     this.orderService.cancel(orderId).subscribe({
       next: updated => {
         this.orders.update(orders =>
@@ -98,16 +71,50 @@ export class OrdersComponent implements OnInit {
     });
   }
 
+
   canCancel(order: Order): boolean {
-    return order.status === 'PENDING_CONFIRMATION' || order.status === 'CONFIRMED';
+    return order.status === 'PENDING' || order.status === 'CONFIRMED';
+  }
+
+
+  mapStatus(status: string): string {
+    switch (status.toUpperCase()) {
+
+      case 'PENDING':
+        return 'pending';
+
+      case 'CONFIRMED':
+        return 'confirmed';
+
+      case 'READY_FOR_PICKUP':
+        return 'ready';
+
+      case 'DELIVERED':
+        return 'delivered';
+
+      case 'CANCELLED':
+        return 'pending';
+
+      default:
+        return 'pending';
+    }
+  }
+
+  isStepDone(current: string, step: string): boolean {
+    const mapped = this.mapStatus(current);
+    return this.steps.indexOf(step) < this.steps.indexOf(mapped);
+  }
+
+  isStepActive(current: string, step: string): boolean {
+    return this.mapStatus(current) === step;
   }
 
   statusLabel(status: OrderStatus): string {
     const labels: Record<OrderStatus, string> = {
-      PENDING_CONFIRMATION: 'Pending confirmation',
+      PENDING: 'Pending',
       CONFIRMED: 'Confirmed',
-      IN_PREPARATION: 'In preparation',
       READY_FOR_PICKUP: 'Ready for pickup',
+      DELIVERED: 'Delivered',
       CANCELLED: 'Cancelled'
     };
     return labels[status];
@@ -115,10 +122,10 @@ export class OrdersComponent implements OnInit {
 
   statusClass(status: OrderStatus): string {
     const classes: Record<OrderStatus, string> = {
-      PENDING_CONFIRMATION: 'status-pending',
+      PENDING: 'status-pending',
       CONFIRMED: 'status-confirmed',
-      IN_PREPARATION: 'status-preparation',
       READY_FOR_PICKUP: 'status-ready',
+      DELIVERED: 'status-delivered',
       CANCELLED: 'status-cancelled'
     };
     return classes[status];

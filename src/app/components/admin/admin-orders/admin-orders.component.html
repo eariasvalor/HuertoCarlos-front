@@ -22,7 +22,7 @@
       </select>
     </div>
     <div class="filter-chips">
-      @for (status of ['All', 'PENDING_CONFIRMATION', 'CONFIRMED', 'IN_PREPARATION', 'READY_FOR_PICKUP', 'CANCELLED']; track status) {
+      @for (status of ['All', 'PENDING', 'CONFIRMED', 'READY_FOR_PICKUP', 'DELIVERED', 'CANCELLED']; track status) {	
         <button
           class="filter-chip"
           [class.active]="selectedStatus() === status"
