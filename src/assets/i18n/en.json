@@ -155,6 +155,38 @@
   "success": {
     "updated": "Profile updated successfully"
   }
+},
+"register": {
+  "header": {
+    "title": "Eco Huerto Montgó",
+    "subtitle": "Create your account"
+  },
+  "form": {
+    "name_label": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "email_placeholder": "your@email.com",
+    "password_label": "Password",
+    "password_placeholder": "••••••••",
+    "phone_label": "Phone",
+    "phone_prefix_placeholder": "+34",
+    "phone_number_placeholder": "600 123 456",
+    "submit": "Create account",
+    "submitting": "Creating account..."
+  },
+  "errors": {
+    "name_length": "Name must be at least 2 characters",
+    "invalid_email": "Please enter a valid email",
+    "password_length": "Password must be at least 8 characters",
+    "phone_invalid": "Please enter a valid phone number",
+    "email_taken": "This email is already registered",
+    "generic_error": "Registration failed. Please try again."
+  },
+  "footer": {
+    "has_account": "Already have an account?",
+    "sign_in_link": "Sign in"
+  },
+  "tagline": "Seasonal tomatoes · Straight from the field"
 }
 
 }

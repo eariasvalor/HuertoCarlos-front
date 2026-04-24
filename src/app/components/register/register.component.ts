@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, TranslocoModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
@@ -15,6 +16,7 @@ export class RegisterComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  protected readonly translocoService = inject(TranslocoService);
 
   readonly isLoading = signal(false);
   readonly errorMessage = signal<string | null>(null);
@@ -38,8 +40,8 @@ export class RegisterComponent {
       error: err => {
         this.errorMessage.set(
           err.status === 409
-            ? 'This email is already registered'
-            : 'Registration failed. Please try again.'
+            ? this.translocoService.translate('register.errors.email_taken')
+            : this.translocoService.translate('register.errors.generic_error')
         );
         this.isLoading.set(false);
       }

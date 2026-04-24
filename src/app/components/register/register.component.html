@@ -3,74 +3,74 @@
 
     <div class="register-header">
       <div class="tomato-icon">🍅</div>
-      <h1>Eco Huerto Montgó</h1>
-      <p>Create your account</p>
+      <h1>{{ translocoService.translate('register.header.title') }}</h1>
+      <p>{{ translocoService.translate('register.header.subtitle') }}</p>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">{{ translocoService.translate('register.form.name_label') }}</label>
         <input
           id="name"
           type="text"
           formControlName="name"
-          placeholder="Your name"
+          placeholder="{{ translocoService.translate('register.form.name_placeholder') }}"
           [class.error]="name?.invalid && name?.touched"
         />
         @if (name?.invalid && name?.touched) {
-          <span class="error-msg">Name must be at least 2 characters</span>
+          <span class="error-msg">{{ translocoService.translate('register.errors.name_length') }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">{{ translocoService.translate('register.form.email_label') }}</label>
         <input
           id="email"
           type="email"
           formControlName="email"
-          placeholder="your@email.com"
+          placeholder="{{ translocoService.translate('register.form.email_placeholder') }}"
           [class.error]="email?.invalid && email?.touched"
         />
         @if (email?.invalid && email?.touched) {
-          <span class="error-msg">Please enter a valid email</span>
+          <span class="error-msg">{{ translocoService.translate('register.errors.invalid_email') }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label for="rawPassword">Password</label>
+        <label for="rawPassword">{{ translocoService.translate('register.form.password_label') }}</label>
         <input
           id="rawPassword"
           type="password"
           formControlName="rawPassword"
-          placeholder="••••••••"
+          placeholder="{{ translocoService.translate('register.form.password_placeholder') }}"
           [class.error]="rawPassword?.invalid && rawPassword?.touched"
         />
         @if (rawPassword?.invalid && rawPassword?.touched) {
-          <span class="error-msg">Password must be at least 8 characters</span>
+          <span class="error-msg">{{ translocoService.translate('register.errors.password_length') }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label>Phone</label>
+        <label>{{ translocoService.translate('register.form.phone_label') }}</label>
         <div class="phone-row">
           <input
             type="text"
             formControlName="phoneCountryCode"
-            placeholder="+34"
+            placeholder="{{ translocoService.translate('register.form.phone_prefix_placeholder') }}"
             class="phone-prefix"
             [class.error]="phoneCountryCode?.invalid && phoneCountryCode?.touched"
           />
           <input
             type="tel"
             formControlName="phoneNumber"
-            placeholder="600 123 456"
+            placeholder="{{ translocoService.translate('register.form.phone_number_placeholder') }}"
             class="phone-number"
             [class.error]="phoneNumber?.invalid && phoneNumber?.touched"
           />
         </div>
         @if ((phoneCountryCode?.invalid || phoneNumber?.invalid) && (phoneCountryCode?.touched || phoneNumber?.touched)) {
-          <span class="error-msg">Please enter a valid phone number</span>
+          <span class="error-msg">{{ translocoService.translate('register.errors.phone_invalid') }}</span>
         }
       </div>
 
@@ -79,16 +79,16 @@
       }
 
       <button type="submit" [disabled]="form.invalid || isLoading()">
-        @if (isLoading()) { Creating account... } @else { Create account }
+        @if (isLoading()) { {{ translocoService.translate('register.form.submitting') }} } @else { {{ translocoService.translate('register.form.submit') }} }
       </button>
 
     </form>
 
     <div class="register-footer">
-      <p>Already have an account? <a routerLink="/login">Sign in</a></p>
+      <p> {{ translocoService.translate('register.footer.has_account') }} <a routerLink="/login">{{ translocoService.translate('register.footer.sign_in_link') }}</a></p>
     </div>
 
-    <div class="tagline">Seasonal tomatoes · Straight from the field</div>
+    <div class="tagline">{{ translocoService.translate('register.tagline') }}</div>
 
   </div>
 </div>
