@@ -44,6 +44,7 @@
   border-color: #b91c1c;
 }
 
+/* LOADER */
 .plant-loader {
   display: flex;
   flex-direction: column;
@@ -65,14 +66,12 @@
   font-weight: 500;
 }
 
-/* =========================
-   VIEW SWITCHER
-========================= */
-
+/* VIEW SWITCHER */
 .view-switcher {
   display: flex;
   gap: 8px;
   padding: 0 1rem 1rem;
+  justify-content: flex-end;
 }
 
 .view-switcher button {
@@ -89,10 +88,7 @@
   border-color: #b91c1c;
 }
 
-/* =========================
-   GRID BASE
-========================= */
-
+/* GRID */
 .products-grid {
   display: grid;
   gap: 14px;
@@ -100,42 +96,20 @@
   grid-template-columns: 1fr;
 }
 
-/* 1 columna */
+/* desktop modes */
 .products-grid.cols-1 {
   grid-template-columns: 1fr;
 }
 
-/* 2 columnas */
 .products-grid.cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
 
-/* 3 columnas (solo desktop realmente) */
 .products-grid.cols-3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.view-switcher {
-  display: flex;
-  gap: 8px;
-  padding: 0 1rem 1rem;
-  justify-content: flex-end; /* 🔥 esto lo manda a la derecha */
-}
-
-/* =========================
-   MOBILE RULE (IMPORTANTE)
-========================= */
-@media (max-width: 768px) {
-  .products-grid.cols-2,
-  .products-grid.cols-3 {
-    grid-template-columns: 1fr; /* o 2 si quieres más denso */
-  }
-}
-
-/* =========================
-   CARD
-========================= */
-
+/* CARD */
 .product-card {
   background: white;
   border-radius: 16px;
@@ -148,7 +122,6 @@
   transform: scale(0.99);
 }
 
-/* IMAGE */
 .product-image {
   width: 100%;
   height: 180px;
@@ -160,7 +133,6 @@
   object-fit: cover;
 }
 
-/* INFO */
 .product-info {
   padding: 1rem;
 }
@@ -182,7 +154,6 @@
   margin-bottom: 10px;
 }
 
-/* QTY */
 .qty-control {
   display: flex;
   align-items: center;
@@ -216,26 +187,12 @@
   color: white;
 }
 
-
-/* 1 columna */
-.products-grid.cols-1 {
-  grid-template-columns: 1fr;
-}
-
-/* 2 columnas */
-.products-grid.cols-2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-/* 3 columnas */
-.products-grid.cols-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-/* 🔥 móvil fuerza coherencia */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+
+  /* MOBILE: solo 1 o 2 columnas */
   .products-grid.cols-2,
   .products-grid.cols-3 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 }

@@ -3,8 +3,8 @@
   <app-navbar />
 
   <div class="hero">
-    <h1>Today's catalogue</h1>
-    <p>Fresh produce, picked this morning</p>
+    <h1>{{ 'catalogue.title' | transloco }}</h1>
+    <p>{{ 'catalogue.subtitle' | transloco }}</p>
   </div>
 
   @if (successMessage()) {
@@ -36,7 +36,9 @@
         <path d="M50 55 Q70 45 60 30 Q50 40 50 55" class="leaf right" />
       </svg>
 
-      <div class="loading-text">Growing fresh products...</div>
+      <div class="loading-text">
+        {{ 'catalogue.loading' | transloco }}
+      </div>
     </div>
 
   } @else {
@@ -44,25 +46,36 @@
     <!-- VIEW SWITCHER -->
     <div class="view-switcher">
 
-      <button
-        class="mobile-only"
-        (click)="setView('1')"
-        [class.active]="viewMode() === '1'">
-        1
-      </button>
-    
-      <button
-        (click)="setView('2')"
-        [class.active]="viewMode() === '2'">
-        2
-      </button>
-    
-      <button
-        (click)="setView('grid')"
-        [class.active]="viewMode() === 'grid'">
-        ▦
-      </button>
-    
+      <!-- MOBILE -->
+      @if (isMobile()) {
+        <button
+          (click)="setView('1')"
+          [class.active]="viewMode() === '1'">
+          1
+        </button>
+
+        <button
+          (click)="setView('2')"
+          [class.active]="viewMode() === '2'">
+          2
+        </button>
+      }
+
+      <!-- DESKTOP -->
+      @if (!isMobile()) {
+        <button
+          (click)="setView('2')"
+          [class.active]="viewMode() === '2'">
+          2
+        </button>
+
+        <button
+          (click)="setView('grid')"
+          [class.active]="viewMode() === 'grid'">
+          ▦
+        </button>
+      }
+
     </div>
 
     <!-- GRID -->
@@ -108,13 +121,17 @@
     <div class="order-bar">
       <div class="order-info">
         <div class="order-items">
-          {{ cartItemCount() }} products selected
+          {{ cartItemCount() }} {{ 'catalogue.selected' | transloco }}
         </div>
         <div class="order-total">{{ cartTotal() }} €</div>
       </div>
 
       <button class="order-btn" (click)="placeOrder()" [disabled]="isOrdering()">
-        @if (isOrdering()) { Placing order... } @else { Place order }
+        @if (isOrdering()) {
+          {{ 'catalogue.placing_order' | transloco }}
+        } @else {
+          {{ 'catalogue.place_order' | transloco }}
+        }
       </button>
     </div>
   }

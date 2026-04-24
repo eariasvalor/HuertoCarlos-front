@@ -7,6 +7,7 @@ import { AuthService } from '../../core/auth/auth.service';
 import { Product } from '../../core/model/product.model';
 import { getProductImage } from '../../core/utils/product-image.util';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 
 interface CartItem {
@@ -17,11 +18,13 @@ interface CartItem {
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, TranslocoModule],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.scss'
 })
 export class CatalogueComponent implements OnInit {
+
+  private readonly transloco = inject(TranslocoService);
 
   private readonly productService = inject(ProductService);
   private readonly orderService = inject(OrderService);
@@ -80,6 +83,7 @@ constructor() {
     }
   });
 }
+
 
 setView(mode: '1' | '2' | 'grid') {
 
@@ -167,14 +171,14 @@ setView(mode: '1' | '2' | 'grid') {
         this.cart.set(new Map());
         this.isOrdering.set(false);
         if (res.possibleDuplicate) {
-          this.successMessage.set('Order placed! It looks similar to a previous one — check your orders if needed.');
+          this.successMessage.set(this.transloco.translate('order.placed_duplicate'));
         } else {
-          this.successMessage.set('Order placed successfully!');
+          this.successMessage.set(this.transloco.translate('order.placed_success'));
         }
         setTimeout(() => this.successMessage.set(null), 5000);
       },
       error: () => {
-        this.errorMessage.set('Could not place order. Please try again.');
+        this.errorMessage.set(this.transloco.translate('order.place_error'));
         this.isOrdering.set(false);
       }
     });
