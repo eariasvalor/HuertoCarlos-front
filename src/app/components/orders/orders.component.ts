@@ -6,11 +6,12 @@ import { AuthService } from '../../core/auth/auth.service';
 import { Order, OrderStatus } from '../../core/model/order.model';
 import { Location } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent],
+  imports: [CommonModule, RouterLink, NavbarComponent, TranslocoModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })
@@ -19,6 +20,7 @@ export class OrdersComponent implements OnInit {
   private readonly orderService = inject(OrderService);
   private readonly authService = inject(AuthService);
   private readonly location = inject(Location);
+  private readonly translocoService = inject(TranslocoService);
 
   readonly orders = signal<Order[]>([]);
   readonly isLoading = signal(true);
@@ -48,7 +50,7 @@ export class OrdersComponent implements OnInit {
         this.isLoading.set(false);
       },
       error: () => {
-        this.errorMessage.set('Could not load your orders. Please try again.');
+        this.errorMessage.set(this.translocoService.translate('orders.states.load_error'));
         this.isLoading.set(false);
       }
     });
@@ -65,7 +67,7 @@ export class OrdersComponent implements OnInit {
         this.cancellingId.set(null);
       },
       error: () => {
-        this.errorMessage.set('Could not cancel order. Please try again.');
+        this.errorMessage.set(this.translocoService.translate('orders.states.cancel_error'));
         this.cancellingId.set(null);
       }
     });
@@ -110,14 +112,14 @@ export class OrdersComponent implements OnInit {
   }
 
   statusLabel(status: OrderStatus): string {
-    const labels: Record<OrderStatus, string> = {
-      PENDING: 'Pending',
-      CONFIRMED: 'Confirmed',
-      READY_FOR_PICKUP: 'Ready for pickup',
-      DELIVERED: 'Delivered',
-      CANCELLED: 'Cancelled'
+    const keyMap: Record<OrderStatus, string> = {
+      PENDING: 'orders.status.pending',
+      CONFIRMED: 'orders.status.confirmed',
+      READY_FOR_PICKUP: 'orders.status.ready',
+      DELIVERED: 'orders.status.delivered',
+      CANCELLED: 'orders.status.cancelled'
     };
-    return labels[status];
+    return this.translocoService.translate(keyMap[status]);
   }
 
   statusClass(status: OrderStatus): string {

@@ -28,11 +28,11 @@
       "register": "Register",
       "sign_out": "Sign out"
     },
-    "cart": {
-      "title": "Cart",
+    "basket": {
+      "title": "Basket",
       "total": "Total",
-      "checkout": "Make Order",
-      "empty": "Your cart is empty"
+      "checkout": "Place Order",
+      "empty": "Your basket is empty"
     }
   },
 
@@ -51,13 +51,49 @@
     },
     "errors": {
       "invalid_email": "Please enter a valid email",
-      "password_length": "Password must be at least 8 characters"
+      "password_length": "Password must be at least 8 characters",
+      "auth_failed": "Incorrect Email or password",
+      "generic_error": "Login error. Try again."
     },
     "footer": {
       "no_account": "Don't have an account?",
       "register_link": "Register"
     },
     "tagline": "Seasonal tomatoes · Straight from the field"
+  },
+
+  "orders": {
+    "header": {
+      "back": "Back",
+      "title": "My Orders",
+      "subtitle": "Follow your orders from field to door"
+    },
+    "states": {
+      "loading": "Loading your orders...",
+      "empty": "You haven't placed any orders yet",
+      "browse": "Browse Catalogue",
+      "load_error": "Could not load your orders. Please try again.",
+    "cancel_error": "Could not cancel order. Please try again."
+    },
+    "timeline": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "in_progress": "Preparing",
+      "ready": "Ready"
+    },
+    "card": {
+      "order_number": "Order #",
+      "cancel_btn": "Cancel Order",
+      "cancelling": "Cancelling..."
+    },
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "preparation": "Preparing",
+      "ready": "Ready",
+      "cancelled": "Cancelled",
+      "delivered": "Delivered"
+    }
   }
 
 }
