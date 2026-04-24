@@ -1,25 +1,67 @@
 const VARIETY_IMAGES: Record<string, string> = {
-  'raf':           'images/products/tomato-raf.jpg',
-  'cherry':        'images/products/tomato-cherry.jpg',
-  'corazón de buey': 'images/products/tomato-cordebou.jpg',
-  'black':         'https://images.unsplash.com/photo-1561136594-7f68f8b7e4b5?w=400&q=80',
-  'batavia':       'https://images.unsplash.com/photo-1622205313162-be1d5712a43f?w=400&q=80',
-  'basil':         'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&q=80',
+
+  // 🍅 Tomates
+  'raf':               'https://res.cloudinary.com/dr3t29ukn/image/upload/v1776021325/huerto/varieties/huerto/varieties/tomato-raf.jpg',
+  'cherry':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777058467/tomato-cherry_esy6jn.jpg',
+  'corazón de buey':   'images/products/tomato-cordebou.jpg',
+  'mutxamel':          'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777058466/tomato-mutxamel_u0ghwi.jpg',
+  'rosa de altea':     'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059169/tomato-rosadealtea_agkjdz.webp',
+  'pera':              'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059169/tomato-pera_wy7vj9.jpg',
+
+  // 🫑 Pimientos
+  'morrón rojo':       'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059172/pepperr-morronrojo_lsmsrm.avif',
+  'morrón verde':      'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059171/pepper-morronverde_fdrim8.avif',
+  'italiano':          'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059170/pepper-italiano_i5vp1l.jpg',
+  'padrón':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059170/pepper-padron_qtkrvj.jpg',
+
+  // 🍆 Berenjenas
+  'común':             'hhttps://res.cloudinary.com/dr3t29ukn/image/upload/v1777059325/aubergine-comun_vau33a.avif',
+  'rayada':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059326/aubergine-rayada_ocj42y.avif',
+
+  // 🥒 Calabacines
+  'verde':             'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059402/calabacin-verde_ttzfcx.avif',
+  'amarillo':          'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059403/calabacin-amarillo_pmebqo.avif',
+
+  // 🥬 Lechugas
+  'romana':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059517/lettuce-romana_dybjkh.avif',
+  'hoja de roble':     'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059515/lettuce-hoja_de_roble_phktju.avif',
+  'iceberg':           'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059516/lettuce-iceberg_gmxbyj.jpg',
+
+  // 🧅 Cebollas
+  'blanca':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059638/onion-blanca_uvghwb.avif',
+  'morada':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059639/onion-morada_bxfzeo.avif',
+  'tierna':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059640/onion-tierna_xgymz4.avif',
+
+  // 🧄 Ajos
+  'blanco':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059709/garlic-blanco_havde0.avif',
+  'morado':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059710/garlic-morado_jsrceu.avif',
+
+  // 🥒 Pepinos
+  'mini':              'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059777/cucumber-mini_dmni7b.avif',
+
+  // 🌿 Hierbas
+  'fresco':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059837/herbs_tiv7es.avif',
 };
 
 const CATEGORY_IMAGES: Record<string, string> = {
-  'tomato':      'images/products/tomato-default.jpg',
-  'vegetable':   'https://images.unsplash.com/photo-1622205313162-be1d5712a43f?w=400&q=80',
-  'herb':        'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400&q=80',
-  'fruit':       'https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&q=80',
-  'lettuce':     'https://images.unsplash.com/photo-1622205313162-be1d5712a43f?w=400&q=80',
+  'tomato':      'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059876/tomato-default_i5pnqw.avif',
+  'pepper':      'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060136/pepper-default_dm77xp.avif',
+  'eggplant':    'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060137/eggplant-default_yzq38x.avif',
+  'zucchini':    'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060140/zuchini-default_dsqu6u.avif',
+  'lettuce':     'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060142/lettuce-default_rvi5j7.avif',
+  'onion':       'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060128/onion-default_pjtisr.jpg',
+  'garlic':      'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060129/garlic-default_k1qj2w.avif',
+  'cucumber':    'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059777/cucumber_zgs4h5.avif',
+  'basil':       'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060131/basil_vbop8c.avif',
+  'parsley':     'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060133/parsley_ty2bwn.avif',
+  'rosemary':    'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060134/rosemary_f4jvcp.avif',
 };
 
-const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&q=80';
+const DEFAULT_IMAGE = 'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777060268/vegetables-default_kilwcs.avif';
 
 export function getProductImage(variety: string, category: string): string {
-  const varietyKey = variety.toLowerCase();
-  const categoryKey = category.toLowerCase();
+  const varietyKey = variety.toLowerCase().trim();
+  const categoryKey = category.toLowerCase().trim();
 
   return VARIETY_IMAGES[varietyKey]
     ?? CATEGORY_IMAGES[categoryKey]
