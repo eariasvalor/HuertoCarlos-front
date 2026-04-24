@@ -72,10 +72,10 @@ export class NavbarComponent {
     const mapped = this.imageMap[key];
 
     if (mapped) {
-      return `/images/products/${mapped}.jpg`;
+      return `images/products/${mapped}.jpg`;
     }
 
-    return `/images/products/placeholder.jpg`;
+    return `images/products/placeholder.jpg`;
   }
 
   readonly cartItemsDetailed = computed(() => {
