@@ -6,11 +6,13 @@ import { AuthService } from '../../core/auth/auth.service';
 import { CustomerService } from '../../core/services/customer.service';
 import { Customer } from '../../core/model/customer.model';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, NavbarComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, NavbarComponent, TranslocoModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -19,6 +21,7 @@ export class ProfileComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly customerService = inject(CustomerService);
+  protected readonly translocoService = inject(TranslocoService);
 
   readonly customer = signal<Customer | null>(null);
   readonly isEditing = signal(false);
@@ -60,7 +63,7 @@ export class ProfileComponent implements OnInit {
         addressProvince: customer.addressProvince ?? ''
       });
     },
-    error: () => this.errorMessage.set('Could not load profile.')
+    error: () => this.errorMessage.set(this.translocoService.translate('profile.errors.load_error'))
   });
 }
 
@@ -120,11 +123,11 @@ export class ProfileComponent implements OnInit {
         this.customer.set(updated);
         this.isEditing.set(false);
         this.isLoading.set(false);
-        this.successMessage.set('Profile updated successfully');
+        this.successMessage.set(this.translocoService.translate('profile.success.updated'));
         setTimeout(() => this.successMessage.set(null), 4000);
       },
       error: () => {
-        this.errorMessage.set('Could not update profile. Please try again.');
+        this.errorMessage.set(this.translocoService.translate('profile.errors.update_error'));
         this.isLoading.set(false);
       }
     });

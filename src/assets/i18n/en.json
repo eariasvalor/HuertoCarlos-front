@@ -94,6 +94,67 @@
       "cancelled": "Cancelled",
       "delivered": "Delivered"
     }
+  },
+  "profile": {
+  "header": {
+    "title": "My profile",
+    "subtitle": "Manage your account details"
+  },
+  "info": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "member_since": "Member since"
+  },
+  "form": {
+    "name_label": "Name",
+    "email_label": "Email",
+    "email_hint": "Email cannot be changed",
+    "password_label": "New password",
+    "password_optional": "(optional)",
+    "password_placeholder": "Leave blank to keep current",
+    "phone_label": "Phone",
+    "phone_prefix_placeholder": "+34",
+    "phone_number_placeholder": "600 123 456",
+    "address_section": "Address",
+    "address_optional": "(optional)",
+    "street_type_label": "Street type",
+    "street_type_placeholder": "Calle, Avenida...",
+    "street_label": "Street",
+    "street_placeholder": "Street name",
+    "number_label": "Number",
+    "number_placeholder": "12",
+    "floor_label": "Floor",
+    "floor_optional": "(optional)",
+    "floor_placeholder": "2º A",
+    "postal_code_label": "Postal code",
+    "postal_code_placeholder": "03001",
+    "city_label": "City",
+    "city_placeholder": "Alicante",
+    "province_label": "Province",
+    "province_placeholder": "Alicante"
+  },
+  "errors": {
+    "name_length": "Name must be at least 2 characters",
+    "password_length": "Password must be at least 8 characters",
+    "phone_invalid": "Please enter a valid phone number",
+    "load_error": "Could not load profile.",
+    "update_error": "Could not update profile. Please try again."
+  },
+  "actions": {
+    "edit": "Edit profile",
+    "cancel": "Cancel",
+    "save": "Save changes",
+    "saving": "Saving..."
+  },
+  "quick_links": {
+    "my_orders": "My orders",
+    "back_to_catalogue": "Back to catalogue"
+  },
+  "success": {
+    "updated": "Profile updated successfully"
   }
+}
 
 }
