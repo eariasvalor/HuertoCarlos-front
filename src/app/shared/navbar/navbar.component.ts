@@ -8,11 +8,12 @@ import { ProductService } from '../../core/services/product.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Product } from '../../core/model/product.model';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, TranslocoModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })

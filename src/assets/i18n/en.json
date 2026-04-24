@@ -14,5 +14,26 @@
     "selected": "products selected",
     "place_order": "Place order",
     "placing_order": "Placing order..."
+  },
+ "navbar": {
+    "brand": "Eco Huerto Montgó",
+    "nav": {
+      "catalogue": "Catalogue",
+      "orders": "Orders",
+      "customers": "Customers",
+      "notifications": "Notifications",
+      "my_orders": "My orders",
+      "profile": "Profile",
+      "sign_in": "Sign in",
+      "register": "Register",
+      "sign_out": "Sign out"
+    },
+    "cart": {
+      "title": "Cart",
+      "total": "Total",
+      "checkout": "Make Order",
+      "empty": "Your cart is empty"
+    }
   }
+
 }
