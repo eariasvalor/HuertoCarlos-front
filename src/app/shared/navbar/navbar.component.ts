@@ -2,13 +2,12 @@ import { Component, inject, computed } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/auth/auth.service';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService, TranslocoModule } from '@ngneat/transloco';
 import { CartService } from '../../core/services/cart-service';
 import { ProductService } from '../../core/services/product.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Product } from '../../core/model/product.model';
-import { TranslocoModule } from '@ngneat/transloco';
 import { OrderService } from '../../core/services/order.service';
 import { ToastService } from '../../core/services/toast.service';
 
@@ -30,15 +29,9 @@ export class NavbarComponent {
   private readonly router = inject(Router);
   private readonly toastService = inject(ToastService);
 
-  // =========================
-  // AUTH
-  // =========================
   readonly isAdmin = computed(() => this.authService.isAdmin());
   readonly isAuthenticated = computed(() => this.authService.isAuthenticated());
 
-  // =========================
-  // UI STATE
-  // =========================
   readonly langs = ['es', 'en', 'nl'];
   menuOpen = false;
   langOpen = false;
@@ -48,15 +41,9 @@ export class NavbarComponent {
     return this.transloco.getActiveLang();
   }
 
-  // =========================
-  // CART
-  // =========================
   readonly cartItemCount = this.cartService.itemCount;
   readonly cartItems = this.cartService.items;
 
-  // =========================
-  // PRODUCTS (API → SIGNAL)
-  // =========================
   readonly products = toSignal(
     this.productService.getAvailable().pipe(
       map(res => res.content)
@@ -65,23 +52,75 @@ export class NavbarComponent {
   );
 
 
+  private readonly basePath = 'images/products/';
+
+  private readonly extensions = ['.avif', '.jpg', '.webp'];
+
   private readonly imageMap: Record<string, string> = {
-    'tomate raf': 'tomato-raf',
-    'tomate cherry': 'tomato-cherry',
-    'tomate corazón de buey': 'tomato-cordebou',
+    'tomate corazon de buey': 'tomato-cordebou.jpg',
+    'tomate pera': 'tomato-pera.jpg',
+    'tomate rosa': 'tomato-rosadealtea.webp',
   };
 
-  private resolveImage(name: string): string {
-    console.log('Resolving image for:', name);
-    const key = name.toLowerCase().trim();
-  
-    const mapped = this.imageMap[key];
-  
-    if (mapped) {
-      return `images/products/${mapped}.jpg`;
+  private readonly categoryFallback: Record<string, string> = {
+    tomato: 'tomato-default.avif',
+    onion: 'onion-default.jpg',
+    lettuce: 'lettuce-default.avif',
+    pepper: 'pepper-default.avif',
+    garlic: 'garlic-default.avif',
+    cucumber: 'cucumber.avif',
+    zucchini: 'zuchini-default.avif',
+    eggplant: 'eggplant-default.avif',
+    vegetables: 'vegetables-default.avif',
+  };
+
+  private normalize(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^\w\s-]/g, '')
+      .trim();
+  }
+
+  private detectCategory(name: string): string {
+    if (name.includes('tomate')) return 'tomato';
+    if (name.includes('cebolla')) return 'onion';
+    if (name.includes('lechuga')) return 'lettuce';
+    if (name.includes('pimiento')) return 'pepper';
+    if (name.includes('ajo')) return 'garlic';
+    if (name.includes('pepino')) return 'cucumber';
+    if (name.includes('calabacin')) return 'zucchini';
+    if (name.includes('berenjena')) return 'eggplant';
+
+    return 'vegetables';
+  }
+
+  resolveImage(name: string): string {
+    const normalized = this.normalize(name);
+
+    if (this.imageMap[normalized]) {
+      return this.basePath + this.imageMap[normalized];
     }
-  
-    return `images/products/tomato-default.jpg`;
+
+    const category = this.detectCategory(normalized);
+
+    const slug = normalized.replace(/\s+/g, '-');
+    const candidates = [
+      slug,
+      `${category}-${slug}`,
+      `${category}-${slug.split('-').pop()}`
+    ];
+
+    return this.basePath + candidates[0] + '.avif';
+  }
+
+  onImageError(event: Event, name: string) {
+    const img = event.target as HTMLImageElement;
+    const normalized = this.normalize(name);
+    const category = this.detectCategory(normalized);
+
+    img.src = this.basePath + (this.categoryFallback[category] || 'vegetables-default.avif');
   }
 
   readonly cartItemsDetailed = computed(() => {
@@ -154,21 +193,21 @@ export class NavbarComponent {
 
   checkout() {
     const customer = this.authService.currentUser();
-  
+
     if (!customer) {
       this.router.navigate(['/login']);
       return;
     }
-  
+
     const cart = this.cartService.items();
-  
+
     const lines = cart.map(item => ({
       productId: item.productId,
       quantity: item.qty
     }));
-  
+
     if (lines.length === 0) return;
-  
+
     this.orderService.create({
       customerId: customer.id,
       lines

@@ -8,7 +8,7 @@
     </a>
   </div>
 
-  <!-- RIGHT SIDE (TODO AGRUPADO) -->
+  <!-- RIGHT SIDE -->
   <div class="nav-right">
 
     <!-- DESKTOP ACTIONS -->
@@ -38,7 +38,6 @@
 
     <!-- LANGUAGE -->
     <div class="lang-dropdown" [class.open]="langOpen">
-
       <button class="lang-toggle" (click)="toggleLang()">
         <img [src]="'assets/flags/' + activeLang + '.svg'" [alt]="activeLang" />
         <span class="chevron">▼</span>
@@ -57,7 +56,6 @@
           </button>
         }
       </div>
-
     </div>
 
     <!-- CART -->
@@ -67,9 +65,7 @@
     </button>
 
     <!-- HAMBURGER -->
-    <button class="hamburger" (click)="toggleMenu()">
-      ☰
-    </button>
+    <button class="hamburger" (click)="toggleMenu()">☰</button>
 
   </div>
 
@@ -112,7 +108,12 @@
       @for (item of cartItemsDetailed(); track item.productId) {
         <div class="cart-item">
 
-          <img class="item-img" [src]="item.image" alt="{{ item.name }}" />
+          <img
+            class="item-img"
+            [src]="item.image"
+            (error)="onImageError($event, item.name)"
+            [alt]="item.name"
+          />
 
           <div class="item-info">
             <span class="name">{{ item.name }}</span>
@@ -130,10 +131,10 @@
 
     <div class="cart-footer">
       <div class="total">
-        {{ 'navbar.basket.total' | transloco }}: {{ total() }} €  
+        {{ 'navbar.basket.total' | transloco }}: {{ total() }} €
       </div>
 
-      <button class="checkout-btn">
+      <button class="checkout-btn" (click)="checkout()">
         {{ 'navbar.basket.checkout' | transloco }}
       </button>
     </div>
