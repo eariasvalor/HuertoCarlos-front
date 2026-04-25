@@ -10,6 +10,7 @@ import { map } from 'rxjs';
 import { Product } from '../../core/model/product.model';
 import { TranslocoModule } from '@ngneat/transloco';
 import { OrderService } from '../../core/services/order.service';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
   selector: 'app-navbar',
@@ -27,6 +28,7 @@ export class NavbarComponent {
   private readonly transloco = inject(TranslocoService);
   private readonly orderService = inject(OrderService);
   private readonly router = inject(Router);
+  private readonly toastService = inject(ToastService);
 
   // =========================
   // AUTH
@@ -174,8 +176,12 @@ export class NavbarComponent {
       next: () => {
         this.cartService.clear?.();
         this.cartOpen = false;
+        const msg = this.transloco.translate('order.placed_success');
+        this.toastService.success(msg);
       },
       error: () => {
+        const msg = this.transloco.translate('order.place_error');
+        this.toastService.error(msg);
         console.error('Error placing order');
       }
     });
