@@ -28,7 +28,7 @@ export class NavbarComponent {
   private readonly orderService = inject(OrderService);
   private readonly router = inject(Router);
   private readonly toastService = inject(ToastService);
-
+  
   readonly isAdmin = computed(() => this.authService.isAdmin());
   readonly isAuthenticated = computed(() => this.authService.isAuthenticated());
 
@@ -51,27 +51,31 @@ export class NavbarComponent {
     { initialValue: [] as Product[] }
   );
 
-
   private readonly basePath = 'images/products/';
 
-  private readonly extensions = ['.avif', '.jpg', '.webp'];
+  private readonly wordMap: Record<string, string> = {
+    tomate: 'tomato',
+    cebolla: 'onion',
+    lechuga: 'lettuce',
+    pimiento: 'pepper',
+    ajo: 'garlic',
+    pepino: 'cucumber',
+    calabacin: 'calabacin',
+    berenjena: 'eggplant',
+    pera: 'pera',
+    cherry: 'cherry',
+    corazon: 'cordebou',
+    buey: 'cordebou',
+    rosa: 'rosadealtea',
 
-  private readonly imageMap: Record<string, string> = {
-    'tomate corazon de buey': 'tomato-cordebou.jpg',
-    'tomate pera': 'tomato-pera.jpg',
-    'tomate rosa': 'tomato-rosadealtea.webp',
-  };
+    blanca: 'blanca',
+    morada: 'morada',
+    tierna: 'tierna',
 
-  private readonly categoryFallback: Record<string, string> = {
-    tomato: 'tomato-default.avif',
-    onion: 'onion-default.jpg',
-    lettuce: 'lettuce-default.avif',
-    pepper: 'pepper-default.avif',
-    garlic: 'garlic-default.avif',
-    cucumber: 'cucumber.avif',
-    zucchini: 'zuchini-default.avif',
-    eggplant: 'eggplant-default.avif',
-    vegetables: 'vegetables-default.avif',
+    italiano: 'italiano',
+    padron: 'padron',
+    morronrojo: 'morronrojo',
+    morronverde: 'morronverde',
   };
 
   private normalize(text: string): string {
@@ -79,49 +83,43 @@ export class NavbarComponent {
       .toLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s-]/g, '')
+      .replace(/[^\w\s]/g, '')
       .trim();
-  }
-
-  private detectCategory(name: string): string {
-    if (name.includes('tomate')) return 'tomato';
-    if (name.includes('cebolla')) return 'onion';
-    if (name.includes('lechuga')) return 'lettuce';
-    if (name.includes('pimiento')) return 'pepper';
-    if (name.includes('ajo')) return 'garlic';
-    if (name.includes('pepino')) return 'cucumber';
-    if (name.includes('calabacin')) return 'zucchini';
-    if (name.includes('berenjena')) return 'eggplant';
-
-    return 'vegetables';
   }
 
   resolveImage(name: string): string {
     const normalized = this.normalize(name);
+    const words = normalized.split(' ');
 
-    if (this.imageMap[normalized]) {
-      return this.basePath + this.imageMap[normalized];
-    }
+    const mappedWords = words.map(w => this.wordMap[w] || w);
 
-    const category = this.detectCategory(normalized);
+    const category = mappedWords[0];
+    const variant = mappedWords.slice(1).join('');
 
-    const slug = normalized.replace(/\s+/g, '-');
-    const candidates = [
-      slug,
-      `${category}-${slug}`,
-      `${category}-${slug.split('-').pop()}`
-    ];
+    const filename = variant
+      ? `${category}-${variant}`
+      : category;
 
-    return this.basePath + candidates[0] + '.avif';
+    return `${this.basePath}${filename}.avif`;
   }
 
   onImageError(event: Event, name: string) {
     const img = event.target as HTMLImageElement;
     const normalized = this.normalize(name);
-    const category = this.detectCategory(normalized);
 
-    img.src = this.basePath + (this.categoryFallback[category] || 'vegetables-default.avif');
+    if (normalized.includes('tomate')) {
+      img.src = this.basePath + 'tomato-default.avif';
+    } else if (normalized.includes('cebolla')) {
+      img.src = this.basePath + 'onion-default.jpg';
+    } else if (normalized.includes('lechuga')) {
+      img.src = this.basePath + 'lettuce-default.avif';
+    } else if (normalized.includes('pimiento')) {
+      img.src = this.basePath + 'pepper-default.avif';
+    } else {
+      img.src = this.basePath + 'vegetables-default.avif';
+    }
   }
+
 
   readonly cartItemsDetailed = computed(() => {
     const cart = this.cartService.items();
