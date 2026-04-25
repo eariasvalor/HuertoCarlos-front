@@ -2,11 +2,8 @@
 <html>
   <head>
     <script>
-      const path = window.location.pathname;
-      const repo = '/HuertoCarlos-front';
-      window.location.replace(
-        window.location.origin + repo + '/?redirect=' + encodeURIComponent(path)
-      );
+      sessionStorage.redirect = window.location.pathname;
+      window.location.replace('/');
     </script>
   </head>
 </html>
