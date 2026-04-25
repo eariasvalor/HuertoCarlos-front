@@ -5,17 +5,21 @@ import { CustomerService } from '../../../core/services/customer.service';
 import { Customer } from '../../../core/model/customer.model';
 import { NavbarComponent } from '../../../shared/navbar/navbar.component';
 import { QuillModule } from 'ngx-quill';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { NotificationService } from '../../../core/services/notification-service';
 
 @Component({
   selector: 'app-admin-notifications-new',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavbarComponent, QuillModule],
+  imports: [CommonModule, FormsModule, NavbarComponent, QuillModule, TranslocoModule],
   templateUrl: './admin-notifications-new.html',
   styleUrls: ['./admin-notifications-new.scss']
 })
 export class AdminNotifications implements OnInit {
 
   private customerService = inject(CustomerService);
+  private transloco = inject(TranslocoService);
+  private notificationService = inject(NotificationService);
 
   customers = signal<Customer[]>([]);
   isLoading = signal(true);
@@ -92,17 +96,73 @@ export class AdminNotifications implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  async send() {
+  convertToWhatsAppFormat(html: string): string {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+  
+    div.querySelectorAll('strong, b').forEach(el => {
+      el.outerHTML = `*${el.textContent}*`;
+    });
+
+    div.querySelectorAll('em, i').forEach(el => {
+      el.outerHTML = `_${el.textContent}_`;
+    });
+  
+
+    div.querySelectorAll('s, del').forEach(el => {
+      el.outerHTML = `~${el.textContent}~`;
+    });
+  
+
+    div.querySelectorAll('a').forEach(el => {
+      const text = el.textContent;
+      const href = el.getAttribute('href');
+      el.outerHTML = `${text} (${href})`;
+    });
+
+    div.querySelectorAll('li').forEach(el => {
+      el.outerHTML = `• ${el.textContent}\n`;
+    });
+  
+    return div.textContent || '';
+  }
+
+  send() {
     this.sending.set(true);
     this.resultMessage.set('');
     this.errors.set([]);
-    await new Promise(res => setTimeout(res, 1200));
-    const total = this.selectedIds().length;
-    this.resultMessage.set(`Sent to ${total} customers`);
-    this.sending.set(false);
-    this.message.set('');
-    this.selectedIds.set([]);
-    this.previewUrl.set(null);
+  
+    const whatsappMessage = this.convertToWhatsAppFormat(this.editorContent());
+
+    this.notificationService.sendNotification(
+      this.selectedIds(),
+      whatsappMessage,
+      this.selectedFile
+    ).subscribe({
+      next: (res) => {
+        const { sent, failed } = res;
+  
+        this.resultMessage.set(
+          this.transloco.translate('notifications.result', {
+            sent,
+            failed
+          })
+        );
+  
+        this.message.set('');
+        this.editorContent.set('');
+        this.selectedIds.set([]);
+        this.previewUrl.set(null);
+        this.selectedFile = undefined;
+        this.sending.set(false);
+      },
+      error: () => {
+        this.resultMessage.set(
+          this.transloco.translate('notifications.error')
+        );
+        this.sending.set(false);
+      }
+    });
   }
 
   isMessageEmpty() {
