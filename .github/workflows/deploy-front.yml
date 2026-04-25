@@ -23,9 +23,10 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build producción
-        run: npm run build -- --configuration=production --base-href=/HuertoCarlos-front/
+        run: npm run build -- --configuration=production --base-href=/
       - name: Desplegar en GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/HuertoCarlos-front/browser
+          cname: ecohuertomontgo.com

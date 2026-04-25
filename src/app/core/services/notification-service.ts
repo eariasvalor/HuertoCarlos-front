@@ -9,29 +9,22 @@ export class NotificationService {
   private readonly http = inject(HttpClient);
   private readonly API = environment.apiUrl;
 
-  sendNotification(
+sendNotification(
     customerIds: string[],
     messageText: string,
     file?: File
   ): Observable<any> {
-
-    const formData = new FormData();
-
-    let params = new HttpParams()
-      .set('messageText', messageText);
-
+  
+    let params = new HttpParams().set('messageText', messageText);
     customerIds.forEach(id => {
       params = params.append('customerIds', id);
     });
 
+    const formData = new FormData();
     if (file) {
       formData.append('file', file);
     }
 
-    return this.http.post(
-      `${this.API}/admin/notifications`,
-      formData,
-      { params }
-    );
+    return this.http.post(`${this.API}/admin/notifications`, formData, { params });
   }
 }
