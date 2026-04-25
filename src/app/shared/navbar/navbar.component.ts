@@ -2,13 +2,12 @@ import { Component, inject, computed } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../../core/auth/auth.service';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService, TranslocoModule } from '@ngneat/transloco';
 import { CartService } from '../../core/services/cart-service';
 import { ProductService } from '../../core/services/product.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Product } from '../../core/model/product.model';
-import { TranslocoModule } from '@ngneat/transloco';
 import { OrderService } from '../../core/services/order.service';
 import { ToastService } from '../../core/services/toast.service';
 
@@ -29,16 +28,10 @@ export class NavbarComponent {
   private readonly orderService = inject(OrderService);
   private readonly router = inject(Router);
   private readonly toastService = inject(ToastService);
-
-  // =========================
-  // AUTH
-  // =========================
+  
   readonly isAdmin = computed(() => this.authService.isAdmin());
   readonly isAuthenticated = computed(() => this.authService.isAuthenticated());
 
-  // =========================
-  // UI STATE
-  // =========================
   readonly langs = ['es', 'en', 'nl'];
   menuOpen = false;
   langOpen = false;
@@ -48,15 +41,9 @@ export class NavbarComponent {
     return this.transloco.getActiveLang();
   }
 
-  // =========================
-  // CART
-  // =========================
   readonly cartItemCount = this.cartService.itemCount;
   readonly cartItems = this.cartService.items;
 
-  // =========================
-  // PRODUCTS (API → SIGNAL)
-  // =========================
   readonly products = toSignal(
     this.productService.getAvailable().pipe(
       map(res => res.content)
@@ -64,25 +51,75 @@ export class NavbarComponent {
     { initialValue: [] as Product[] }
   );
 
+  private readonly basePath = 'images/products/';
 
-  private readonly imageMap: Record<string, string> = {
-    'tomate raf': 'tomato-raf',
-    'tomate cherry': 'tomato-cherry',
-    'tomate corazón de buey': 'tomato-cordebou',
+  private readonly wordMap: Record<string, string> = {
+    tomate: 'tomato',
+    cebolla: 'onion',
+    lechuga: 'lettuce',
+    pimiento: 'pepper',
+    ajo: 'garlic',
+    pepino: 'cucumber',
+    calabacin: 'calabacin',
+    berenjena: 'eggplant',
+    pera: 'pera',
+    cherry: 'cherry',
+    corazon: 'cordebou',
+    buey: 'cordebou',
+    rosa: 'rosadealtea',
+
+    blanca: 'blanca',
+    morada: 'morada',
+    tierna: 'tierna',
+
+    italiano: 'italiano',
+    padron: 'padron',
+    morronrojo: 'morronrojo',
+    morronverde: 'morronverde',
   };
 
-  private resolveImage(name: string): string {
-    console.log('Resolving image for:', name);
-    const key = name.toLowerCase().trim();
-  
-    const mapped = this.imageMap[key];
-  
-    if (mapped) {
-      return `images/products/${mapped}.jpg`;
-    }
-  
-    return `images/products/tomato-default.jpg`;
+  private normalize(text: string): string {
+    return text
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^\w\s]/g, '')
+      .trim();
   }
+
+  resolveImage(name: string): string {
+    const normalized = this.normalize(name);
+    const words = normalized.split(' ');
+
+    const mappedWords = words.map(w => this.wordMap[w] || w);
+
+    const category = mappedWords[0];
+    const variant = mappedWords.slice(1).join('');
+
+    const filename = variant
+      ? `${category}-${variant}`
+      : category;
+
+    return `${this.basePath}${filename}.avif`;
+  }
+
+  onImageError(event: Event, name: string) {
+    const img = event.target as HTMLImageElement;
+    const normalized = this.normalize(name);
+
+    if (normalized.includes('tomate')) {
+      img.src = this.basePath + 'tomato-default.avif';
+    } else if (normalized.includes('cebolla')) {
+      img.src = this.basePath + 'onion-default.jpg';
+    } else if (normalized.includes('lechuga')) {
+      img.src = this.basePath + 'lettuce-default.avif';
+    } else if (normalized.includes('pimiento')) {
+      img.src = this.basePath + 'pepper-default.avif';
+    } else {
+      img.src = this.basePath + 'vegetables-default.avif';
+    }
+  }
+
 
   readonly cartItemsDetailed = computed(() => {
     const cart = this.cartService.items();
@@ -154,21 +191,21 @@ export class NavbarComponent {
 
   checkout() {
     const customer = this.authService.currentUser();
-  
+
     if (!customer) {
       this.router.navigate(['/login']);
       return;
     }
-  
+
     const cart = this.cartService.items();
-  
+
     const lines = cart.map(item => ({
       productId: item.productId,
       quantity: item.qty
     }));
-  
+
     if (lines.length === 0) return;
-  
+
     this.orderService.create({
       customerId: customer.id,
       lines
