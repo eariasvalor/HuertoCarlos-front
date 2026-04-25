@@ -186,5 +186,20 @@
       "sign_in_link": "Log in"
     },
     "tagline": "Seizoenstomaten · Rechtstreeks van het veld"
+  },
+  "notifications": {
+    "title": "Melding verzenden",
+    "subtitle": "Informeer je klanten direct",
+    "selectAll": "Alles selecteren",
+    "selected": "geselecteerd",
+    "loadingCustomers": "Klanten laden...",
+    "messageLabel": "Bericht:",
+    "placeholder": "Schrijf je bericht...",
+    "photo": "Foto",
+    "preview": "Voorbeeld van je bericht...",
+    "sending": "Bezig met verzenden...",
+    "send": "Melding verzenden",
+    "result": "Verzonden: {{sent}}, Mislukt: {{failed}}",
+    "error": "Fout bij het verzenden van de melding"
   }
 }

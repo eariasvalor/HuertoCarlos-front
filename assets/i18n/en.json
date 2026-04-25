@@ -188,6 +188,20 @@
     "sign_in_link": "Sign in"
   },
   "tagline": "Seasonal tomatoes · Straight from the field"
-}
-
+},
+"notifications": {
+    "title": "Send notification",
+    "subtitle": "Notify your customers instantly",
+    "selectAll": "Select all",
+    "selected": "selected",
+    "loadingCustomers": "Loading customers...",
+    "messageLabel": "Message:",
+    "placeholder": "Write your message...",
+    "photo": "Photo",
+    "preview": "Your message preview...",
+    "sending": "Sending...",
+    "send": "Send notification",
+    "result": "Sent: {{sent}}, Failed: {{failed}}",
+    "error": "Error sending notification"
+  }
 }

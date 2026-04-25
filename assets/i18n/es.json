@@ -186,5 +186,20 @@
       "sign_in_link": "Inicia sesión"
     },
     "tagline": "Tomates de temporada · Directos del huerto"
-  }
+  },
+    "notifications": {
+      "title": "Enviar notificación",
+      "subtitle": "Notifica a tus clientes al instante",
+      "selectAll": "Seleccionar todos",
+      "selected": "seleccionados",
+      "loadingCustomers": "Cargando clientes...",
+      "messageLabel": "Mensaje:",
+      "placeholder": "Escribe tu mensaje...",
+      "photo": "Foto",
+      "preview": "Vista previa del mensaje...",
+      "sending": "Enviando...",
+      "send": "Enviar notificación",
+      "result": "Enviadas: {{sent}}, Fallidas: {{failed}}",
+      "error": "Error al enviar la notificación"
+    }
 }
