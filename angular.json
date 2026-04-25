@@ -44,7 +44,7 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/HuertoCarlos-front/",
+              "baseHref": "/",
               "budgets": [
               {
                 "type": "initial",
