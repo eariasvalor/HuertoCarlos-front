@@ -15,7 +15,7 @@ const VARIETY_IMAGES: Record<string, string> = {
   'padrón':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059170/pepper-padron_qtkrvj.jpg',
 
   // 🍆 Berenjenas
-  'común':             'hhttps://res.cloudinary.com/dr3t29ukn/image/upload/v1777059325/aubergine-comun_vau33a.avif',
+  'común':             'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059325/aubergine-comun_vau33a.avif',
   'rayada':            'https://res.cloudinary.com/dr3t29ukn/image/upload/v1777059326/aubergine-rayada_ocj42y.avif',
 
   // 🥒 Calabacines
