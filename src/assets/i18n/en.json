@@ -93,6 +93,51 @@
       "cancel_btn": "Cancel Order",
       "cancelling": "Cancelling..."
     },
+    "detail": {
+      "eyebrow_placed": "PLACED",
+      "in_the_crate": "In the crate",
+      "total": "Total",
+      "quote": "\"Tomatoes are best kept at room temperature, never in the fridge.\"",
+      "quote_author": "— CARLOS · GROWER",
+      "steps": {
+        "received": "Received",
+        "confirmed": "Confirmed",
+        "ready": "Ready",
+        "delivered": "Delivered",
+        "desc_received": "Order placed",
+        "desc_confirmed": "Harvest started",
+        "desc_ready": "Packed and ready",
+        "desc_delivered": "Enjoy your order",
+        "future": "pending"
+      },
+      "hero": {
+        "PENDING": {
+          "start": "We've received your",
+          "italic": "order.",
+          "subtitle": "We've got it — Carlos will start picking soon."
+        },
+        "CONFIRMED": {
+          "start": "Carlos is",
+          "italic": "on it.",
+          "subtitle": "The harvest has started. Your produce will be ready soon."
+        },
+        "READY_FOR_PICKUP": {
+          "start": "Your order is",
+          "italic": "ready.",
+          "subtitle": "Your crate is packed and waiting for you."
+        },
+        "DELIVERED": {
+          "start": "Order",
+          "italic": "delivered.",
+          "subtitle": "We hope you enjoy every bite. See you next week."
+        },
+        "CANCELLED": {
+          "start": "This order was",
+          "italic": "cancelled.",
+          "subtitle": "Your order has been cancelled. You will not be charged."
+        }
+      }
+    },
     "status": {
       "pending": "Pending",
       "confirmed": "Confirmed",

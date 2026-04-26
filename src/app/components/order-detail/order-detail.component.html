@@ -1,0 +1,115 @@
+<div class="detail-wrapper">
+
+  <app-navbar />
+
+  @if (isLoading()) {
+    <div class="detail-loading">{{ 'orders.states.loading' | transloco }}</div>
+  } @else if (order(); as order) {
+
+    @let h = statusHero(order.status);
+
+    <!-- HERO -->
+    <div class="order-hero" [class.hero-cancelled]="order.status === 'CANCELLED'">
+      <div class="hero-top">
+        <button class="btn-back" (click)="goBack()">← {{ 'orders.header.back' | transloco }}</button>
+        <p class="hero-eyebrow">
+          {{ 'orders.card.order_number' | transloco }} #{{ order.visibleId }}
+          &nbsp;·&nbsp;
+          {{ 'orders.detail.eyebrow_placed' | transloco }}
+          {{ order.createdAt | date:'EEE dd MMM' | uppercase }}
+        </p>
+      </div>
+      <h1 class="hero-headline">{{ h.start }} <em>{{ h.italic }}</em></h1>
+      <p class="hero-subtitle">{{ h.subtitle }}</p>
+    </div>
+
+    @if (errorMessage()) {
+      <div class="alert-error">{{ errorMessage() }}</div>
+    }
+
+    <!-- TIMELINE -->
+    @if (order.status !== 'CANCELLED') {
+      <div class="order-timeline">
+        @for (step of timelineSteps; track step.key; let i = $index; let last = $last) {
+          <div class="tl-step"
+               [class.done]="isStepDone(order.status, step.key)"
+               [class.active]="isStepActive(order.status, step.key)"
+               [class.last]="last">
+            <div class="tl-node">
+              @if (isStepDone(order.status, step.key)) {
+                <span class="tl-check">✓</span>
+              } @else {
+                <span class="tl-num">{{ i + 1 }}</span>
+              }
+            </div>
+            <div class="tl-info">
+              <span class="tl-label">{{ step.label | transloco }}</span>
+              @if (i === 0) {
+                <span class="tl-date">{{ order.createdAt | date:'EEE · dd MMM · HH:mm' | uppercase }}</span>
+              } @else if (!isStepDone(order.status, step.key) && !isStepActive(order.status, step.key)) {
+                <span class="tl-date tl-pending">{{ 'orders.detail.steps.future' | transloco }}</span>
+              }
+              <span class="tl-desc">{{ step.desc | transloco }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- BODY -->
+    <div class="order-body">
+
+      <!-- LEFT: lines -->
+      <div class="crate-left">
+        <p class="crate-label">{{ 'orders.detail.in_the_crate' | transloco | uppercase }}</p>
+
+        <div class="order-lines">
+          @for (line of order.lines; track line.id) {
+            <div class="order-line">
+              <div class="line-info">
+                <span class="line-name">{{ line.productName }}</span>
+                <span class="line-detail">× {{ line.quantity }} · {{ line.productUnit }}</span>
+              </div>
+              <span class="line-price">{{ line.subtotal | number:'1.2-2' }} €</span>
+            </div>
+          }
+        </div>
+
+        <div class="order-total-row">
+          <span class="total-label">{{ 'orders.detail.total' | transloco | uppercase }}</span>
+          <span class="total-value">{{ order.total | number:'1.2-2' }} €</span>
+        </div>
+
+        @if (canCancel(order)) {
+          <div class="detail-actions">
+            <button class="btn-cancel" (click)="cancelOrder()" [disabled]="cancelling()">
+              @if (cancelling()) {
+                {{ 'orders.card.cancelling' | transloco }}
+              } @else {
+                {{ 'orders.card.cancel_btn' | transloco }}
+              }
+            </button>
+          </div>
+        }
+      </div>
+
+      <!-- RIGHT: stamp + quote -->
+      <div class="crate-aside">
+        <div class="crate-stamp">
+          <span>HUERTO</span>
+          <span>· CRATE ·</span>
+          <span>{{ order.createdAt | date:'dd MMM' | uppercase }}</span>
+        </div>
+        <blockquote class="crate-quote">
+          <p>{{ 'orders.detail.quote' | transloco }}</p>
+          <cite>{{ 'orders.detail.quote_author' | transloco }}</cite>
+        </blockquote>
+      </div>
+
+    </div>
+
+  } @else if (!isLoading()) {
+    <div class="detail-loading">{{ 'orders.states.load_error' | transloco }}</div>
+  }
+
+</div>

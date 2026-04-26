@@ -91,6 +91,51 @@
       "cancel_btn": "Cancelar pedido",
       "cancelling": "Cancelando..."
     },
+    "detail": {
+      "eyebrow_placed": "REALIZADO",
+      "in_the_crate": "En la caja",
+      "total": "Total",
+      "quote": "\"Los tomates se conservan mejor a temperatura ambiente, nunca en la nevera.\"",
+      "quote_author": "— CARLOS · AGRICULTOR",
+      "steps": {
+        "received": "Recibido",
+        "confirmed": "Confirmado",
+        "ready": "Listo",
+        "delivered": "Entregado",
+        "desc_received": "Pedido realizado",
+        "desc_confirmed": "Cosecha iniciada",
+        "desc_ready": "Empaquetado y listo",
+        "desc_delivered": "Disfruta tu pedido",
+        "future": "pendiente"
+      },
+      "hero": {
+        "PENDING": {
+          "start": "Hemos recibido tu",
+          "italic": "pedido.",
+          "subtitle": "Ya lo tenemos — Carlos empezará a recoger pronto."
+        },
+        "CONFIRMED": {
+          "start": "Carlos está",
+          "italic": "en ello.",
+          "subtitle": "La cosecha ha comenzado. Tu pedido estará listo pronto."
+        },
+        "READY_FOR_PICKUP": {
+          "start": "Tu pedido está",
+          "italic": "listo.",
+          "subtitle": "Tu caja está preparada y esperándote."
+        },
+        "DELIVERED": {
+          "start": "Pedido",
+          "italic": "entregado.",
+          "subtitle": "Esperamos que lo disfrutes. Hasta la semana que viene."
+        },
+        "CANCELLED": {
+          "start": "Este pedido se ha",
+          "italic": "cancelado.",
+          "subtitle": "Tu pedido se ha cancelado. No se realizará ningún cargo."
+        }
+      }
+    },
     "status": {
       "pending": "Pendiente",
       "confirmed": "Confirmado",

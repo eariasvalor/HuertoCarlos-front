@@ -136,6 +136,10 @@
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--color-ink);
+  text-decoration: none;
+  transition: color var(--transition);
+
+  &:hover { color: var(--color-terracotta); }
 }
 
 .order-date {

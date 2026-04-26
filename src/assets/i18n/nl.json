@@ -91,6 +91,51 @@
       "cancel_btn": "Bestelling annuleren",
       "cancelling": "Annuleren..."
     },
+    "detail": {
+      "eyebrow_placed": "GEPLAATST",
+      "in_the_crate": "In de krat",
+      "total": "Totaal",
+      "quote": "\"Tomaten bewaar je het best op kamertemperatuur, nooit in de koelkast.\"",
+      "quote_author": "— CARLOS · KWEKER",
+      "steps": {
+        "received": "Ontvangen",
+        "confirmed": "Bevestigd",
+        "ready": "Klaar",
+        "delivered": "Bezorgd",
+        "desc_received": "Bestelling geplaatst",
+        "desc_confirmed": "Oogst gestart",
+        "desc_ready": "Ingepakt en klaar",
+        "desc_delivered": "Geniet van je bestelling",
+        "future": "in afwachting"
+      },
+      "hero": {
+        "PENDING": {
+          "start": "We hebben je",
+          "italic": "bestelling ontvangen.",
+          "subtitle": "We hebben het — Carlos begint binnenkort met plukken."
+        },
+        "CONFIRMED": {
+          "start": "Carlos is",
+          "italic": "bezig.",
+          "subtitle": "De oogst is begonnen. Je bestelling is binnenkort klaar."
+        },
+        "READY_FOR_PICKUP": {
+          "start": "Je bestelling is",
+          "italic": "klaar.",
+          "subtitle": "Je krat is ingepakt en wacht op je."
+        },
+        "DELIVERED": {
+          "start": "Bestelling",
+          "italic": "bezorgd.",
+          "subtitle": "We hopen dat je ervan geniet. Tot volgende week."
+        },
+        "CANCELLED": {
+          "start": "Deze bestelling is",
+          "italic": "geannuleerd.",
+          "subtitle": "Je bestelling is geannuleerd. Er wordt niets in rekening gebracht"
+        }
+      }
+    },
     "status": {
       "pending": "In afwachting",
       "confirmed": "Bevestigd",

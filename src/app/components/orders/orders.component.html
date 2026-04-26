@@ -32,7 +32,9 @@
 
           <div class="order-card-header">
             <div class="order-card-id">
-              <span class="order-number">{{ 'orders.card.order_number' | transloco }} {{ order.visibleId }}</span>
+              <a class="order-number" [routerLink]="['/orders', order.id]">
+                {{ 'orders.card.order_number' | transloco }} {{ order.visibleId }} →
+              </a>
               <span class="order-date">{{ order.createdAt | date:'dd MMM yyyy, HH:mm' }}</span>
             </div>
             <span class="status-tag" [ngClass]="statusClass(order.status)">
