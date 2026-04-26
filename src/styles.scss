@@ -1,4 +1,178 @@
-/* You can add global styles to this file, and also import other style files */
+/* ─── Design tokens — Terracotta & Paper ─── */
+:root {
+  /* Colour palette */
+  --color-paper:        #F6EFE2;
+  --color-paper-dk:     #EDE4D1;
+  --color-ink:          #2B241C;
+  --color-ink-soft:     #6B5A4B;
+  --color-terracotta:   #B85A3A;
+  --color-terra-dk:     #8E3F2A;
+  --color-olive:        #6B6A3C;
+  --color-ochre:        #C89A4F;
+
+  /* Semantic aliases */
+  --color-bg:           var(--color-paper);
+  --color-bg-subtle:    var(--color-paper-dk);
+  --color-primary:      var(--color-terracotta);
+  --color-primary-dark: var(--color-terra-dk);
+  --color-text:         var(--color-ink);
+  --color-text-muted:   var(--color-ink-soft);
+  --color-border:       #D9CCBA;
+  --color-border-light: #E8DECE;
+
+  /* Card tints per category */
+  --color-card-tomato:  #E8C8BE;
+  --color-card-green:   #C8D4BE;
+  --color-card-pepper:  #D4C8A8;
+  --color-card-herb:    #C8D0B8;
+  --color-card-root:    #D8C8A8;
+  --color-card-default: var(--color-paper-dk);
+
+  /* Stripe tints (diagonal pattern overlay) */
+  --color-stripe-tomato:  #D4A898;
+  --color-stripe-green:   #A8BEA8;
+  --color-stripe-default: #C8BCA8;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body:    'Inter Tight', 'Inter', system-ui, sans-serif;
+  --font-mono:    'Geist Mono', 'Courier New', monospace;
+
+  /* Font sizes */
+  --text-xs:   0.6875rem;
+  --text-sm:   0.8125rem;
+  --text-base: 1rem;
+  --text-md:   1.125rem;
+  --text-lg:   1.375rem;
+  --text-xl:   1.75rem;
+  --text-2xl:  2.25rem;
+  --text-3xl:  3rem;
+  --text-4xl:  4rem;
+
+  /* Spacing */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+
+  /* Border radius */
+  --radius-sm:  2px;
+  --radius-md:  4px;
+  --radius-lg:  8px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(43, 36, 28, 0.08);
+  --shadow-md:  0 4px 12px rgba(43, 36, 28, 0.10);
+
+  /* Transitions */
+  --transition: 150ms ease;
+}
+
+/* ─── Reset & base ─── */
 *, *::before, *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Typography helpers ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--color-text);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ─── Utility classes ─── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+.text-terracotta { color: var(--color-terracotta); }
+.text-muted      { color: var(--color-text-muted); }
+
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ─── Button primitives ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-paper);
+  border: 1.5px solid var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
   }
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+
+  &:hover {
+    border-color: var(--color-text);
+  }
+}
