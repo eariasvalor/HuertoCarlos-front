@@ -8,7 +8,6 @@
 
     @let h = statusHero(order.status);
 
-    <!-- HERO -->
     <div class="order-hero" [class.hero-cancelled]="order.status === 'CANCELLED'">
       <div class="hero-top">
         <button class="btn-back" (click)="goBack()">← {{ 'orders.header.back' | transloco }}</button>
@@ -27,7 +26,6 @@
       <div class="alert-error">{{ errorMessage() }}</div>
     }
 
-    <!-- TIMELINE -->
     @if (order.status !== 'CANCELLED') {
       <div class="order-timeline">
         @for (step of timelineSteps; track step.key; let i = $index; let last = $last) {
@@ -56,10 +54,8 @@
       </div>
     }
 
-    <!-- BODY -->
     <div class="order-body">
 
-      <!-- LEFT: lines -->
       <div class="crate-left">
         <p class="crate-label">{{ 'orders.detail.in_the_crate' | transloco | uppercase }}</p>
 
@@ -67,7 +63,7 @@
           @for (line of order.lines; track line.id) {
             <div class="order-line">
               <div class="line-info">
-                <span class="line-name">{{ line.productName }}</span>
+                <span class="line-name">{{ line.productName | dbTranslate:'PRODUCTS' | transloco }}</span>
                 <span class="line-detail">× {{ line.quantity }} · {{ line.productUnit }}</span>
               </div>
               <span class="line-price">{{ line.subtotal | number:'1.2-2' }} €</span>
@@ -93,7 +89,6 @@
         }
       </div>
 
-      <!-- RIGHT: stamp + quote -->
       <div class="crate-aside">
         <div class="crate-stamp">
           <span>HUERTO</span>

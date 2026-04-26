@@ -42,7 +42,6 @@
             </span>
           </div>
 
-          <!-- TIMELINE -->
           @if (order.status !== 'CANCELLED') {
             <div class="order-timeline">
 
@@ -77,13 +76,12 @@
             </div>
           }
 
-          <!-- ORDER LINES -->
           <div class="order-lines">
             @for (line of order.lines; track line.id) {
               <div class="order-line">
                 <div class="line-main">
-                  <span class="line-name">{{ line.productName }}</span>
-                  <span class="line-variety">{{ line.productVariety }}</span>
+                  <span class="line-name">{{ line.productName | dbTranslate:'PRODUCTS' | transloco }}</span>
+                  <span class="line-variety">{{ line.productVariety | dbTranslate:'VARIETIES' | transloco }}</span>
                 </div>
                 <div class="line-meta">
                   <span class="line-qty">× {{ line.quantity }}</span>

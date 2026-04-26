@@ -8,11 +8,12 @@ import { getProductImage } from '../../core/utils/product-image.util';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { CartService } from '../../core/services/cart-service';
+import { DbTranslatePipe } from '../../core/pipes/db-translate.pipe';
 
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, TranslocoModule],
+  imports: [CommonModule, NavbarComponent, TranslocoModule, DbTranslatePipe],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.scss'
 })

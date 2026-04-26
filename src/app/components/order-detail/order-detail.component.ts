@@ -5,11 +5,12 @@ import { OrderService } from '../../core/services/order.service';
 import { Order, OrderStatus } from '../../core/model/order.model';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { DbTranslatePipe } from '../../core/pipes/db-translate.pipe';
 
 @Component({
   selector: 'app-order-detail',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent, TranslocoModule],
+  imports: [CommonModule, RouterLink, NavbarComponent, TranslocoModule, DbTranslatePipe],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.scss'
 })

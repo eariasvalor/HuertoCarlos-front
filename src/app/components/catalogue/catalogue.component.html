@@ -1,5 +1,4 @@
 <div class="catalogue-wrapper">
-
   <app-navbar />
 
   <div class="catalogue-header">
@@ -16,7 +15,7 @@
         class="filter-chip"
         [class.active]="selectedCategory() === cat"
         (click)="selectCategory(cat)">
-        {{ cat | uppercase }}
+        {{ cat | dbTranslate:'CATEGORIES' | transloco | uppercase }}
       </button>
     }
   </div>
@@ -30,38 +29,25 @@
   }
 
   @if (isLoading()) {
-
-    <div class="plant-loader">
-      <svg class="plant-svg" viewBox="0 0 100 100">
-        <path d="M20 80 Q50 95 80 80" class="soil" />
-        <line x1="50" y1="80" x2="50" y2="40" class="stem" />
-        <path d="M50 55 Q30 45 40 30 Q50 40 50 55" class="leaf" />
-        <path d="M50 55 Q70 45 60 30 Q50 40 50 55" class="leaf" />
-      </svg>
-      <div class="loading-text">{{ 'catalogue.loading' | transloco }}</div>
-    </div>
-
-  } @else {
-
+    } @else {
     <div class="products-grid">
       @for (product of filteredProducts(); track product.id) {
-
         <div class="product-card">
-
           <div class="card-image" [ngClass]="'card-image--' + getCategoryClass(product.category)">
             @if (getImage(product)) {
               <img class="card-photo"
                    [src]="getImage(product)"
-                   [alt]="product.name"
+                   [alt]="product.name | dbTranslate:'PRODUCTS' | transloco"
                    (error)="onImageError($event)" />
             }
-            <span class="card-label-top">{{ product.category | uppercase }}</span>
-            <span class="card-label-bottom">© {{ product.name | uppercase }}</span>
+            <span class="card-label-top">{{ product.category | dbTranslate:'CATEGORIES' | transloco | uppercase }}</span>
+            <span class="card-label-bottom">© {{ product.name | dbTranslate:'PRODUCTS' | transloco | uppercase }}</span>
           </div>
 
           <div class="card-body">
-            <h3 class="card-name">{{ product.name }}</h3>
-            <p class="card-variety">{{ product.variety }}</p>
+            <h3 class="card-name">{{ product.name | dbTranslate:'PRODUCTS' | transloco }}</h3>
+            <p class="card-variety">{{ product.variety | dbTranslate:'VARIETIES' | transloco }}</p>
+            
             <div class="card-footer-row">
               <div class="card-price">
                 <span class="price-amount">€{{ product.price | number:'1.2-2' }}</span>
@@ -74,12 +60,8 @@
               </div>
             </div>
           </div>
-
         </div>
-
       }
     </div>
-
   }
-
 </div>

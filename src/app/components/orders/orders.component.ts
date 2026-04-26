@@ -7,11 +7,12 @@ import { Order, OrderStatus } from '../../core/model/order.model';
 import { Location } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { DbTranslatePipe } from '../../core/pipes/db-translate.pipe';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, RouterLink, NavbarComponent, TranslocoModule],
+  imports: [CommonModule, RouterLink, NavbarComponent, TranslocoModule, DbTranslatePipe],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })
