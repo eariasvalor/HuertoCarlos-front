@@ -8,7 +8,7 @@
     "load_error": "Producten konden niet worden geladen. Probeer het opnieuw."
   },
   "catalogue": {
-    "title": "Aanbod van vandaag",
+    "title": "Selectie van vandaag",
     "subtitle": "Verse producten, vanochtend geplukt",
     "loading": "De oogst van vandaag laden...",
     "selected": "artikelen in je mand",
@@ -19,7 +19,7 @@
   "navbar": {
     "brand": "Eco Huerto Montgó",
     "nav": {
-      "catalogue": "Aanbod",
+      "catalogue": "Producten",
       "orders": "Bestellingen",
       "customers": "Klanten",
       "notifications": "Meldingen",
@@ -39,7 +39,13 @@
   "login": {
     "header": {
       "title": "Eco Huerto Montgó",
-      "subtitle": "Log in om je bestelling te plaatsen"
+      "subtitle": "Log in om je bestelling te plaatsen",
+      "welcome": "WELKOM TERUG"
+    },
+     "panel": {
+      "title": "Wat de aarde geeft,",
+      "title_italic": "vandaag.",
+      "description": "Log in om de oogst van vandaag te zien en jouw keuze te maken."
     },
     "form": {
       "email_label": "E-mailadres",
@@ -77,13 +83,58 @@
     "timeline": {
       "pending": "In afwachting",
       "confirmed": "Bevestigd",
-      "in_progress": "In voorbereiding",
-      "ready": "Klaar"
+      "ready": "Klaar",
+      "delivered": "Bezorgd"
     },
     "card": {
       "order_number": "Bestelling",
       "cancel_btn": "Bestelling annuleren",
       "cancelling": "Annuleren..."
+    },
+    "detail": {
+      "eyebrow_placed": "GEPLAATST",
+      "in_the_crate": "In de krat",
+      "total": "Totaal",
+      "quote": "\"Tomaten bewaar je het best op kamertemperatuur, nooit in de koelkast.\"",
+      "quote_author": "— CARLOS · KWEKER",
+      "steps": {
+        "received": "Ontvangen",
+        "confirmed": "Bevestigd",
+        "ready": "Klaar",
+        "delivered": "Bezorgd",
+        "desc_received": "Bestelling geplaatst",
+        "desc_confirmed": "Oogst gestart",
+        "desc_ready": "Ingepakt en klaar",
+        "desc_delivered": "Geniet van je bestelling",
+        "future": "in afwachting"
+      },
+      "hero": {
+        "PENDING": {
+          "start": "We hebben je",
+          "italic": "bestelling ontvangen.",
+          "subtitle": "We hebben het — Carlos begint binnenkort met plukken."
+        },
+        "CONFIRMED": {
+          "start": "Carlos is",
+          "italic": "bezig.",
+          "subtitle": "De oogst is begonnen. Je bestelling is binnenkort klaar."
+        },
+        "READY_FOR_PICKUP": {
+          "start": "Je bestelling is",
+          "italic": "klaar.",
+          "subtitle": "Je krat is ingepakt en wacht op je."
+        },
+        "DELIVERED": {
+          "start": "Bestelling",
+          "italic": "bezorgd.",
+          "subtitle": "We hopen dat je ervan geniet. Tot volgende week."
+        },
+        "CANCELLED": {
+          "start": "Deze bestelling is",
+          "italic": "geannuleerd.",
+          "subtitle": "Je bestelling is geannuleerd. Er wordt niets in rekening gebracht"
+        }
+      }
     },
     "status": {
       "pending": "In afwachting",
@@ -160,6 +211,13 @@
       "title": "Eco Huerto Montgó",
       "subtitle": "Word lid van Eco Huerto Montgó"
     },
+    "panel": {
+      "eyebrow": "WORD LID",
+      "title": "Van veld naar",
+      "title_italic": "tafel,",
+      "title_end": "elke week.",
+      "description": "Maak een account aan om de verse producten van de Montgó te ontvangen, geoogst en verpakt op dezelfde ochtend."
+    },
     "form": {
       "name_label": "Naam",
       "name_placeholder": "Jouw naam",
@@ -187,6 +245,96 @@
     },
     "tagline": "Seizoenstomaten · Rechtstreeks van het veld"
   },
+  "product": {
+  "detail": {
+    "catalogue": "Aanbod",
+    "stock": "Voorraad",
+    "remaining": "resterend",
+    "category": "Categorie",
+    "add": "Voeg toe",
+    "to_basket": "aan krat",
+    "added": "Toegevoegd aan krat ✓"
+  }
+  },
+  "cart": {
+  "eyebrow": "JOUW MAND",
+  "headline_thing": "product van het veld",
+  "headline_things": "producten van het veld",
+  "keep_browsing": "Verder winkelen",
+  "place_order": "Bestelling plaatsen",
+  "empty_title": "Je mand is leeg",
+  "empty_browse": "Bekijk het aanbod",
+  "cut_label": "BESTELTOT WO 06:30",
+  "with_you_label": "BIJ JE VOOR 14:00",
+  "summary": {
+    "title": "BESTELOVERZICHT",
+    "subtotal": "Subtotaal",
+    "delivery": "Bezorging",
+    "delivery_free": "Gratis",
+    "total": "Totaal"
+  },
+    "count": {
+      "1": "Eén",
+      "2": "Twee",
+      "3": "Drie",
+      "4": "Vier",
+      "5": "Vijf",
+      "6": "Zes",
+      "7": "Zeven",
+      "8": "Acht",
+      "9": "Negen",
+      "10": "Tien"
+    }
+  },
+  "UNITS": {
+    "KG": "kg",
+    "GRAMS": "g",
+    "UNIT": "stuk",
+    "BUNCH": "bos",
+    "BAG": "zak",
+    "LITRE": "L"
+  },
+  "CATEGORIES": {
+    "ALL": "Alles",
+    "TOMATO": "Tomaat",
+    "PEPPER": "Paprika",
+    "EGGPLANT": "Aubergine",
+    "ZUCCHINI": "Courgette",
+    "LETTUCE": "Sla",
+    "ONION": "Ui",
+    "GARLIC": "Knoflook",
+    "CUCUMBER": "Komkommer",
+    "BASIL": "Basilicum",
+    "PARSLEY": "Peterselie",
+    "ROSEMARY": "Rozemarijn",
+    "HERBS": "Kruiden"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Ossenhart",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Rosa de Altea",
+    "PERA": "Pruim",
+    "MORRON_ROJO": "Rode paprika",
+    "MORRON_VERDE": "Groene paprika",
+    "ITALIANO": "Italiaans",
+    "PADRON": "Padrón",
+    "COMUN": "Gewoon",
+    "RAYADA": "Gestreept",
+    "VERDE": "Groen",
+    "AMARILLO": "Geel",
+    "ROMANA": "Romaine",
+    "HOJA_DE_ROBLE": "Eikenbladlettuce",
+    "ICEBERG": "IJsberg",
+    "BLANCA": "Wit",
+    "MORADA": "Paars",
+    "TIERNA": "Lente-ui",
+    "BLANCO": "Wit",
+    "MORADO": "Paars",
+    "MINI": "Mini",
+    "FRESCO": "Vers"
+  },
   "notifications": {
     "title": "Melding verzenden",
     "subtitle": "Informeer je klanten direct",
@@ -201,5 +349,74 @@
     "send": "Melding verzenden",
     "result": "Verzonden: {{sent}}, Mislukt: {{failed}}",
     "error": "Fout bij het verzenden van de melding"
+  },
+  "CATEGORIES": {
+    "ALL": "Alle",
+    "TOMATO": "Tomaat",
+    "PEPPER": "Peper",
+    "EGGPLANT": "Aubergine",
+    "ZUCCHINI": "Courgette",
+    "LETTUCE": "Sla",
+    "ONION": "Ui",
+    "GARLIC": "Knoflook",
+    "CUCUMBER": "Komkommer",
+    "BASIL": "Basilicum",
+    "PARSLEY": "Peterselie",
+    "ROSEMARY": "Rozemarijn"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Ossenhart",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Altea Roos",
+    "PERA": "Pruim",
+    "MORRON_ROJO": "Rode Paprika",
+    "MORRON_VERDE": "Groene Paprika",
+    "ITALIANO": "Italiaans",
+    "PADRON": "Padron",
+    "COMUN": "Gewoon",
+    "RAYADA": "Gestreepte",
+    "VERDE": "Groen",
+    "AMARILLO": "Geel",
+    "ROMANA": "Romeinse",
+    "HOJA_DE_ROBLE": "Eikenbladsla",
+    "ICEBERG": "Ijsbergsla",
+    "BLANCA": "Witte",
+    "MORADA": "Rode",
+    "TIERNA": "Lente-ui",
+    "BLANCO": "Wit",
+    "MORADO": "Paars",
+    "MINI": "Mini",
+    "FRESCO": "Vers"
+  },
+  "PRODUCTS": {
+    "TOMATE_RAF": "Raf Tomaat",
+    "TOMATE_CHERRY": "Cherry Tomaat",
+    "TOMATE_CORAZON_DE_BUEY": "Ossenhart Tomaat",
+    "TOMATE_MUTXAMEL": "Mutxamel Tomaat",
+    "TOMATE_ROSA_DE_ALTEA": "Altea Roos Tomaat",
+    "TOMATE_PERA": "Pruimtomaat",
+    "PIMIENTO_MORRON_ROJO": "Rode Paprika",
+    "PIMIENTO_MORRON_VERDE": "Groene Paprika",
+    "PIMIENTO_ITALIANO": "Italiaanse Peper",
+    "PIMIENTO_DE_PADRON": "Padron Peper",
+    "BERENJENA_COMUN": "Gewone Aubergine",
+    "BERENJENA_RAYADA": "Gestreepte Aubergine",
+    "CALABACIN_VERDE": "Groene Courgette",
+    "CALABACIN_AMARILLO": "Gele Courgette",
+    "LECHUGA_ROMANA": "Romeinse Sla",
+    "LECHUGA_HOJA_DE_ROBLE": "Eikenbladsla",
+    "LECHUGA_ICEBERG": "Ijsbergsla",
+    "CEBOLLA_BLANCA": "Witte Ui",
+    "CEBOLLA_MORADA": "Rode Ui",
+    "CEBOLLA_TIERNA": "Lente-ui",
+    "AJO_BLANCO": "Witte Knoflook",
+    "AJO_MORADO": "Paarse Knoflook",
+    "PEPINO_COMUN": "Gewone Komkommer",
+    "PEPINO_MINI": "Mini Komkommer",
+    "ALBAHACA_FRESCA": "Verse Basilicum",
+    "PEREJIL_FRESCO": "Verse Peterselie",
+    "ROMERO_FRESCO": "Verse Rozemarijn"
   }
 }

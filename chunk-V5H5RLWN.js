@@ -1,0 +1,1 @@
+import{_ as t}from"./chunk-HLR4RYRN.js";var i=class n{transform(e,r){if(!e)return"";let a=e.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase().replace(/\s+/g,"_").replace(/[^A-Z0-9_]/g,"");return`${r}.${a}`}static \u0275fac=function(r){return new(r||n)};static \u0275pipe=t({name:"dbTranslate",type:n,pure:!0})};export{i as a};

@@ -8,7 +8,7 @@
     "load_error": "Could not load products. Please try again."
   },
   "catalogue": {
-    "title": "Today's catalogue",
+    "title": "Today’s selection",
     "subtitle": "Fresh produce, picked this morning",
     "loading": "Growing fresh products...",
     "selected": "items in your basket",
@@ -19,7 +19,7 @@
  "navbar": {
     "brand": "Eco Huerto Montgó",
     "nav": {
-      "catalogue": "Catalogue",
+      "catalogue": "Products",
       "orders": "Orders",
       "customers": "Customers",
       "notifications": "Notifications",
@@ -40,7 +40,13 @@
   "login": {
     "header": {
       "title": "Eco Huerto Montgó",
-      "subtitle": "Sign in to place your order"
+      "subtitle": "Sign in to place your order",
+      "welcome": "WELCOME BACK"
+    },
+    "panel": {
+      "title": "What the land gives,",
+      "title_italic": "today.",
+      "description": "Sign in to see today's harvest and choose what's yours."
     },
     "form": {
       "email_label": "Email",
@@ -79,13 +85,58 @@
     "timeline": {
       "pending": "Pending",
       "confirmed": "Confirmed",
-      "in_progress": "Preparing",
-      "ready": "Ready"
+      "ready": "Ready",
+      "delivered": "Delivered"
     },
     "card": {
       "order_number": "Order",
       "cancel_btn": "Cancel Order",
       "cancelling": "Cancelling..."
+    },
+    "detail": {
+      "eyebrow_placed": "PLACED",
+      "in_the_crate": "In the crate",
+      "total": "Total",
+      "quote": "\"Tomatoes are best kept at room temperature, never in the fridge.\"",
+      "quote_author": "— CARLOS · GROWER",
+      "steps": {
+        "received": "Received",
+        "confirmed": "Confirmed",
+        "ready": "Ready",
+        "delivered": "Delivered",
+        "desc_received": "Order placed",
+        "desc_confirmed": "Harvest started",
+        "desc_ready": "Packed and ready",
+        "desc_delivered": "Enjoy your order",
+        "future": "pending"
+      },
+      "hero": {
+        "PENDING": {
+          "start": "We've received your",
+          "italic": "order.",
+          "subtitle": "We've got it — Carlos will start picking soon."
+        },
+        "CONFIRMED": {
+          "start": "Carlos is",
+          "italic": "on it.",
+          "subtitle": "The harvest has started. Your produce will be ready soon."
+        },
+        "READY_FOR_PICKUP": {
+          "start": "Your order is",
+          "italic": "ready.",
+          "subtitle": "Your crate is packed and waiting for you."
+        },
+        "DELIVERED": {
+          "start": "Order",
+          "italic": "delivered.",
+          "subtitle": "We hope you enjoy every bite. See you next week."
+        },
+        "CANCELLED": {
+          "start": "This order was",
+          "italic": "cancelled.",
+          "subtitle": "Your order has been cancelled. You will not be charged."
+        }
+      }
     },
     "status": {
       "pending": "Pending",
@@ -162,6 +213,13 @@
     "title": "Eco Huerto Montgó",
     "subtitle": "Join Eco Huerto Montgó"
   },
+  "panel": {
+    "eyebrow": "JOIN US",
+    "title": "From field to",
+    "title_italic": "table,",
+    "title_end": "every week.",
+    "description": "Create your account to start receiving the freshest picks from Montgó, cut and packed the same morning."
+  },
   "form": {
     "name_label": "Name",
     "name_placeholder": "Your name",
@@ -189,6 +247,96 @@
   },
   "tagline": "Seasonal tomatoes · Straight from the field"
 },
+"product": {
+  "detail": {
+    "catalogue": "Catalogue",
+    "stock": "Stock",
+    "remaining": "remaining",
+    "category": "Category",
+    "add": "Add",
+    "to_basket": "to basket",
+    "added": "Added to basket ✓"
+  }
+},
+"cart": {
+  "eyebrow": "YOUR BASKET",
+  "headline_thing": "item from the field",
+  "headline_things": "items from the field",
+  "keep_browsing": "Keep browsing the catalogue",
+  "place_order": "Place the order",
+  "empty_title": "Your basket is empty",
+  "empty_browse": "Browse the catalogue",
+  "cut_label": "CUT ON WED 06:30",
+  "with_you_label": "WITH YOU BY 14:00",
+  "summary": {
+    "title": "ORDER SUMMARY",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "delivery_free": "Free",
+    "total": "Total"
+  },
+  "count": {
+    "1": "One",
+    "2": "Two",
+    "3": "Three",
+    "4": "Four",
+    "5": "Five",
+    "6": "Six",
+    "7": "Seven",
+    "8": "Eight",
+    "9": "Nine",
+    "10": "Ten"
+  }
+},
+"UNITS": {
+  "KG": "kg",
+  "GRAMS": "g",
+  "UNIT": "unit",
+  "BUNCH": "bunch",
+  "BAG": "bag",
+  "LITRE": "L"
+},
+"CATEGORIES": {
+  "ALL": "All",
+  "TOMATO": "Tomato",
+  "PEPPER": "Pepper",
+  "EGGPLANT": "Eggplant",
+  "ZUCCHINI": "Zucchini",
+  "LETTUCE": "Lettuce",
+  "ONION": "Onion",
+  "GARLIC": "Garlic",
+  "CUCUMBER": "Cucumber",
+  "BASIL": "Basil",
+  "PARSLEY": "Parsley",
+  "ROSEMARY": "Rosemary",
+  "HERBS": "Herbs"
+},
+"VARIETIES": {
+  "RAF": "Raf",
+  "CHERRY": "Cherry",
+  "CORAZON_DE_BUEY": "Ox Heart",
+  "MUTXAMEL": "Mutxamel",
+  "ROSA_DE_ALTEA": "Rosa de Altea",
+  "PERA": "Pear",
+  "MORRON_ROJO": "Red Bell Pepper",
+  "MORRON_VERDE": "Green Bell Pepper",
+  "ITALIANO": "Italian",
+  "PADRON": "Padrón",
+  "COMUN": "Common",
+  "RAYADA": "Striped",
+  "VERDE": "Green",
+  "AMARILLO": "Yellow",
+  "ROMANA": "Romaine",
+  "HOJA_DE_ROBLE": "Oak Leaf",
+  "ICEBERG": "Iceberg",
+  "BLANCA": "White",
+  "MORADA": "Purple",
+  "TIERNA": "Spring Onion",
+  "BLANCO": "White",
+  "MORADO": "Purple",
+  "MINI": "Mini",
+  "FRESCO": "Fresh"
+},
 "notifications": {
     "title": "Send notification",
     "subtitle": "Notify your customers instantly",
@@ -203,5 +351,74 @@
     "send": "Send notification",
     "result": "Sent: {{sent}}, Failed: {{failed}}",
     "error": "Error sending notification"
+  },
+  "CATEGORIES": {
+    "ALL": "All",
+    "TOMATO": "Tomato",
+    "PEPPER": "Pepper",
+    "EGGPLANT": "Eggplant",
+    "ZUCCHINI": "Zucchini",
+    "LETTUCE": "Lettuce",
+    "ONION": "Onion",
+    "GARLIC": "Garlic",
+    "CUCUMBER": "Cucumber",
+    "BASIL": "Basil",
+    "PARSLEY": "Parsley",
+    "ROSEMARY": "Rosemary"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Corazón de buey",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Rosa de Altea",
+    "PERA": "Plum",
+    "MORRON_ROJO": "Red Bell",
+    "MORRON_VERDE": "Green Bell",
+    "ITALIANO": "Italian",
+    "PADRON": "Padron",
+    "COMUN": "Common",
+    "RAYADA": "Striped",
+    "VERDE": "Green",
+    "AMARILLO": "Yellow",
+    "ROMANA": "Romaine",
+    "HOJA_DE_ROBLE": "Oak Leaf",
+    "ICEBERG": "Iceberg",
+    "BLANCA": "White",
+    "MORADA": "Red/Purple",
+    "TIERNA": "Spring",
+    "BLANCO": "White",
+    "MORADO": "Purple",
+    "MINI": "Mini",
+    "FRESCO": "Fresh"
+  },
+  "PRODUCTS": {
+    "TOMATE_RAF": "Raf Tomato",
+    "TOMATE_CHERRY": "Cherry Tomato",
+    "TOMATE_CORAZON_DE_BUEY": "Corazón de buey Tomato",
+    "TOMATE_MUTXAMEL": "Mutxamel Tomato",
+    "TOMATE_ROSA_DE_ALTEA": "Rosa de Altea Tomato",
+    "TOMATE_PERA": "Plum Tomato",
+    "PIMIENTO_MORRON_ROJO": "Red Bell Pepper",
+    "PIMIENTO_MORRON_VERDE": "Green Bell Pepper",
+    "PIMIENTO_ITALIANO": "Italian Pepper",
+    "PIMIENTO_DE_PADRON": "Padron Pepper",
+    "BERENJENA_COMUN": "Common Eggplant",
+    "BERENJENA_RAYADA": "Striped Eggplant",
+    "CALABACIN_VERDE": "Green Zucchini",
+    "CALABACIN_AMARILLO": "Yellow Zucchini",
+    "LECHUGA_ROMANA": "Romaine Lettuce",
+    "LECHUGA_HOJA_DE_ROBLE": "Oak Leaf Lettuce",
+    "LECHUGA_ICEBERG": "Iceberg Lettuce",
+    "CEBOLLA_BLANCA": "White Onion",
+    "CEBOLLA_MORADA": "Red Onion",
+    "CEBOLLA_TIERNA": "Spring Onion",
+    "AJO_BLANCO": "White Garlic",
+    "AJO_MORADO": "Purple Garlic",
+    "PEPINO_COMUN": "Common Cucumber",
+    "PEPINO_MINI": "Mini Cucumber",
+    "ALBAHACA_FRESCA": "Fresh Basil",
+    "PEREJIL_FRESCO": "Fresh Parsley",
+    "ROMERO_FRESCO": "Fresh Rosemary"
   }
 }

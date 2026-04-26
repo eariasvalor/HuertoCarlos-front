@@ -8,7 +8,7 @@
     "load_error": "No se han podido cargar los productos. Inténtalo de nuevo."
   },
   "catalogue": {
-    "title": "Catálogo de hoy",
+    "title": "Selección de hoy",
     "subtitle": "Productos frescos, recogidos esta mañana",
     "loading": "Cargando la cosecha de hoy...",
     "selected": "artículos en tu cesta",
@@ -19,7 +19,7 @@
   "navbar": {
     "brand": "Eco Huerto Montgó",
     "nav": {
-      "catalogue": "Catálogo",
+      "catalogue": "Productos",
       "orders": "Pedidos",
       "customers": "Clientes",
       "notifications": "Notificaciones",
@@ -39,7 +39,13 @@
   "login": {
     "header": {
       "title": "Eco Huerto Montgó",
-      "subtitle": "Inicia sesión para hacer tu pedido"
+      "subtitle": "Inicia sesión para hacer tu pedido",
+      "welcome": "TE DAMOS LA BIENVENIDA DE NUEVO"
+    },
+     "panel": {
+      "title": "Lo que la tierra da,",
+      "title_italic": "hoy.",
+      "description": "Entra para ver la cosecha del día y elegir lo tuyo."
     },
     "form": {
       "email_label": "Correo electrónico",
@@ -77,13 +83,58 @@
     "timeline": {
       "pending": "Pendiente",
       "confirmed": "Confirmado",
-      "in_progress": "En preparación",
-      "ready": "Listo"
+      "ready": "Listo",
+      "delivered": "Entregado"
     },
     "card": {
       "order_number": "Pedido",
       "cancel_btn": "Cancelar pedido",
       "cancelling": "Cancelando..."
+    },
+    "detail": {
+      "eyebrow_placed": "REALIZADO",
+      "in_the_crate": "En la caja",
+      "total": "Total",
+      "quote": "\"Los tomates se conservan mejor a temperatura ambiente, nunca en la nevera.\"",
+      "quote_author": "— CARLOS · AGRICULTOR",
+      "steps": {
+        "received": "Recibido",
+        "confirmed": "Confirmado",
+        "ready": "Listo",
+        "delivered": "Entregado",
+        "desc_received": "Pedido realizado",
+        "desc_confirmed": "Cosecha iniciada",
+        "desc_ready": "Empaquetado y listo",
+        "desc_delivered": "Disfruta tu pedido",
+        "future": "pendiente"
+      },
+      "hero": {
+        "PENDING": {
+          "start": "Hemos recibido tu",
+          "italic": "pedido.",
+          "subtitle": "Ya lo tenemos — Carlos empezará a recoger pronto."
+        },
+        "CONFIRMED": {
+          "start": "Carlos está",
+          "italic": "en ello.",
+          "subtitle": "La cosecha ha comenzado. Tu pedido estará listo pronto."
+        },
+        "READY_FOR_PICKUP": {
+          "start": "Tu pedido está",
+          "italic": "listo.",
+          "subtitle": "Tu caja está preparada y esperándote."
+        },
+        "DELIVERED": {
+          "start": "Pedido",
+          "italic": "entregado.",
+          "subtitle": "Esperamos que lo disfrutes. Hasta la semana que viene."
+        },
+        "CANCELLED": {
+          "start": "Este pedido se ha",
+          "italic": "cancelado.",
+          "subtitle": "Tu pedido se ha cancelado. No se realizará ningún cargo."
+        }
+      }
     },
     "status": {
       "pending": "Pendiente",
@@ -160,6 +211,13 @@
       "title": "Eco Huerto Montgó",
       "subtitle": "Únete a Eco Huerto Montgó"
     },
+    "panel": {
+      "eyebrow": "REGISTRO",
+      "title": "Del huerto a tu",
+      "title_italic": "mesa,",
+      "title_end": "cada semana.",
+      "description": "Crea tu cuenta para empezar a recibir lo más fresco del Montgó, recogido y preparado esta misma mañana."
+    },
     "form": {
       "name_label": "Nombre",
       "name_placeholder": "Tu nombre",
@@ -187,6 +245,96 @@
     },
     "tagline": "Tomates de temporada · Directos del huerto"
   },
+  "product": {
+    "detail": {
+      "catalogue": "Catálogo",
+      "stock": "Disponible",
+      "remaining": "restantes",
+      "category": "Categoría",
+      "add": "Añadir",
+      "to_basket": "a la cesta",
+      "added": "Añadido a la cesta ✓"
+    }
+  },
+  "cart": {
+    "eyebrow": "TU CESTA",
+    "headline_thing": "producto del huerto",
+    "headline_things": "productos del huerto",
+    "keep_browsing": "Seguir viendo el catálogo",
+    "place_order": "Realizar el pedido",
+    "empty_title": "Tu cesta está vacía",
+    "empty_browse": "Ver el catálogo",
+    "cut_label": "RECOGIDA MIÉ 06:30",
+    "with_you_label": "CONTIGO ANTES DE LAS 14:00",
+    "summary": {
+      "title": "RESUMEN DEL PEDIDO",
+      "subtotal": "Subtotal",
+      "delivery": "Entrega",
+      "delivery_free": "Gratis",
+      "total": "Total"
+    },
+    "count": {
+      "1": "Un",
+      "2": "Dos",
+      "3": "Tres",
+      "4": "Cuatro",
+      "5": "Cinco",
+      "6": "Seis",
+      "7": "Siete",
+      "8": "Ocho",
+      "9": "Nueve",
+      "10": "Diez"
+    }
+  },
+  "UNITS": {
+    "KG": "kg",
+    "GRAMS": "g",
+    "UNIT": "unidad",
+    "BUNCH": "manojo",
+    "BAG": "bolsa",
+    "LITRE": "L"
+  },
+  "CATEGORIES": {
+    "ALL": "Todos",
+    "TOMATO": "Tomate",
+    "PEPPER": "Pimiento",
+    "EGGPLANT": "Berenjena",
+    "ZUCCHINI": "Calabacín",
+    "LETTUCE": "Lechuga",
+    "ONION": "Cebolla",
+    "GARLIC": "Ajo",
+    "CUCUMBER": "Pepino",
+    "BASIL": "Albahaca",
+    "PARSLEY": "Perejil",
+    "ROSEMARY": "Romero",
+    "HERBS": "Hierbas"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Corazón de buey",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Rosa de Altea",
+    "PERA": "Pera",
+    "MORRON_ROJO": "Morrón rojo",
+    "MORRON_VERDE": "Morrón verde",
+    "ITALIANO": "Italiano",
+    "PADRON": "Padrón",
+    "COMUN": "Común",
+    "RAYADA": "Rayada",
+    "VERDE": "Verde",
+    "AMARILLO": "Amarillo",
+    "ROMANA": "Romana",
+    "HOJA_DE_ROBLE": "Hoja de roble",
+    "ICEBERG": "Iceberg",
+    "BLANCA": "Blanca",
+    "MORADA": "Morada",
+    "TIERNA": "Tierna",
+    "BLANCO": "Blanco",
+    "MORADO": "Morado",
+    "MINI": "Mini",
+    "FRESCO": "Fresco"
+  },
     "notifications": {
       "title": "Enviar notificación",
       "subtitle": "Notifica a tus clientes al instante",
@@ -201,5 +349,75 @@
       "send": "Enviar notificación",
       "result": "Enviadas: {{sent}}, Fallidas: {{failed}}",
       "error": "Error al enviar la notificación"
-    }
+    },
+
+    "CATEGORIES": {
+    "ALL": "Todos",
+    "TOMATO": "Tomate",
+    "PEPPER": "Pimiento",
+    "EGGPLANT": "Berenjena",
+    "ZUCCHINI": "Calabacín",
+    "LETTUCE": "Lechuga",
+    "ONION": "Cebolla",
+    "GARLIC": "Ajo",
+    "CUCUMBER": "Pepino",
+    "BASIL": "Albahaca",
+    "PARSLEY": "Perejil",
+    "ROSEMARY": "Romero"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Corazón de buey",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Rosa de Altea",
+    "PERA": "Pera",
+    "MORRON_ROJO": "Morrón rojo",
+    "MORRON_VERDE": "Morrón verde",
+    "ITALIANO": "Italiano",
+    "PADRON": "Padrón",
+    "COMUN": "Común",
+    "RAYADA": "Rayada",
+    "VERDE": "Verde",
+    "AMARILLO": "Amarillo",
+    "ROMANA": "Romana",
+    "HOJA_DE_ROBLE": "Hoja de roble",
+    "ICEBERG": "Iceberg",
+    "BLANCA": "Blanca",
+    "MORADA": "Morada",
+    "TIERNA": "Tierna",
+    "BLANCO": "Blanco",
+    "MORADO": "Morado",
+    "MINI": "Mini",
+    "FRESCO": "Fresco"
+  },
+  "PRODUCTS": {
+    "TOMATE_RAF": "Tomate Raf",
+    "TOMATE_CHERRY": "Tomate Cherry",
+    "TOMATE_CORAZON_DE_BUEY": "Tomate Corazón de buey",
+    "TOMATE_MUTXAMEL": "Tomate Mutxamel",
+    "TOMATE_ROSA_DE_ALTEA": "Tomate Rosa de Altea",
+    "TOMATE_PERA": "Tomate Pera",
+    "PIMIENTO_MORRON_ROJO": "Pimiento Morrón Rojo",
+    "PIMIENTO_MORRON_VERDE": "Pimiento Morrón Verde",
+    "PIMIENTO_ITALIANO": "Pimiento Italiano",
+    "PIMIENTO_DE_PADRON": "Pimiento de Padrón",
+    "BERENJENA_COMUN": "Berenjena Común",
+    "BERENJENA_RAYADA": "Berenjena Rayada",
+    "CALABACIN_VERDE": "Calabacín Verde",
+    "CALABACIN_AMARILLO": "Calabacín Amarillo",
+    "LECHUGA_ROMANA": "Lechuga Romana",
+    "LECHUGA_HOJA_DE_ROBLE": "Lechuga Hoja de Roble",
+    "LECHUGA_ICEBERG": "Lechuga Iceberg",
+    "CEBOLLA_BLANCA": "Cebolla Blanca",
+    "CEBOLLA_MORADA": "Cebolla Morada",
+    "CEBOLLA_TIERNA": "Cebolla Tierna",
+    "AJO_BLANCO": "Ajo Blanco",
+    "AJO_MORADO": "Ajo Morado",
+    "PEPINO_COMUN": "Pepino Común",
+    "PEPINO_MINI": "Pepino Mini",
+    "ALBAHACA_FRESCA": "Albahaca Fresca",
+    "PEREJIL_FRESCO": "Perejil Fresco",
+    "ROMERO_FRESCO": "Romero Fresco"
+  }
 }
