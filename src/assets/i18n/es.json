@@ -39,7 +39,13 @@
   "login": {
     "header": {
       "title": "Eco Huerto Montgó",
-      "subtitle": "Inicia sesión para hacer tu pedido"
+      "subtitle": "Inicia sesión para hacer tu pedido",
+      "welcome": "TE DAMOS LA BIENVENIDA DE NUEVO"
+    },
+     "panel": {
+      "title": "Lo que la tierra da,",
+      "title_italic": "hoy.",
+      "description": "Entra para ver la cosecha del día y elegir lo tuyo."
     },
     "form": {
       "email_label": "Correo electrónico",

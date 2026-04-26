@@ -39,7 +39,13 @@
   "login": {
     "header": {
       "title": "Eco Huerto Montgó",
-      "subtitle": "Log in om je bestelling te plaatsen"
+      "subtitle": "Log in om je bestelling te plaatsen",
+      "welcome": "WELKOM TERUG"
+    },
+     "panel": {
+      "title": "Wat de aarde geeft,",
+      "title_italic": "vandaag.",
+      "description": "Log in om de oogst van vandaag te zien en jouw keuze te maken."
     },
     "form": {
       "email_label": "E-mailadres",

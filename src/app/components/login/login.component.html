@@ -1,57 +1,95 @@
 <div class="login-wrapper">
-  <div class="login-card">
 
-    <div class="login-header">
-      <div class="tomato-icon">🍅</div>
-      <h1>{{ 'login.header.title' | transloco }}</h1>
-      <p>{{ 'login.header.subtitle' | transloco }}</p>
+  <!-- LEFT PANEL -->
+  <div class="login-left">
+
+    <a routerLink="/" class="brand">
+      <svg class="brand-sprig" xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="currentColor" aria-hidden="true">
+        <rect x="6.25" y="8" width="1.5" height="10" rx="0.75"/>
+        <ellipse cx="4" cy="12" rx="3.2" ry="1.6" transform="rotate(-35 4 12)"/>
+        <ellipse cx="10" cy="12" rx="3.2" ry="1.6" transform="rotate(35 10 12)"/>
+        <ellipse cx="4.5" cy="7.5" rx="2.8" ry="1.4" transform="rotate(-30 4.5 7.5)"/>
+        <ellipse cx="9.5" cy="7.5" rx="2.8" ry="1.4" transform="rotate(30 9.5 7.5)"/>
+        <circle cx="7" cy="3.5" r="2"/>
+      </svg>
+      <span>Eco Huerto <em>Montgó</em></span>
+    </a>
+
+    <div class="left-content">
+      <h2 class="left-headline">{{ 'login.panel.title' | transloco }} <em>{{ 'login.panel.title_italic' | transloco }}</em></h2>
+      <p class="left-subline">{{ 'login.panel.description' | transloco }}
+      </p>
     </div>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-
-      <div class="form-group">
-        <label for="email">{{ 'login.form.email_label' | transloco }}</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="{{ 'login.form.email_placeholder' | transloco }}"
-          [class.error]="email?.invalid && email?.touched"
-        />
-        @if (email?.invalid && email?.touched) {
-          <span class="error-msg">{{ 'login.errors.invalid_email' | transloco }}</span>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="rawPassword">{{ 'login.form.password_label' | transloco }}</label>
-        <input
-          id="rawPassword"
-          type="password"
-          formControlName="rawPassword"
-          placeholder="{{ 'login.form.password_placeholder' | transloco }}"
-          [class.error]="rawPassword?.invalid && rawPassword?.touched"
-        />
-        @if (rawPassword?.invalid && rawPassword?.touched) {
-          <span class="error-msg">{{ 'login.errors.password_length' | transloco }}</span>
-        }
-      </div>
-
-      @if (errorMessage()) {
-  <div class="alert-error">{{ errorMessage() | transloco }}</div>
-}
-
-      <button type="submit" [disabled]="form.invalid || isLoading()">
-        @if (isLoading()) { {{ 'login.form.submitting' | transloco }} } @else { {{ 'login.form.submit' | transloco }} }
-      </button>
-
-    </form>
-
-    <div class="login-footer">
-      <p>{{ 'login.footer.no_account' | transloco }} <a routerLink="/register">{{ 'login.footer.register_link' | transloco }}</a></p>
-    </div>
-
-    <div class="tagline">{{ 'login.tagline' | transloco }}</div>
 
   </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="login-right">
+
+    <div class="login-langs">
+      @for (l of langs; track l; let last = $last) {
+        <button class="login-lang-btn" [class.active]="l === activeLang" (click)="setLanguage(l)">
+          {{ l.toUpperCase() }}
+        </button>
+        @if (!last) { <span class="login-lang-sep">·</span> }
+      }
+    </div>
+
+    <div class="form-panel">
+
+      <p class="form-eyebrow">{{ 'login.header.welcome' | transloco}}</p>
+      <h1 class="form-title">{{ 'login.form.submit' | transloco }}</h1>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-field">
+          <label class="field-label" for="email">{{ 'login.form.email_label' | transloco | uppercase }}</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [class.invalid]="email?.invalid && email?.touched"
+          />
+          @if (email?.invalid && email?.touched) {
+            <span class="field-error">{{ 'login.errors.invalid_email' | transloco }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="rawPassword">{{ 'login.form.password_label' | transloco | uppercase }}</label>
+          <input
+            id="rawPassword"
+            type="password"
+            formControlName="rawPassword"
+            [class.invalid]="rawPassword?.invalid && rawPassword?.touched"
+          />
+          @if (rawPassword?.invalid && rawPassword?.touched) {
+            <span class="field-error">{{ 'login.errors.password_length' | transloco }}</span>
+          }
+        </div>
+
+        @if (errorMessage()) {
+          <div class="alert-error">{{ errorMessage() | transloco }}</div>
+        }
+
+        <button type="submit" class="btn-submit" [disabled]="form.invalid || isLoading()">
+          @if (isLoading()) {
+            {{ 'login.form.submitting' | transloco }}
+          } @else {
+            {{ 'login.form.submit' | transloco }} →
+          }
+        </button>
+
+      </form>
+
+      <p class="form-footer">
+        {{ 'login.footer.no_account' | transloco }}
+        <a routerLink="/register">{{ 'login.footer.register_link' | transloco }}</a>
+      </p>
+
+      <div class="form-tagline">{{ 'login.tagline' | transloco | uppercase }}</div>
+
+    </div>
+  </div>
+
 </div>

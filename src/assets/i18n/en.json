@@ -40,7 +40,13 @@
   "login": {
     "header": {
       "title": "Eco Huerto Montgó",
-      "subtitle": "Sign in to place your order"
+      "subtitle": "Sign in to place your order",
+      "welcome": "WELCOME BACK"
+    },
+    "panel": {
+      "title": "What the land gives,",
+      "title_italic": "today.",
+      "description": "Sign in to see today's harvest and choose what's yours."
     },
     "form": {
       "email_label": "Email",

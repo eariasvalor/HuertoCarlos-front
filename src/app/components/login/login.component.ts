@@ -1,14 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/auth/auth.service';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, TranslocoModule],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, TranslocoModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -17,6 +18,11 @@ export class LoginComponent {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly transloco = inject(TranslocoService);
+
+  readonly langs = ['es', 'en', 'nl'];
+  get activeLang() { return this.transloco.getActiveLang(); }
+  setLanguage(lang: string) { this.transloco.setActiveLang(lang); }
 
   readonly isLoading = signal(false);
   readonly errorMessage = signal<string | null>(null);
