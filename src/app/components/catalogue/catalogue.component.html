@@ -2,9 +2,23 @@
 
   <app-navbar />
 
-  <div class="hero">
-    <h1>{{ 'catalogue.title' | transloco }}</h1>
-    <p>{{ 'catalogue.subtitle' | transloco }}</p>
+  <div class="catalogue-header">
+    <div class="catalogue-header-left">
+      <p class="catalogue-meta">TODAY · {{ today | date:'EEE · d MMM' | uppercase }}</p>
+      <h1 class="catalogue-title">{{ 'catalogue.title' | transloco }}</h1>
+    </div>
+    <p class="catalogue-subtitle">{{ 'catalogue.subtitle' | transloco }}</p>
+  </div>
+
+  <div class="filter-bar">
+    @for (cat of categories(); track cat) {
+      <button
+        class="filter-chip"
+        [class.active]="selectedCategory() === cat"
+        (click)="selectCategory(cat)">
+        {{ cat | uppercase }}
+      </button>
+    }
   </div>
 
   @if (successMessage()) {
@@ -15,108 +29,51 @@
     <div class="alert-error">{{ errorMessage() }}</div>
   }
 
-  <div class="filter-bar">
-    @for (cat of categories(); track cat) {
-      <button
-        class="filter-chip"
-        [class.active]="selectedCategory() === cat"
-        (click)="selectCategory(cat)">
-        {{ cat }}
-      </button>
-    }
-  </div>
-
   @if (isLoading()) {
 
     <div class="plant-loader">
       <svg class="plant-svg" viewBox="0 0 100 100">
         <path d="M20 80 Q50 95 80 80" class="soil" />
         <line x1="50" y1="80" x2="50" y2="40" class="stem" />
-        <path d="M50 55 Q30 45 40 30 Q50 40 50 55" class="leaf left" />
-        <path d="M50 55 Q70 45 60 30 Q50 40 50 55" class="leaf right" />
+        <path d="M50 55 Q30 45 40 30 Q50 40 50 55" class="leaf" />
+        <path d="M50 55 Q70 45 60 30 Q50 40 50 55" class="leaf" />
       </svg>
-
-      <div class="loading-text">
-        {{ 'catalogue.loading' | transloco }}
-      </div>
+      <div class="loading-text">{{ 'catalogue.loading' | transloco }}</div>
     </div>
 
   } @else {
 
-    <!-- VIEW SWITCHER -->
-    <div class="view-switcher">
-
-      <!-- MOBILE -->
-      @if (isMobile()) {
-        <button
-          (click)="setView('1')"
-          [class.active]="viewMode() === '1'">
-          1
-        </button>
-
-        <button
-          (click)="setView('2')"
-          [class.active]="viewMode() === '2'">
-          2
-        </button>
-      }
-
-      <!-- DESKTOP -->
-      @if (!isMobile()) {
-        <button
-          (click)="setView('2')"
-          [class.active]="viewMode() === '2'">
-          2
-        </button>
-
-        <button
-          (click)="setView('grid')"
-          [class.active]="viewMode() === 'grid'">
-          ▦
-        </button>
-      }
-
-    </div>
-
-    <!-- GRID -->
-    <div class="products-grid" [ngClass]="{
-      'cols-1': viewMode() === '1',
-      'cols-2': viewMode() === '2',
-      'cols-3': viewMode() === 'grid'
-    }">
-
+    <div class="products-grid">
       @for (product of filteredProducts(); track product.id) {
 
         <div class="product-card">
 
-          <div class="product-image">
-            <img [src]="getImage(product)" [alt]="product.name" />
+          <div class="card-image" [ngClass]="'card-image--' + getCategoryClass(product.category)">
+            <span class="card-label-top">{{ product.category | uppercase }}</span>
+            <span class="card-label-bottom">© {{ product.name | uppercase }}</span>
           </div>
 
-          <div class="product-info">
-            <div class="product-name">{{ product.name }}</div>
-            <div class="product-variety">{{ product.variety }}</div>
-
-            <div class="product-price">
-              {{ product.price | number:'1.2-2' }} €
-              <span>/ {{ product.unit | lowercase }}</span>
-            </div>
-
-            <div class="qty-control">
-              <button class="qty-btn minus" (click)="decrease(product)">−</button>
-              <span class="qty-value">{{ getQuantity(product.id) }}</span>
-              <button class="qty-btn plus" (click)="increase(product)">+</button>
+          <div class="card-body">
+            <h3 class="card-name">{{ product.name }}</h3>
+            <p class="card-variety">{{ product.variety }}</p>
+            <div class="card-footer-row">
+              <div class="card-price">
+                <span class="price-amount">€{{ product.price | number:'1.2-2' }}</span>
+                <span class="price-unit"> /{{ product.unit | lowercase }}</span>
+              </div>
+              <div class="qty-control">
+                <button class="qty-btn" (click)="decrease(product)">−</button>
+                <span class="qty-value">{{ getQuantity(product.id) }}</span>
+                <button class="qty-btn qty-btn--plus" (click)="increase(product)">+</button>
+              </div>
             </div>
           </div>
 
         </div>
 
       }
-
     </div>
 
   }
-
-
 
 </div>

@@ -54,8 +54,9 @@
     <!-- CART -->
     <button class="cart-btn" (click)="toggleCart()" aria-label="Basket">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M2 6h16l-1.6 9H3.6L2 6z"/>
-        <path d="M6.5 6C6.5 3.5 7.8 2 10 2s3.5 1.5 3.5 4"/>
+        <path d="M6.5 9 C6.5 5 8 3.5 10 3.5 C12 3.5 13.5 5 13.5 9"/>
+        <path d="M2 9 L18 9 L16.5 16.5 Q10 17.5 3.5 16.5 L2 9"/>
+        <line x1="2" y1="13" x2="18" y2="13"/>
       </svg>
       <span class="cart-count">{{ cartItemCount() }}</span>
     </button>
