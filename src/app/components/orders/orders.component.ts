@@ -27,7 +27,6 @@ export class OrdersComponent implements OnInit {
   readonly errorMessage = signal<string | null>(null);
   readonly cancellingId = signal<string | null>(null);
 
-  // 🔥 Backend actual
   public steps = ['pending', 'confirmed', 'ready', 'delivered'];
 
   ngOnInit() {
@@ -81,24 +80,12 @@ export class OrdersComponent implements OnInit {
 
   mapStatus(status: string): string {
     switch (status.toUpperCase()) {
-
-      case 'PENDING':
-        return 'pending';
-
-      case 'CONFIRMED':
-        return 'confirmed';
-
-      case 'READY_FOR_PICKUP':
-        return 'ready';
-
-      case 'DELIVERED':
-        return 'delivered';
-
-      case 'CANCELLED':
-        return 'pending';
-
-      default:
-        return 'pending';
+      case 'PENDING':       return 'pending';
+      case 'CONFIRMED':     return 'confirmed';
+      case 'READY_FOR_PICKUP': return 'ready';
+      case 'DELIVERED':     return 'delivered';
+      case 'CANCELLED':     return 'cancelled';
+      default:              return 'pending';
     }
   }
 

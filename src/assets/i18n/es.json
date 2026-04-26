@@ -83,8 +83,8 @@
     "timeline": {
       "pending": "Pendiente",
       "confirmed": "Confirmado",
-      "in_progress": "En preparación",
-      "ready": "Listo"
+      "ready": "Listo",
+      "delivered": "Entregado"
     },
     "card": {
       "order_number": "Pedido",

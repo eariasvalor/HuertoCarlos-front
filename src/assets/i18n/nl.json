@@ -83,8 +83,8 @@
     "timeline": {
       "pending": "In afwachting",
       "confirmed": "Bevestigd",
-      "in_progress": "In voorbereiding",
-      "ready": "Klaar"
+      "ready": "Klaar",
+      "delivered": "Bezorgd"
     },
     "card": {
       "order_number": "Bestelling",

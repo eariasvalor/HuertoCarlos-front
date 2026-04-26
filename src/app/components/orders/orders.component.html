@@ -2,10 +2,12 @@
 
   <app-navbar />
 
-  <div class="header">
-    <button class="btn-back" (click)="goBack()">← {{ 'orders.header.back' | transloco }}</button>
-    <h1>{{ 'orders.header.title' | transloco }}</h1>
-    <p>{{ 'orders.header.subtitle' | transloco }}</p>
+  <div class="orders-header">
+    <div class="orders-header-left">
+      <button class="btn-back" (click)="goBack()">← {{ 'orders.header.back' | transloco }}</button>
+      <h1 class="orders-title">{{ 'orders.header.title' | transloco }}</h1>
+    </div>
+    <p class="orders-subtitle">{{ 'orders.header.subtitle' | transloco }}</p>
   </div>
 
   @if (errorMessage()) {
@@ -13,13 +15,12 @@
   }
 
   @if (isLoading()) {
-    <div class="loading">{{ 'orders.states.loading' | transloco }}</div>
+    <div class="orders-loading">{{ 'orders.states.loading' | transloco }}</div>
   } @else if (orders().length === 0) {
 
-    <div class="empty-state">
-      <div class="empty-icon">🛒</div>
-      <p>{{ 'orders.states.empty' | transloco }}</p>
-      <a routerLink="/" class="btn-primary">{{ 'orders.states.browse' | transloco }}</a>
+    <div class="orders-empty">
+      <p class="empty-text">{{ 'orders.states.empty' | transloco }}</p>
+      <a routerLink="/" class="btn-browse">{{ 'orders.states.browse' | transloco }} →</a>
     </div>
 
   } @else {
@@ -29,73 +30,69 @@
 
         <div class="order-card">
 
-          <div class="order-header">
-            <div>
-              <div class="order-id">
-  {{ 'orders.card.order_number' | transloco }} {{ order.visibleId }}
-</div>
-              <div class="order-date">{{ order.createdAt | date:'dd MMM yyyy, HH:mm' }}</div>
+          <div class="order-card-header">
+            <div class="order-card-id">
+              <span class="order-number">{{ 'orders.card.order_number' | transloco }} {{ order.visibleId }}</span>
+              <span class="order-date">{{ order.createdAt | date:'dd MMM yyyy, HH:mm' }}</span>
             </div>
-
-            <span class="status-badge" [ngClass]="statusClass(order.status)">
+            <span class="status-tag" [ngClass]="statusClass(order.status)">
               {{ statusLabel(order.status) }}
             </span>
           </div>
 
-          <!-- 🔥 TIMELINE -->
-          <div class="order-timeline">
+          <!-- TIMELINE -->
+          @if (order.status !== 'CANCELLED') {
+            <div class="order-timeline">
 
-            <div class="timeline-step"
-                 [class.active]="isStepActive(order.status, 'pending')"
-                 [class.done]="isStepDone(order.status, 'pending')">
-              <div class="dot"></div>
-              <span>{{ 'orders.timeline.pending' | transloco }}</span>
-            </div>
-
-            <div class="timeline-step"
-                 [class.active]="isStepActive(order.status, 'confirmed')"
-                 [class.done]="isStepDone(order.status, 'confirmed')">
-              <div class="dot"></div>
-              <span>{{ 'orders.timeline.confirmed' | transloco }}</span>
-            </div>
-
-            <div class="timeline-step"
-                 [class.active]="isStepActive(order.status, 'preparation')"
-                 [class.done]="isStepDone(order.status, 'preparation')">
-              <div class="dot"></div>
-              <span>{{ 'orders.timeline.in_progress' | transloco }}</span>
-            </div>
-
-            <div class="timeline-step"
-                 [class.active]="isStepActive(order.status, 'ready')"
-                 [class.done]="isStepDone(order.status, 'ready')">
-              <div class="dot"></div>
-              <span>{{ 'orders.timeline.ready' | transloco }}</span>
-            </div>
-
-          </div>
-
-          <!-- LÍNEAS -->
-          <div class="order-lines">
-            @for (line of order.lines; track line.id) {
-
-              <div class="order-line">
-                <div class="line-main">
-                  <div class="line-name">{{ line.productName }}</div>
-                  <div class="line-variety">{{ line.productVariety }}</div>
-                </div>
-
-                <div class="line-meta">
-                  <div class="line-qty">× {{ line.quantity }}</div>
-                  <div class="line-subtotal">{{ line.subtotal | number:'1.2-2' }} €</div>
-                </div>
+              <div class="timeline-step"
+                   [class.active]="isStepActive(order.status, 'pending')"
+                   [class.done]="isStepDone(order.status, 'pending')">
+                <div class="dot"></div>
+                <span>{{ 'orders.timeline.pending' | transloco }}</span>
               </div>
 
+              <div class="timeline-step"
+                   [class.active]="isStepActive(order.status, 'confirmed')"
+                   [class.done]="isStepDone(order.status, 'confirmed')">
+                <div class="dot"></div>
+                <span>{{ 'orders.timeline.confirmed' | transloco }}</span>
+              </div>
+
+              <div class="timeline-step"
+                   [class.active]="isStepActive(order.status, 'ready')"
+                   [class.done]="isStepDone(order.status, 'ready')">
+                <div class="dot"></div>
+                <span>{{ 'orders.timeline.ready' | transloco }}</span>
+              </div>
+
+              <div class="timeline-step"
+                   [class.active]="isStepActive(order.status, 'delivered')"
+                   [class.done]="isStepDone(order.status, 'delivered')">
+                <div class="dot"></div>
+                <span>{{ 'orders.timeline.delivered' | transloco }}</span>
+              </div>
+
+            </div>
+          }
+
+          <!-- ORDER LINES -->
+          <div class="order-lines">
+            @for (line of order.lines; track line.id) {
+              <div class="order-line">
+                <div class="line-main">
+                  <span class="line-name">{{ line.productName }}</span>
+                  <span class="line-variety">{{ line.productVariety }}</span>
+                </div>
+                <div class="line-meta">
+                  <span class="line-qty">× {{ line.quantity }}</span>
+                  <span class="line-subtotal">{{ line.subtotal | number:'1.2-2' }} €</span>
+                </div>
+              </div>
             }
           </div>
 
           <div class="order-footer">
-            <div class="order-total">{{ order.total | number:'1.2-2' }} €</div>
+            <span class="order-total">{{ order.total | number:'1.2-2' }} €</span>
 
             @if (canCancel(order)) {
               <button
