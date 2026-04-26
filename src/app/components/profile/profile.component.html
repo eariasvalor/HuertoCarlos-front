@@ -2,43 +2,60 @@
 
   <app-navbar />
 
-  <div class="header">
-    <h1>{{ translocoService.translate('profile.header.title') }}</h1>
-    <p>{{ translocoService.translate('profile.header.subtitle') }}</p>
+  <div class="profile-header">
+    <div class="profile-header-left">
+      @if (customer(); as user) {
+        <p class="profile-meta">{{ user.email }}</p>
+      }
+      <h1 class="profile-title">{{ 'profile.header.title' | transloco }}</h1>
+    </div>
+    <p class="profile-subtitle">{{ 'profile.header.subtitle' | transloco }}</p>
   </div>
 
   @if (successMessage()) {
     <div class="alert-success">{{ successMessage() }}</div>
   }
-
   @if (errorMessage()) {
     <div class="alert-error">{{ errorMessage() }}</div>
   }
 
   @if (customer(); as user) {
-    <div class="profile-card">
+    <div class="profile-content">
 
-      <div class="avatar">{{ user.name.charAt(0).toUpperCase() }}</div>
+      <!-- AVATAR + NAME -->
+      <div class="profile-hero">
+        <div class="profile-avatar">
+          <span>{{ user.name.charAt(0).toUpperCase() }}</span>
+        </div>
+        <div class="profile-hero-text">
+          <h2 class="profile-name">{{ user.name }}</h2>
+          @if (!isEditing()) {
+            <button class="btn-edit" (click)="startEditing()">
+              {{ 'profile.actions.edit' | transloco }} →
+            </button>
+          }
+        </div>
+      </div>
 
+      <!-- VIEW MODE -->
       @if (!isEditing()) {
-        <div class="profile-info">
+        <div class="info-list">
+
           <div class="info-row">
-            <span class="info-label">{{ translocoService.translate('profile.info.name') }}</span>
-            <span class="info-value">{{ user.name }}</span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">{{ translocoService.translate('profile.info.email') }}</span>
+            <span class="info-label">{{ 'profile.info.email' | transloco | uppercase }}</span>
             <span class="info-value">{{ user.email }}</span>
           </div>
+
           @if (user.phoneNumber) {
             <div class="info-row">
-              <span class="info-label">{{ translocoService.translate('profile.info.phone') }}</span>
+              <span class="info-label">{{ 'profile.info.phone' | transloco | uppercase }}</span>
               <span class="info-value">{{ user.phoneCountryCode }} {{ user.phoneNumber }}</span>
             </div>
           }
+
           @if (user.addressCity) {
             <div class="info-row">
-              <span class="info-label">{{ translocoService.translate('profile.info.address') }}</span>
+              <span class="info-label">{{ 'profile.info.address' | transloco | uppercase }}</span>
               <span class="info-value">
                 {{ user.addressStreetType }} {{ user.addressStreet }}, {{ user.addressNumber }}
                 @if (user.addressFloor) { · {{ user.addressFloor }} }
@@ -46,118 +63,133 @@
               </span>
             </div>
           }
+
           <div class="info-row">
-            <span class="info-label">{{ translocoService.translate('profile.info.member_since') }}</span>
+            <span class="info-label">{{ 'profile.info.member_since' | transloco | uppercase }}</span>
             <span class="info-value">{{ user.createdAt | date:'dd MMM yyyy' }}</span>
           </div>
+
         </div>
 
-        <button class="btn-edit" (click)="startEditing()">{{ translocoService.translate('profile.actions.edit') }}</button>
-
+      <!-- EDIT MODE -->
       } @else {
-        <form [formGroup]="form" (ngSubmit)="saveProfile()" novalidate>
+        <form [formGroup]="form" (ngSubmit)="saveProfile()" novalidate class="profile-form">
 
-          <div class="form-group">
-            <label>{{ translocoService.translate('profile.form.name_label') }}</label>
-            <input type="text" formControlName="name"
-              [class.error]="name?.invalid && name?.touched" />
+          <div class="form-field">
+            <label class="field-label">{{ 'profile.form.name_label' | transloco | uppercase }}</label>
+            <input type="text" formControlName="name" [class.invalid]="name?.invalid && name?.touched" />
             @if (name?.invalid && name?.touched) {
-              <span class="error-msg">{{ translocoService.translate('profile.errors.name_length') }}</span>
+              <span class="field-error">{{ 'profile.errors.name_length' | transloco }}</span>
             }
           </div>
 
-          <div class="form-group">
-            <label>{{ translocoService.translate('profile.form.email_label') }}</label>
+          <div class="form-field">
+            <label class="field-label">{{ 'profile.form.email_label' | transloco | uppercase }}</label>
             <input type="email" [value]="user.email" disabled />
-            <span class="field-hint">{{ translocoService.translate('profile.form.email_hint') }}</span>
+            <span class="field-hint">{{ 'profile.form.email_hint' | transloco }}</span>
           </div>
 
-          <div class="form-group">
-            <label>{{ translocoService.translate('profile.form.password_label') }} <span class="optional">{{ translocoService.translate('profile.form.password_optional') }}</span></label>
+          <div class="form-field">
+            <label class="field-label">
+              {{ 'profile.form.password_label' | transloco | uppercase }}
+              <span class="field-optional">{{ 'profile.form.password_optional' | transloco }}</span>
+            </label>
             <input type="password" formControlName="rawPassword"
-              placeholder="{{ translocoService.translate('profile.form.password_placeholder') }}"
-              [class.error]="rawPassword?.invalid && rawPassword?.touched" />
+              [class.invalid]="rawPassword?.invalid && rawPassword?.touched" />
             @if (rawPassword?.invalid && rawPassword?.touched) {
-              <span class="error-msg">{{ translocoService.translate('profile.errors.password_length') }}</span>
+              <span class="field-error">{{ 'profile.errors.password_length' | transloco }}</span>
             }
           </div>
 
-          <div class="form-group">
-            <label>{{ translocoService.translate('profile.form.phone_label') }}</label>
+          <div class="form-field">
+            <label class="field-label">{{ 'profile.form.phone_label' | transloco | uppercase }}</label>
             <div class="phone-row">
-              <input type="text" formControlName="phoneCountryCode" placeholder="+34"
-                class="phone-prefix"
-                [class.error]="phoneCountryCode?.invalid && phoneCountryCode?.touched" />
-              <input type="tel" formControlName="phoneNumber" placeholder="600 123 456"
-                class="phone-number"
-                [class.error]="phoneNumber?.invalid && phoneNumber?.touched" />
+              <input type="text" formControlName="phoneCountryCode" class="phone-prefix"
+                [class.invalid]="phoneCountryCode?.invalid && phoneCountryCode?.touched" />
+              <input type="tel" formControlName="phoneNumber" class="phone-number"
+                [class.invalid]="phoneNumber?.invalid && phoneNumber?.touched" />
             </div>
             @if ((phoneCountryCode?.invalid || phoneNumber?.invalid) && (phoneCountryCode?.touched || phoneNumber?.touched)) {
-              <span class="error-msg">{{ translocoService.translate('profile.errors.phone_invalid') }}</span>
+              <span class="field-error">{{ 'profile.errors.phone_invalid' | transloco }}</span>
             }
           </div>
 
-          <div class="section-title">Address <span class="optional">(optional)</span></div>
+          <div class="section-divider">
+            <span class="section-label">
+              {{ 'profile.form.address_section' | transloco | uppercase }}
+              <span class="field-optional">{{ 'profile.form.address_optional' | transloco }}</span>
+            </span>
+          </div>
 
           <div class="form-row">
-            <div class="form-group">
-              <label>{{ translocoService.translate('profile.form.street_type_label') }}</label>
-              <input type="text" formControlName="addressStreetType" placeholder="{{ translocoService.translate('profile.form.street_type_placeholder') }}" />
+            <div class="form-field">
+              <label class="field-label">{{ 'profile.form.street_type_label' | transloco | uppercase }}</label>
+              <input type="text" formControlName="addressStreetType" />
             </div>
-            <div class="form-group">
-              <label>{{ translocoService.translate('profile.form.street_label') }}</label>
-              <input type="text" formControlName="addressStreet" placeholder="{{ translocoService.translate('profile.form.street_placeholder') }}" />
+            <div class="form-field">
+              <label class="field-label">{{ 'profile.form.street_label' | transloco | uppercase }}</label>
+              <input type="text" formControlName="addressStreet" />
             </div>
           </div>
 
           <div class="form-row">
-            <div class="form-group">
-              <label>{{ translocoService.translate('profile.form.number_label') }}</label>
-              <input type="text" formControlName="addressNumber" placeholder="{{ translocoService.translate('profile.form.number_placeholder') }}" />
+            <div class="form-field">
+              <label class="field-label">{{ 'profile.form.number_label' | transloco | uppercase }}</label>
+              <input type="text" formControlName="addressNumber" />
             </div>
-            <div class="form-group">
-              <label>{{ translocoService.translate('profile.form.floor_label') }} <span class="optional">{{ translocoService.translate('profile.form.floor_optional') }}</span></label>
-              <input type="text" formControlName="addressFloor" placeholder="{{ translocoService.translate('profile.form.floor_placeholder') }}" />
+            <div class="form-field">
+              <label class="field-label">
+                {{ 'profile.form.floor_label' | transloco | uppercase }}
+                <span class="field-optional">{{ 'profile.form.floor_optional' | transloco }}</span>
+              </label>
+              <input type="text" formControlName="addressFloor" />
             </div>
           </div>
 
           <div class="form-row">
-            <div class="form-group">
-              <label>{{ translocoService.translate('profile.form.postal_code_label') }}</label>
-              <input type="text" formControlName="addressPostalCode" placeholder="{{ translocoService.translate('profile.form.postal_code_placeholder') }}" />
+            <div class="form-field">
+              <label class="field-label">{{ 'profile.form.postal_code_label' | transloco | uppercase }}</label>
+              <input type="text" formControlName="addressPostalCode" />
             </div>
-            <div class="form-group">
-              <label>{{ translocoService.translate('profile.form.city_label') }}</label>
-              <input type="text" formControlName="addressCity" placeholder="{{ translocoService.translate('profile.form.city_placeholder') }}" />
+            <div class="form-field">
+              <label class="field-label">{{ 'profile.form.city_label' | transloco | uppercase }}</label>
+              <input type="text" formControlName="addressCity" />
             </div>
           </div>
 
-          <div class="form-group">
-            <label>{{ translocoService.translate('profile.form.province_label') }}</label>
-            <input type="text" formControlName="addressProvince" placeholder="{{ translocoService.translate('profile.form.province_placeholder') }}" />
+          <div class="form-field">
+            <label class="field-label">{{ 'profile.form.province_label' | transloco | uppercase }}</label>
+            <input type="text" formControlName="addressProvince" />
           </div>
 
           <div class="form-actions">
-            <button type="button" class="btn-cancel" (click)="cancelEditing()">{{ translocoService.translate('profile.actions.cancel') }}</button>
+            <button type="button" class="btn-cancel" (click)="cancelEditing()">
+              {{ 'profile.actions.cancel' | transloco }}
+            </button>
             <button type="submit" class="btn-save" [disabled]="form.invalid || isLoading()">
-              @if (isLoading()) { {{ translocoService.translate('profile.actions.saving') }} } @else { {{ translocoService.translate('profile.actions.save') }} }
+              @if (isLoading()) {
+                {{ 'profile.actions.saving' | transloco }}
+              } @else {
+                {{ 'profile.actions.save' | transloco }}
+              }
             </button>
           </div>
 
         </form>
       }
 
-    </div>
+      <!-- QUICK LINKS -->
+      <div class="quick-links">
+        <a routerLink="/orders" class="quick-link">
+          <span>{{ 'profile.quick_links.my_orders' | transloco }}</span>
+          <span class="quick-arrow">→</span>
+        </a>
+        <a routerLink="/" class="quick-link">
+          <span>{{ 'profile.quick_links.back_to_catalogue' | transloco }}</span>
+          <span class="quick-arrow">→</span>
+        </a>
+      </div>
 
-    <div class="quick-links">
-      <a routerLink="/orders" class="quick-link">
-        <span>{{ translocoService.translate('profile.quick_links.my_orders') }}</span>
-        <span class="arrow">→</span>
-      </a>
-      <a routerLink="/" class="quick-link">
-        <span>{{ translocoService.translate('profile.quick_links.back_to_catalogue') }}</span>
-        <span class="arrow">→</span>
-      </a>
     </div>
   }
 

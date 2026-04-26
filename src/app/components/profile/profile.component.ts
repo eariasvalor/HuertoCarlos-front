@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly authService = inject(AuthService);
   private readonly customerService = inject(CustomerService);
-  protected readonly translocoService = inject(TranslocoService);
+  private readonly translocoService = inject(TranslocoService);
 
   readonly customer = signal<Customer | null>(null);
   readonly isEditing = signal(false);
