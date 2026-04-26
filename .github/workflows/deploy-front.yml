@@ -3,7 +3,7 @@ name: Deploy Frontend to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - claude/implement-app-redesign-MJJg3
 
 jobs:
   build-and-deploy:
