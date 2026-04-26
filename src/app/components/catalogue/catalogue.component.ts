@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Product } from '../../core/model/product.model';
+import { getProductImage } from '../../core/utils/product-image.util';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { CartService } from '../../core/services/cart-service';
@@ -89,5 +90,13 @@ export class CatalogueComponent implements OnInit {
 
   selectCategory(category: string) {
     this.selectedCategory.set(category);
+  }
+
+  getImage(product: Product): string {
+    return product.image || getProductImage(product.variety, product.category);
+  }
+
+  onImageError(e: Event) {
+    (e.target as HTMLImageElement).style.display = 'none';
   }
 }

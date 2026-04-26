@@ -49,6 +49,12 @@
         <div class="product-card">
 
           <div class="card-image" [ngClass]="'card-image--' + getCategoryClass(product.category)">
+            @if (getImage(product)) {
+              <img class="card-photo"
+                   [src]="getImage(product)"
+                   [alt]="product.name"
+                   (error)="onImageError($event)" />
+            }
             <span class="card-label-top">{{ product.category | uppercase }}</span>
             <span class="card-label-bottom">© {{ product.name | uppercase }}</span>
           </div>

@@ -8,6 +8,7 @@ import { ProductService } from '../../core/services/product.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { Product } from '../../core/model/product.model';
+import { getProductImage } from '../../core/utils/product-image.util';
 import { OrderService } from '../../core/services/order.service';
 import { ToastService } from '../../core/services/toast.service';
 
@@ -51,75 +52,9 @@ export class NavbarComponent {
     { initialValue: [] as Product[] }
   );
 
-  private readonly basePath = 'images/products/';
-
-  private readonly wordMap: Record<string, string> = {
-    tomate: 'tomato',
-    cebolla: 'onion',
-    lechuga: 'lettuce',
-    pimiento: 'pepper',
-    ajo: 'garlic',
-    pepino: 'cucumber',
-    calabacin: 'calabacin',
-    berenjena: 'eggplant',
-    pera: 'pera',
-    cherry: 'cherry',
-    corazon: 'cordebou',
-    buey: 'cordebou',
-    rosa: 'rosadealtea',
-
-    blanca: 'blanca',
-    morada: 'morada',
-    tierna: 'tierna',
-
-    italiano: 'italiano',
-    padron: 'padron',
-    morronrojo: 'morronrojo',
-    morronverde: 'morronverde',
-  };
-
-  private normalize(text: string): string {
-    return text
-      .toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^\w\s]/g, '')
-      .trim();
+  onImageError(event: Event) {
+    (event.target as HTMLImageElement).style.display = 'none';
   }
-
-  resolveImage(name: string): string {
-    const normalized = this.normalize(name);
-    const words = normalized.split(' ');
-
-    const mappedWords = words.map(w => this.wordMap[w] || w);
-
-    const category = mappedWords[0];
-    const variant = mappedWords.slice(1).join('');
-
-    const filename = variant
-      ? `${category}-${variant}`
-      : category;
-
-    return `${this.basePath}${filename}.avif`;
-  }
-
-  onImageError(event: Event, name: string) {
-    const img = event.target as HTMLImageElement;
-    const normalized = this.normalize(name);
-
-    if (normalized.includes('tomate')) {
-      img.src = this.basePath + 'tomato-default.avif';
-    } else if (normalized.includes('cebolla')) {
-      img.src = this.basePath + 'onion-default.jpg';
-    } else if (normalized.includes('lechuga')) {
-      img.src = this.basePath + 'lettuce-default.avif';
-    } else if (normalized.includes('pimiento')) {
-      img.src = this.basePath + 'pepper-default.avif';
-    } else {
-      img.src = this.basePath + 'vegetables-default.avif';
-    }
-  }
-
 
   readonly cartItemsDetailed = computed(() => {
     const cart = this.cartService.items();
@@ -127,15 +62,12 @@ export class NavbarComponent {
 
     return cart.map(item => {
       const product = products.find((p: Product) => p.id === item.productId);
-
-      const name = product?.name ?? 'Unknown';
-
       return {
         productId: item.productId,
         qty: item.qty,
-        name,
+        name: product?.name ?? 'Unknown',
         price: product?.price ?? 0,
-        image: this.resolveImage(name)
+        image: product?.image || getProductImage(product?.variety ?? '', product?.category ?? '')
       };
     });
   });

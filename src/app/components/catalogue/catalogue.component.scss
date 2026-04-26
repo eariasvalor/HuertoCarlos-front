@@ -149,10 +149,20 @@
   &--default { background-color: var(--color-card-default); }
 }
 
+.card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  display: block;
+}
+
 .card-label-top,
 .card-label-bottom {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   font-family: var(--font-mono);
   font-size: 0.5625rem;
   letter-spacing: 0.06em;
