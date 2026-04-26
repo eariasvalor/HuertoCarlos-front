@@ -8,7 +8,7 @@
     "load_error": "No se han podido cargar los productos. Inténtalo de nuevo."
   },
   "catalogue": {
-    "title": "Catálogo de hoy",
+    "title": "Selección de hoy",
     "subtitle": "Productos frescos, recogidos esta mañana",
     "loading": "Cargando la cosecha de hoy...",
     "selected": "artículos en tu cesta",
@@ -19,7 +19,7 @@
   "navbar": {
     "brand": "Eco Huerto Montgó",
     "nav": {
-      "catalogue": "Catálogo",
+      "catalogue": "Productos",
       "orders": "Pedidos",
       "customers": "Clientes",
       "notifications": "Notificaciones",

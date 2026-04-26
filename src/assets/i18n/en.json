@@ -8,7 +8,7 @@
     "load_error": "Could not load products. Please try again."
   },
   "catalogue": {
-    "title": "Today's catalogue",
+    "title": "Today’s selection",
     "subtitle": "Fresh produce, picked this morning",
     "loading": "Growing fresh products...",
     "selected": "items in your basket",
@@ -19,7 +19,7 @@
  "navbar": {
     "brand": "Eco Huerto Montgó",
     "nav": {
-      "catalogue": "Catalogue",
+      "catalogue": "Products",
       "orders": "Orders",
       "customers": "Customers",
       "notifications": "Notifications",

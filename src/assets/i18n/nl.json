@@ -8,7 +8,7 @@
     "load_error": "Producten konden niet worden geladen. Probeer het opnieuw."
   },
   "catalogue": {
-    "title": "Aanbod van vandaag",
+    "title": "Selectie van vandaag",
     "subtitle": "Verse producten, vanochtend geplukt",
     "loading": "De oogst van vandaag laden...",
     "selected": "artikelen in je mand",
@@ -19,7 +19,7 @@
   "navbar": {
     "brand": "Eco Huerto Montgó",
     "nav": {
-      "catalogue": "Aanbod",
+      "catalogue": "Producten",
       "orders": "Bestellingen",
       "customers": "Klanten",
       "notifications": "Meldingen",
