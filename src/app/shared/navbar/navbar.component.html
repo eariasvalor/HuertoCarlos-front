@@ -1,141 +1,136 @@
 <nav class="navbar">
 
-  <!-- LEFT: BRAND -->
+  <!-- BRAND -->
   <div class="nav-left">
     <a routerLink="/" class="nav-brand">
-      <span class="nav-icon"></span>
-      <span class="brand-text">{{ 'navbar.brand' | transloco }}</span>
+      <svg class="nav-sprig" xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="currentColor" aria-hidden="true">
+        <rect x="6.25" y="8" width="1.5" height="10" rx="0.75"/>
+        <ellipse cx="4" cy="12" rx="3.2" ry="1.6" transform="rotate(-35 4 12)"/>
+        <ellipse cx="10" cy="12" rx="3.2" ry="1.6" transform="rotate(35 10 12)"/>
+        <ellipse cx="4.5" cy="7.5" rx="2.8" ry="1.4" transform="rotate(-30 4.5 7.5)"/>
+        <ellipse cx="9.5" cy="7.5" rx="2.8" ry="1.4" transform="rotate(30 9.5 7.5)"/>
+        <circle cx="7" cy="3.5" r="2"/>
+      </svg>
+      <span class="brand-name">Eco Huerto <em>Montgó</em></span>
     </a>
   </div>
 
-  <!-- RIGHT SIDE -->
+  <!-- NAV LINKS (desktop) -->
+  <div class="nav-links">
+    @if (isAuthenticated()) {
+      <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        {{ 'navbar.nav.catalogue' | transloco }}
+      </a>
+      @if (isAdmin()) {
+        <a routerLink="/admin" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.orders' | transloco }}</a>
+        <a routerLink="/admin/customers" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.customers' | transloco }}</a>
+        <a routerLink="/admin/notifications/new" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.notifications' | transloco }}</a>
+      } @else {
+        <a routerLink="/orders" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.my_orders' | transloco }}</a>
+        <a routerLink="/profile" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.profile' | transloco }}</a>
+      }
+      <button class="nav-link nav-link-btn" (click)="logout()">{{ 'navbar.nav.sign_out' | transloco }}</button>
+    } @else {
+      <a routerLink="/login" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.sign_in' | transloco }}</a>
+      <a routerLink="/register" class="nav-link" routerLinkActive="active">{{ 'navbar.nav.register' | transloco }}</a>
+    }
+  </div>
+
+  <!-- RIGHT -->
   <div class="nav-right">
 
-    <!-- DESKTOP ACTIONS -->
-    <div class="nav-actions">
-
-      @if (isAuthenticated()) {
-        <a routerLink="/" class="nav-btn" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          {{ 'navbar.nav.catalogue' | transloco }}
-        </a>
-
-        @if (isAdmin()) {
-          <a routerLink="/admin" class="nav-btn nav-btn-admin" routerLinkActive="active">{{ 'navbar.nav.orders' | transloco }}</a>
-          <a routerLink="/admin/customers" class="nav-btn nav-btn-admin" routerLinkActive="active">{{ 'navbar.nav.customers' | transloco }}</a>
-          <a routerLink="/admin/notifications/new" class="nav-btn nav-btn-admin" routerLinkActive="active">{{ 'navbar.nav.notifications' | transloco }}</a>
-        } @else {
-          <a routerLink="/orders" class="nav-btn" routerLinkActive="active">{{ 'navbar.nav.my_orders' | transloco }}</a>
-          <a routerLink="/profile" class="nav-btn" routerLinkActive="active">{{ 'navbar.nav.profile' | transloco }}</a>
-        }
-
-        <button class="nav-btn nav-btn-signout" (click)="logout()">{{ 'navbar.nav.sign_out' | transloco }}</button>
-      } @else {
-        <a routerLink="/login" class="nav-btn" routerLinkActive="active">{{ 'navbar.nav.sign_in' | transloco }}</a>
-        <a routerLink="/register" class="nav-btn nav-btn-primary" routerLinkActive="active">{{ 'navbar.nav.register' | transloco }}</a>
-      }
-
-    </div>
-
     <!-- LANGUAGE -->
-    <div class="lang-dropdown" [class.open]="langOpen">
-      <button class="lang-toggle" (click)="toggleLang()">
-        <img [src]="'assets/flags/' + activeLang + '.svg'" [alt]="activeLang" />
-        <span class="chevron">▼</span>
-      </button>
-
-      <div class="lang-menu">
-        @for (l of langs; track l) {
-          <button
-            type="button"
-            (click)="setLanguage(l); closeLang()"
-            [class.active]="l === activeLang">
-
-            <img [src]="'assets/flags/' + l + '.svg'" [alt]="l" />
-            <span>{{ l.toUpperCase() }}</span>
-
-          </button>
+    <div class="nav-langs">
+      @for (l of langs; track l; let last = $last) {
+        <button class="lang-btn" [class.active]="l === activeLang" (click)="setLanguage(l)">
+          {{ l.toUpperCase() }}
+        </button>
+        @if (!last) {
+          <span class="lang-sep">·</span>
         }
-      </div>
+      }
     </div>
 
     <!-- CART -->
-    <button class="cart-btn" (click)="toggleCart()">
-      🛒
+    <button class="cart-btn" (click)="toggleCart()" aria-label="Basket">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 6h16l-1.6 9H3.6L2 6z"/>
+        <path d="M6.5 6C6.5 3.5 7.8 2 10 2s3.5 1.5 3.5 4"/>
+      </svg>
       <span class="cart-count">{{ cartItemCount() }}</span>
     </button>
 
-    <!-- HAMBURGER -->
-    <button class="hamburger" (click)="toggleMenu()">☰</button>
+    <!-- HAMBURGER (mobile) -->
+    <button class="hamburger" (click)="toggleMenu()" aria-label="Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="0 0 20 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="0" y1="2" x2="20" y2="2"/>
+        <line x1="0" y1="8" x2="20" y2="8"/>
+        <line x1="0" y1="14" x2="20" y2="14"/>
+      </svg>
+    </button>
 
   </div>
 
-  <!-- OVERLAY -->
+  <!-- OVERLAY (mobile menu) -->
   <div class="overlay" [class.open]="menuOpen" (click)="closeMenu()"></div>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" [class.open]="menuOpen">
-
     @if (isAuthenticated()) {
-      <a routerLink="/" (click)="closeMenu()">{{ 'navbar.nav.catalogue' | transloco }}</a>
-
+      <a routerLink="/" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.catalogue' | transloco }}</a>
       @if (isAdmin()) {
-        <a routerLink="/admin" (click)="closeMenu()">{{ 'navbar.nav.orders' | transloco }}</a>
-        <a routerLink="/admin/customers" (click)="closeMenu()">{{ 'navbar.nav.customers' | transloco }}</a>
-        <a routerLink="/admin/notifications/new" (click)="closeMenu()">{{ 'navbar.nav.notifications' | transloco }}</a>
+        <a routerLink="/admin" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.orders' | transloco }}</a>
+        <a routerLink="/admin/customers" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.customers' | transloco }}</a>
+        <a routerLink="/admin/notifications/new" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.notifications' | transloco }}</a>
       } @else {
-        <a routerLink="/orders" (click)="closeMenu()">{{ 'navbar.nav.my_orders' | transloco }}</a>
-        <a routerLink="/profile" (click)="closeMenu()">{{ 'navbar.nav.profile' | transloco }}</a>
+        <a routerLink="/orders" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.my_orders' | transloco }}</a>
+        <a routerLink="/profile" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.profile' | transloco }}</a>
       }
-
-      <button (click)="logout(); closeMenu()">{{ 'navbar.nav.sign_out' | transloco }}</button>
+      <button class="mobile-link mobile-link-btn" (click)="logout(); closeMenu()">{{ 'navbar.nav.sign_out' | transloco }}</button>
     } @else {
-      <a routerLink="/login" (click)="closeMenu()">{{ 'navbar.nav.sign_in' | transloco }}</a>
-      <a routerLink="/register" (click)="closeMenu()">{{ 'navbar.nav.register' | transloco }}</a>
+      <a routerLink="/login" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.sign_in' | transloco }}</a>
+      <a routerLink="/register" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.register' | transloco }}</a>
     }
-
   </div>
 
   <!-- CART DRAWER -->
   <div class="cart-drawer" [class.open]="cartOpen">
 
     <div class="cart-header">
-      <h3>{{ 'navbar.basket.title' | transloco }}</h3>
-      <button (click)="toggleCart()">✕</button>
+      <span class="cart-title">{{ 'navbar.basket.title' | transloco }}</span>
+      <button class="cart-close" (click)="toggleCart()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="2" y1="2" x2="14" y2="14"/>
+          <line x1="14" y1="2" x2="2" y2="14"/>
+        </svg>
+      </button>
     </div>
 
     <div class="cart-content">
-
       @for (item of cartItemsDetailed(); track item.productId) {
         <div class="cart-item">
-
           <img
             class="item-img"
             [src]="item.image"
             (error)="onImageError($event, item.name)"
             [alt]="item.name"
           />
-
           <div class="item-info">
-            <span class="name">{{ item.name }}</span>
-            <span class="price">{{ item.price }} €</span>
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-price">{{ item.price }} €</span>
           </div>
-
-          <div class="qty">
-            x{{ item.qty }}
-          </div>
-
+          <span class="item-qty">×{{ item.qty }}</span>
         </div>
       }
-
     </div>
 
     <div class="cart-footer">
-      <div class="total">
-        {{ 'navbar.basket.total' | transloco }}: {{ total() }} €
+      <div class="cart-total">
+        <span>{{ 'navbar.basket.total' | transloco }}</span>
+        <span class="cart-total-amount">{{ total() }} €</span>
       </div>
-
-      <button class="checkout-btn" (click)="checkout()">
-        {{ 'navbar.basket.checkout' | transloco }}
+      <button class="cart-checkout" (click)="checkout()">
+        {{ 'navbar.basket.checkout' | transloco }} →
       </button>
     </div>
 
