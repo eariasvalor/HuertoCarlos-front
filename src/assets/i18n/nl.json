@@ -166,6 +166,13 @@
       "title": "Eco Huerto Montgó",
       "subtitle": "Word lid van Eco Huerto Montgó"
     },
+    "panel": {
+      "eyebrow": "WORD LID",
+      "title": "Van veld naar",
+      "title_italic": "tafel,",
+      "title_end": "elke week.",
+      "description": "Maak een account aan om de verse producten van de Montgó te ontvangen, geoogst en verpakt op dezelfde ochtend."
+    },
     "form": {
       "name_label": "Naam",
       "name_placeholder": "Jouw naam",

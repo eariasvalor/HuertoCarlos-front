@@ -1,94 +1,128 @@
 <div class="register-wrapper">
-  <div class="register-card">
 
-    <div class="register-header">
-      <div class="tomato-icon">🍅</div>
-      <h1>{{ translocoService.translate('register.header.title') }}</h1>
-      <p>{{ translocoService.translate('register.header.subtitle') }}</p>
+  <!-- LEFT PANEL -->
+  <div class="register-left">
+
+    <a routerLink="/" class="brand">
+      <svg class="brand-sprig" xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="currentColor" aria-hidden="true">
+        <rect x="6.25" y="8" width="1.5" height="10" rx="0.75"/>
+        <ellipse cx="4" cy="12" rx="3.2" ry="1.6" transform="rotate(-35 4 12)"/>
+        <ellipse cx="10" cy="12" rx="3.2" ry="1.6" transform="rotate(35 10 12)"/>
+        <ellipse cx="4.5" cy="7.5" rx="2.8" ry="1.4" transform="rotate(-30 4.5 7.5)"/>
+        <ellipse cx="9.5" cy="7.5" rx="2.8" ry="1.4" transform="rotate(30 9.5 7.5)"/>
+        <circle cx="7" cy="3.5" r="2"/>
+      </svg>
+      <span>Eco Huerto <em>Montgó</em></span>
+    </a>
+
+    <div class="left-content">
+      <h2 class="left-headline">{{ 'register.panel.title' | transloco }} <em>{{ 'register.panel.title_italic' | transloco }}</em><br>{{ 'register.panel.title_end' | transloco }}</h2>
+      <p class="left-subline">{{ 'register.panel.description' | transloco }}</p>
     </div>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-
-      <div class="form-group">
-        <label for="name">{{ translocoService.translate('register.form.name_label') }}</label>
-        <input
-          id="name"
-          type="text"
-          formControlName="name"
-          placeholder="{{ translocoService.translate('register.form.name_placeholder') }}"
-          [class.error]="name?.invalid && name?.touched"
-        />
-        @if (name?.invalid && name?.touched) {
-          <span class="error-msg">{{ translocoService.translate('register.errors.name_length') }}</span>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="email">{{ translocoService.translate('register.form.email_label') }}</label>
-        <input
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="{{ translocoService.translate('register.form.email_placeholder') }}"
-          [class.error]="email?.invalid && email?.touched"
-        />
-        @if (email?.invalid && email?.touched) {
-          <span class="error-msg">{{ translocoService.translate('register.errors.invalid_email') }}</span>
-        }
-      </div>
-
-      <div class="form-group">
-        <label for="rawPassword">{{ translocoService.translate('register.form.password_label') }}</label>
-        <input
-          id="rawPassword"
-          type="password"
-          formControlName="rawPassword"
-          placeholder="{{ translocoService.translate('register.form.password_placeholder') }}"
-          [class.error]="rawPassword?.invalid && rawPassword?.touched"
-        />
-        @if (rawPassword?.invalid && rawPassword?.touched) {
-          <span class="error-msg">{{ translocoService.translate('register.errors.password_length') }}</span>
-        }
-      </div>
-
-      <div class="form-group">
-        <label>{{ translocoService.translate('register.form.phone_label') }}</label>
-        <div class="phone-row">
-          <input
-            type="text"
-            formControlName="phoneCountryCode"
-            placeholder="{{ translocoService.translate('register.form.phone_prefix_placeholder') }}"
-            class="phone-prefix"
-            [class.error]="phoneCountryCode?.invalid && phoneCountryCode?.touched"
-          />
-          <input
-            type="tel"
-            formControlName="phoneNumber"
-            placeholder="{{ translocoService.translate('register.form.phone_number_placeholder') }}"
-            class="phone-number"
-            [class.error]="phoneNumber?.invalid && phoneNumber?.touched"
-          />
-        </div>
-        @if ((phoneCountryCode?.invalid || phoneNumber?.invalid) && (phoneCountryCode?.touched || phoneNumber?.touched)) {
-          <span class="error-msg">{{ translocoService.translate('register.errors.phone_invalid') }}</span>
-        }
-      </div>
-
-      @if (errorMessage()) {
-        <div class="alert-error">{{ errorMessage() }}</div>
-      }
-
-      <button type="submit" [disabled]="form.invalid || isLoading()">
-        @if (isLoading()) { {{ translocoService.translate('register.form.submitting') }} } @else { {{ translocoService.translate('register.form.submit') }} }
-      </button>
-
-    </form>
-
-    <div class="register-footer">
-      <p> {{ translocoService.translate('register.footer.has_account') }} <a routerLink="/login">{{ translocoService.translate('register.footer.sign_in_link') }}</a></p>
-    </div>
-
-    <div class="tagline">{{ translocoService.translate('register.tagline') }}</div>
 
   </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="register-right">
+
+    <div class="register-langs">
+      @for (l of langs; track l; let last = $last) {
+        <button class="register-lang-btn" [class.active]="l === activeLang" (click)="setLanguage(l)">
+          {{ l.toUpperCase() }}
+        </button>
+        @if (!last) { <span class="register-lang-sep">·</span> }
+      }
+    </div>
+
+    <div class="form-panel">
+
+      <p class="form-eyebrow">{{ 'register.panel.eyebrow' | transloco }}</p>
+      <h1 class="form-title">{{ 'register.form.submit' | transloco }}</h1>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+        <div class="form-field">
+          <label class="field-label" for="name">{{ 'register.form.name_label' | transloco | uppercase }}</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            [class.invalid]="name?.invalid && name?.touched"
+          />
+          @if (name?.invalid && name?.touched) {
+            <span class="field-error">{{ 'register.errors.name_length' | transloco }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="email">{{ 'register.form.email_label' | transloco | uppercase }}</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [class.invalid]="email?.invalid && email?.touched"
+          />
+          @if (email?.invalid && email?.touched) {
+            <span class="field-error">{{ 'register.errors.invalid_email' | transloco }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="rawPassword">{{ 'register.form.password_label' | transloco | uppercase }}</label>
+          <input
+            id="rawPassword"
+            type="password"
+            formControlName="rawPassword"
+            [class.invalid]="rawPassword?.invalid && rawPassword?.touched"
+          />
+          @if (rawPassword?.invalid && rawPassword?.touched) {
+            <span class="field-error">{{ 'register.errors.password_length' | transloco }}</span>
+          }
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">{{ 'register.form.phone_label' | transloco | uppercase }}</label>
+          <div class="phone-row">
+            <input
+              type="text"
+              formControlName="phoneCountryCode"
+              class="phone-prefix"
+              [class.invalid]="phoneCountryCode?.invalid && phoneCountryCode?.touched"
+            />
+            <input
+              type="tel"
+              formControlName="phoneNumber"
+              class="phone-number"
+              [class.invalid]="phoneNumber?.invalid && phoneNumber?.touched"
+            />
+          </div>
+          @if ((phoneCountryCode?.invalid || phoneNumber?.invalid) && (phoneCountryCode?.touched || phoneNumber?.touched)) {
+            <span class="field-error">{{ 'register.errors.phone_invalid' | transloco }}</span>
+          }
+        </div>
+
+        @if (errorMessage()) {
+          <div class="alert-error">{{ errorMessage() }}</div>
+        }
+
+        <button type="submit" class="btn-submit" [disabled]="form.invalid || isLoading()">
+          @if (isLoading()) {
+            {{ 'register.form.submitting' | transloco }}
+          } @else {
+            {{ 'register.form.submit' | transloco }} →
+          }
+        </button>
+
+      </form>
+
+      <p class="form-footer">
+        {{ 'register.footer.has_account' | transloco }}
+        <a routerLink="/login">{{ 'register.footer.sign_in_link' | transloco }}</a>
+      </p>
+
+      <div class="form-tagline">{{ 'register.tagline' | transloco | uppercase }}</div>
+
+    </div>
+  </div>
+
 </div>

@@ -168,6 +168,13 @@
     "title": "Eco Huerto Montgó",
     "subtitle": "Join Eco Huerto Montgó"
   },
+  "panel": {
+    "eyebrow": "JOIN US",
+    "title": "From field to",
+    "title_italic": "table,",
+    "title_end": "every week.",
+    "description": "Create your account to start receiving the freshest picks from Montgó, cut and packed the same morning."
+  },
   "form": {
     "name_label": "Name",
     "name_placeholder": "Your name",

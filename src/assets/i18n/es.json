@@ -166,6 +166,13 @@
       "title": "Eco Huerto Montgó",
       "subtitle": "Únete a Eco Huerto Montgó"
     },
+    "panel": {
+      "eyebrow": "REGISTRO",
+      "title": "Del huerto a tu",
+      "title_italic": "mesa,",
+      "title_end": "cada semana.",
+      "description": "Crea tu cuenta para empezar a recibir lo más fresco del Montgó, recogido y preparado esta misma mañana."
+    },
     "form": {
       "name_label": "Nombre",
       "name_placeholder": "Tu nombre",
