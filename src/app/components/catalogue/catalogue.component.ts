@@ -1,5 +1,5 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { AuthService } from '../../core/auth/auth.service';
@@ -13,7 +13,7 @@ import { DbTranslatePipe } from '../../core/pipes/db-translate.pipe';
 @Component({
   selector: 'app-catalogue',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, TranslocoModule, DbTranslatePipe],
+  imports: [CommonModule, RouterLink, NavbarComponent, TranslocoModule, DbTranslatePipe],
   templateUrl: './catalogue.component.html',
   styleUrl: './catalogue.component.scss'
 })

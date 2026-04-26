@@ -1,0 +1,91 @@
+<div class="cart-wrapper">
+
+  <app-navbar />
+
+  @if (isLoading()) {
+    <div class="cart-status">{{ 'catalogue.loading' | transloco }}</div>
+
+  } @else if (cartLines().length === 0) {
+    <div class="cart-empty">
+      <p class="empty-eyebrow">{{ 'cart.eyebrow' | transloco }}</p>
+      <h1 class="empty-headline"><em>{{ 'cart.empty_title' | transloco }}</em></h1>
+      <a routerLink="/" class="empty-browse">← {{ 'cart.empty_browse' | transloco }}</a>
+    </div>
+
+  } @else {
+
+    <!-- HERO -->
+    <header class="cart-hero">
+      <p class="cart-eyebrow">{{ 'cart.eyebrow' | transloco }} · {{ today | date:'dd MMMM yyyy' | uppercase }}</p>
+      <h1 class="cart-headline">
+        <em>{{ countKey() | transloco }}</em> {{ thingsKey() | transloco }}
+      </h1>
+    </header>
+
+    <!-- BODY: items + summary -->
+    <div class="cart-body">
+
+      <!-- LEFT: item rows -->
+      <div class="cart-items">
+        @for (line of cartLines(); track line.productId) {
+          <div class="cart-row">
+            <img
+              class="row-img"
+              [src]="getImage(line.product)"
+              [alt]="line.product.name | dbTranslate:'PRODUCTS' | transloco"
+              (error)="onImageError($event)"
+            />
+            <div class="row-info">
+              <span class="row-name">{{ line.product.name | dbTranslate:'PRODUCTS' | transloco }}</span>
+              <span class="row-sub">{{ line.product.category | dbTranslate:'CATEGORIES' | transloco | uppercase }}</span>
+            </div>
+            <div class="row-stepper">
+              <button class="step-btn" (click)="decrease(line.productId)" [disabled]="line.qty <= 1">−</button>
+              <span class="step-val">{{ line.qty }}</span>
+              <button class="step-btn step-btn-add" (click)="increase(line.productId)">+</button>
+            </div>
+            <span class="row-price">€{{ (line.product.price * line.qty) | number:'1.2-2' }}</span>
+            <button class="row-remove" (click)="remove(line.productId)" aria-label="Remove">×</button>
+          </div>
+        }
+        <a routerLink="/" class="cart-browse">← {{ 'cart.keep_browsing' | transloco }}</a>
+      </div>
+
+      <!-- RIGHT: order summary -->
+      <aside class="cart-summary">
+        <span class="summary-title">{{ 'cart.summary.title' | transloco }}</span>
+
+        <div class="summary-row">
+          <span>{{ 'cart.summary.subtotal' | transloco }}</span>
+          <span>€{{ subtotal() | number:'1.2-2' }}</span>
+        </div>
+        <div class="summary-row">
+          <span>{{ 'cart.summary.delivery' | transloco }} · {{ today | date:'EEE dd' | uppercase }}</span>
+          <span>{{ 'cart.summary.delivery_free' | transloco }}</span>
+        </div>
+
+        <hr class="summary-divider" />
+
+        <div class="summary-total">
+          <span>{{ 'cart.summary.total' | transloco }}</span>
+          <span>€{{ subtotal() | number:'1.2-2' }}</span>
+        </div>
+
+        <button class="btn-place" (click)="placeOrder()" [disabled]="isPlacing()">
+          @if (isPlacing()) {
+            {{ 'catalogue.placing_order' | transloco }}
+          } @else {
+            {{ 'cart.place_order' | transloco }} →
+          }
+        </button>
+
+        <div class="summary-stamp">
+          <span class="stamp-line">{{ 'cart.cut_label' | transloco }}</span>
+          <span class="stamp-line">{{ 'cart.with_you_label' | transloco }}</span>
+        </div>
+      </aside>
+
+    </div>
+  }
+
+</div>

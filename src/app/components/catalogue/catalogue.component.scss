@@ -196,6 +196,10 @@
   font-weight: 400;
   color: var(--color-ink);
   line-height: 1.2;
+  text-decoration: none;
+  transition: color var(--transition);
+
+  &:hover { color: var(--color-terracotta); }
 }
 
 .card-variety {

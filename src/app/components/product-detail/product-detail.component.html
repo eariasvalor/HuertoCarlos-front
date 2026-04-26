@@ -1,0 +1,105 @@
+<div class="detail-wrapper">
+
+  <app-navbar />
+
+  @if (isLoading()) {
+    <div class="detail-loading">{{ 'catalogue.loading' | transloco }}</div>
+  } @else if (product(); as product) {
+
+    <div class="detail-main">
+
+      <!-- LEFT: IMAGE -->
+      <div class="image-col">
+        <div class="image-wrap">
+          <img
+            class="product-image"
+            [src]="getImage(product)"
+            [alt]="product.name | dbTranslate:'PRODUCTS' | transloco"
+            (error)="onImageError($event)"
+          />
+          <div class="harvest-stamp">
+            <span>HUERTO</span>
+            <span>· MONTGÓ ·</span>
+            <span>{{ today | date:'dd MMM' | uppercase }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INFO -->
+      <div class="info-col">
+
+        <button class="btn-back" (click)="goBack()">← {{ 'orders.header.back' | transloco }}</button>
+
+        <!-- BREADCRUMB -->
+        <nav class="breadcrumb">
+          <a routerLink="/" class="crumb">{{ 'product.detail.catalogue' | transloco }}</a>
+          <span class="crumb-sep">/</span>
+          <span class="crumb">{{ product.category | dbTranslate:'CATEGORIES' | transloco | uppercase }}</span>
+          <span class="crumb-sep">/</span>
+          <span class="crumb crumb-active">{{ product.name | dbTranslate:'PRODUCTS' | transloco | uppercase }}</span>
+        </nav>
+
+        <!-- CATEGORY • VARIETY -->
+        <p class="product-tags">
+          {{ product.category | dbTranslate:'CATEGORIES' | transloco | uppercase }}
+          <span class="tag-sep">•</span>
+          {{ product.variety | dbTranslate:'VARIETIES' | transloco | uppercase }}
+        </p>
+
+        <!-- NAME + VARIETY -->
+        <h1 class="product-name">{{ product.name | dbTranslate:'PRODUCTS' | transloco }}</h1>
+        <p class="product-variety">{{ product.variety | dbTranslate:'VARIETIES' | transloco }}</p>
+
+        <hr class="divider" />
+
+        <!-- PRICE + STEPPER -->
+        <div class="price-row">
+          <div class="price-block">
+            <span class="price-amount">€{{ product.price | number:'1.2-2' }}</span>
+            <span class="price-unit">/{{ product.unit | dbTranslate:'UNITS' | transloco }}</span>
+          </div>
+          <div class="qty-stepper">
+            <button class="qty-btn" (click)="decreaseQty()" [disabled]="qty() <= 1">−</button>
+            <span class="qty-value">{{ qty() }}</span>
+            <button class="qty-btn" (click)="increaseQty()" [disabled]="qty() >= product.stock">+</button>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- INFO GRID -->
+        <div class="info-grid">
+          <div class="info-cell">
+            <span class="info-label">{{ 'product.detail.stock' | transloco | uppercase }}</span>
+            <span class="info-value">{{ product.stock }} {{ product.unit | dbTranslate:'UNITS' | transloco }} {{ 'product.detail.remaining' | transloco }}</span>
+          </div>
+          <div class="info-cell">
+            <span class="info-label">{{ 'product.detail.category' | transloco | uppercase }}</span>
+            <span class="info-value">{{ product.category | dbTranslate:'CATEGORIES' | transloco }}</span>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        @if (added()) {
+          <div class="btn-added">{{ 'product.detail.added' | transloco }}</div>
+        } @else {
+          <button
+            class="btn-add"
+            (click)="addToBasket()"
+            [disabled]="!product.available || product.stock === 0">
+            {{ 'product.detail.add' | transloco }}
+            {{ qty() }} {{ product.unit | dbTranslate:'UNITS' | transloco }}
+            {{ 'product.detail.to_basket' | transloco }}
+            &nbsp;·&nbsp;
+            {{ total() | number:'1.2-2' }} €
+          </button>
+        }
+
+      </div>
+    </div>
+
+  } @else {
+    <div class="detail-loading">{{ 'products.load_error' | transloco }}</div>
+  }
+
+</div>

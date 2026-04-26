@@ -43,6 +43,13 @@ export class CartService {
     this.cart.set(newCart);
   }
 
+  set(productId: string, qty: number) {
+    const newCart = new Map(this.cart());
+    if (qty <= 0) newCart.delete(productId);
+    else newCart.set(productId, qty);
+    this.cart.set(newCart);
+  }
+
   clear() {
     this.cart.set(new Map());
   }

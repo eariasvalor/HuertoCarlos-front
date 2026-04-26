@@ -45,7 +45,7 @@
           </div>
 
           <div class="card-body">
-            <h3 class="card-name">{{ product.name | dbTranslate:'PRODUCTS' | transloco }}</h3>
+            <a class="card-name" [routerLink]="['/products', product.id]">{{ product.name | dbTranslate:'PRODUCTS' | transloco }}</a>
             <p class="card-variety">{{ product.variety | dbTranslate:'VARIETIES' | transloco }}</p>
             
             <div class="card-footer-row">

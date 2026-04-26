@@ -245,6 +245,96 @@
     },
     "tagline": "Tomates de temporada · Directos del huerto"
   },
+  "product": {
+    "detail": {
+      "catalogue": "Catálogo",
+      "stock": "Disponible",
+      "remaining": "restantes",
+      "category": "Categoría",
+      "add": "Añadir",
+      "to_basket": "a la cesta",
+      "added": "Añadido a la cesta ✓"
+    }
+  },
+  "cart": {
+    "eyebrow": "TU CESTA",
+    "headline_thing": "producto del huerto",
+    "headline_things": "productos del huerto",
+    "keep_browsing": "Seguir viendo el catálogo",
+    "place_order": "Realizar el pedido",
+    "empty_title": "Tu cesta está vacía",
+    "empty_browse": "Ver el catálogo",
+    "cut_label": "RECOGIDA MIÉ 06:30",
+    "with_you_label": "CONTIGO ANTES DE LAS 14:00",
+    "summary": {
+      "title": "RESUMEN DEL PEDIDO",
+      "subtotal": "Subtotal",
+      "delivery": "Entrega",
+      "delivery_free": "Gratis",
+      "total": "Total"
+    },
+    "count": {
+      "1": "Un",
+      "2": "Dos",
+      "3": "Tres",
+      "4": "Cuatro",
+      "5": "Cinco",
+      "6": "Seis",
+      "7": "Siete",
+      "8": "Ocho",
+      "9": "Nueve",
+      "10": "Diez"
+    }
+  },
+  "UNITS": {
+    "KG": "kg",
+    "GRAMS": "g",
+    "UNIT": "unidad",
+    "BUNCH": "manojo",
+    "BAG": "bolsa",
+    "LITRE": "L"
+  },
+  "CATEGORIES": {
+    "ALL": "Todos",
+    "TOMATO": "Tomate",
+    "PEPPER": "Pimiento",
+    "EGGPLANT": "Berenjena",
+    "ZUCCHINI": "Calabacín",
+    "LETTUCE": "Lechuga",
+    "ONION": "Cebolla",
+    "GARLIC": "Ajo",
+    "CUCUMBER": "Pepino",
+    "BASIL": "Albahaca",
+    "PARSLEY": "Perejil",
+    "ROSEMARY": "Romero",
+    "HERBS": "Hierbas"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Corazón de buey",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Rosa de Altea",
+    "PERA": "Pera",
+    "MORRON_ROJO": "Morrón rojo",
+    "MORRON_VERDE": "Morrón verde",
+    "ITALIANO": "Italiano",
+    "PADRON": "Padrón",
+    "COMUN": "Común",
+    "RAYADA": "Rayada",
+    "VERDE": "Verde",
+    "AMARILLO": "Amarillo",
+    "ROMANA": "Romana",
+    "HOJA_DE_ROBLE": "Hoja de roble",
+    "ICEBERG": "Iceberg",
+    "BLANCA": "Blanca",
+    "MORADA": "Morada",
+    "TIERNA": "Tierna",
+    "BLANCO": "Blanco",
+    "MORADO": "Morado",
+    "MINI": "Mini",
+    "FRESCO": "Fresco"
+  },
     "notifications": {
       "title": "Enviar notificación",
       "subtitle": "Notifica a tus clientes al instante",

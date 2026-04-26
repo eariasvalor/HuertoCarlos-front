@@ -83,5 +83,15 @@ export const routes: Routes = [
       import('./components/admin/admin-notifications-new/admin-notifications-new')
         .then(m => m.AdminNotifications)
   },
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('./components/cart/cart.component').then(m => m.CartComponent)
+  },
+  {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('./components/product-detail/product-detail.component').then(m => m.ProductDetailComponent)
+  },
   { path: '**', redirectTo: '' }
 ];

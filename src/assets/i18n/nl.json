@@ -245,6 +245,96 @@
     },
     "tagline": "Seizoenstomaten · Rechtstreeks van het veld"
   },
+  "product": {
+  "detail": {
+    "catalogue": "Aanbod",
+    "stock": "Voorraad",
+    "remaining": "resterend",
+    "category": "Categorie",
+    "add": "Voeg toe",
+    "to_basket": "aan krat",
+    "added": "Toegevoegd aan krat ✓"
+  }
+  },
+  "cart": {
+  "eyebrow": "JOUW MAND",
+  "headline_thing": "product van het veld",
+  "headline_things": "producten van het veld",
+  "keep_browsing": "Verder winkelen",
+  "place_order": "Bestelling plaatsen",
+  "empty_title": "Je mand is leeg",
+  "empty_browse": "Bekijk het aanbod",
+  "cut_label": "BESTELTOT WO 06:30",
+  "with_you_label": "BIJ JE VOOR 14:00",
+  "summary": {
+    "title": "BESTELOVERZICHT",
+    "subtotal": "Subtotaal",
+    "delivery": "Bezorging",
+    "delivery_free": "Gratis",
+    "total": "Totaal"
+  },
+    "count": {
+      "1": "Eén",
+      "2": "Twee",
+      "3": "Drie",
+      "4": "Vier",
+      "5": "Vijf",
+      "6": "Zes",
+      "7": "Zeven",
+      "8": "Acht",
+      "9": "Negen",
+      "10": "Tien"
+    }
+  },
+  "UNITS": {
+    "KG": "kg",
+    "GRAMS": "g",
+    "UNIT": "stuk",
+    "BUNCH": "bos",
+    "BAG": "zak",
+    "LITRE": "L"
+  },
+  "CATEGORIES": {
+    "ALL": "Alles",
+    "TOMATO": "Tomaat",
+    "PEPPER": "Paprika",
+    "EGGPLANT": "Aubergine",
+    "ZUCCHINI": "Courgette",
+    "LETTUCE": "Sla",
+    "ONION": "Ui",
+    "GARLIC": "Knoflook",
+    "CUCUMBER": "Komkommer",
+    "BASIL": "Basilicum",
+    "PARSLEY": "Peterselie",
+    "ROSEMARY": "Rozemarijn",
+    "HERBS": "Kruiden"
+  },
+  "VARIETIES": {
+    "RAF": "Raf",
+    "CHERRY": "Cherry",
+    "CORAZON_DE_BUEY": "Ossenhart",
+    "MUTXAMEL": "Mutxamel",
+    "ROSA_DE_ALTEA": "Rosa de Altea",
+    "PERA": "Pruim",
+    "MORRON_ROJO": "Rode paprika",
+    "MORRON_VERDE": "Groene paprika",
+    "ITALIANO": "Italiaans",
+    "PADRON": "Padrón",
+    "COMUN": "Gewoon",
+    "RAYADA": "Gestreept",
+    "VERDE": "Groen",
+    "AMARILLO": "Geel",
+    "ROMANA": "Romaine",
+    "HOJA_DE_ROBLE": "Eikenbladlettuce",
+    "ICEBERG": "IJsberg",
+    "BLANCA": "Wit",
+    "MORADA": "Paars",
+    "TIERNA": "Lente-ui",
+    "BLANCO": "Wit",
+    "MORADO": "Paars",
+    "MINI": "Mini",
+    "FRESCO": "Vers"
+  },
   "notifications": {
     "title": "Melding verzenden",
     "subtitle": "Informeer je klanten direct",
