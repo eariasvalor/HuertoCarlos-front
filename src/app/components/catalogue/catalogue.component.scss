@@ -40,12 +40,15 @@
 /* ── FILTER BAR ── */
 .filter-bar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: var(--space-2);
   margin: 0 var(--space-12);
   padding: var(--space-4) 0;
   border-top: 1px solid var(--color-border);
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar { display: none; }
 }
 
 .filter-chip {
@@ -321,16 +324,58 @@
 
   .filter-bar {
     margin: 0 var(--space-5);
+    padding: var(--space-3) 0;
   }
 
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
-    padding: var(--space-3) var(--space-5);
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-5);
   }
 }
 
 @media (max-width: 480px) {
+  .catalogue-header {
+    padding: var(--space-5) var(--space-4) var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .filter-bar {
+    margin: 0 var(--space-4);
+  }
+
   .products-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* shorter image on small cards */
+  .card-image::before {
+    padding-bottom: 90%;
+  }
+
+  .card-body {
+    padding: var(--space-3);
+    gap: var(--space-1);
+  }
+
+  /* stack price above stepper so they don't overflow the narrow card */
+  .card-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  /* 44px touch targets */
+  .qty-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.125rem;
+  }
+
+  .qty-value {
+    font-size: var(--text-sm);
   }
 }
