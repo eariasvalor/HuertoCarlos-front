@@ -32,7 +32,18 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   }
 }
 
-const savedLang = localStorage.getItem('lang') || 'es';
+const VALID_LANGS = ['en', 'es', 'nl'];
+const urlLang = new URLSearchParams(window.location.search).get('lang') ?? '';
+const storedLang = localStorage.getItem('lang') ?? '';
+const activeLang = VALID_LANGS.includes(urlLang)
+  ? urlLang
+  : VALID_LANGS.includes(storedLang)
+    ? storedLang
+    : 'es';
+
+if (urlLang && VALID_LANGS.includes(urlLang)) {
+  localStorage.setItem('lang', urlLang);
+}
 
 class SimpleMissingHandler {
   handle(key: string, params?: Record<string, any>) {
@@ -49,7 +60,7 @@ bootstrapApplication(App, {
     provideTransloco({
       config: translocoConfig({
         availableLangs: ['en', 'es', 'nl'],
-        defaultLang: 'es',
+        defaultLang: activeLang,
         fallbackLang: 'es',
         reRenderOnLangChange: true,
         prodMode: false
