@@ -76,9 +76,24 @@
     "states": {
       "loading": "Je bestellingen laden...",
       "empty": "Nog geen bestellingen.",
+      "no_match": "Geen bestellingen voor dit filter.",
       "browse": "Bekijk aanbod",
       "load_error": "Bestellingen konden niet worden geladen. Probeer het opnieuw.",
       "cancel_error": "Bestelling kon niet worden geannuleerd. Probeer het opnieuw."
+    },
+    "filter": {
+      "all": "Alles",
+      "pending": "In afwachting",
+      "confirmed": "Bevestigd",
+      "ready": "Klaar",
+      "delivered": "Bezorgd",
+      "cancelled": "Geannuleerd"
+    },
+    "sort": {
+      "date_desc": "Nieuwste eerst",
+      "date_asc": "Oudste eerst",
+      "total_desc": "Hoogste bedrag",
+      "total_asc": "Laagste bedrag"
     },
     "timeline": {
       "pending": "In afwachting",

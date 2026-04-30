@@ -78,9 +78,24 @@
     "states": {
       "loading": "Loading your orders...",
       "empty": "No orders yet.",
+      "no_match": "No orders match this filter.",
       "browse": "Browse Catalogue",
       "load_error": "Could not load your orders. Please try again.",
-    "cancel_error": "Could not cancel order. Please try again."
+      "cancel_error": "Could not cancel order. Please try again."
+    },
+    "filter": {
+      "all": "All",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "ready": "Ready",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "sort": {
+      "date_desc": "Newest first",
+      "date_asc": "Oldest first",
+      "total_desc": "Highest total",
+      "total_asc": "Lowest total"
     },
     "timeline": {
       "pending": "Pending",
