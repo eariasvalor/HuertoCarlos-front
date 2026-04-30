@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../core/services/order.service';
@@ -8,6 +8,9 @@ import { Location } from '@angular/common';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { DbTranslatePipe } from '../../core/pipes/db-translate.pipe';
+
+type SortKey = 'date_desc' | 'date_asc' | 'total_desc' | 'total_asc';
+type FilterStatus = OrderStatus | 'ALL';
 
 @Component({
   selector: 'app-orders',
@@ -28,7 +31,32 @@ export class OrdersComponent implements OnInit {
   readonly errorMessage = signal<string | null>(null);
   readonly cancellingId = signal<string | null>(null);
 
+  readonly activeFilter = signal<FilterStatus>('ALL');
+  readonly sortKey = signal<SortKey>('date_desc');
+
+  readonly filteredOrders = computed(() => {
+    let list = this.orders();
+    const f = this.activeFilter();
+    if (f !== 'ALL') {
+      list = list.filter(o => o.status === f);
+    }
+    const s = this.sortKey();
+    return [...list].sort((a, b) => {
+      switch (s) {
+        case 'date_desc': return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        case 'date_asc':  return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        case 'total_desc': return b.total - a.total;
+        case 'total_asc':  return a.total - b.total;
+      }
+    });
+  });
+
+  readonly filterStatuses: OrderStatus[] = ['PENDING', 'CONFIRMED', 'READY_FOR_PICKUP', 'DELIVERED', 'CANCELLED'];
+
   public steps = ['pending', 'confirmed', 'ready', 'delivered'];
+
+  setFilter(status: FilterStatus) { this.activeFilter.set(status); }
+  setSort(event: Event) { this.sortKey.set((event.target as HTMLSelectElement).value as SortKey); }
 
   ngOnInit() {
     this.loadOrders();

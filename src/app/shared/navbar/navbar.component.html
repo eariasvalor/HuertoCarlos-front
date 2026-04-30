@@ -92,6 +92,16 @@
       <a routerLink="/login" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.sign_in' | transloco }}</a>
       <a routerLink="/register" class="mobile-link" (click)="closeMenu()">{{ 'navbar.nav.register' | transloco }}</a>
     }
+
+    <!-- LANGUAGE SELECTOR -->
+    <div class="mobile-langs">
+      @for (l of langs; track l; let last = $last) {
+        <button class="mobile-lang-btn" [class.active]="l === activeLang" (click)="setLanguage(l)">
+          {{ l.toUpperCase() }}
+        </button>
+        @if (!last) { <span class="lang-sep">·</span> }
+      }
+    </div>
   </div>
 
   <!-- CART DRAWER -->

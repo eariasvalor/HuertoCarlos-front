@@ -67,19 +67,16 @@
 /* ── RIGHT PANEL ── */
 .login-right {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: var(--space-12) var(--space-12) var(--space-12) var(--space-16);
-  position: relative;
+  flex-direction: column;
+  padding: var(--space-8) var(--space-12) var(--space-12) var(--space-16);
 }
 
 .login-langs {
-  position: absolute;
-  top: var(--space-8);
-  right: var(--space-8);
+  align-self: flex-end;
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  margin-bottom: var(--space-8);
 }
 
 .login-lang-btn {
@@ -104,6 +101,10 @@
 }
 
 .form-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   max-width: 340px;
 }
@@ -258,10 +259,7 @@
   }
 
   .login-left {
-    min-height: 35vh;
-    border-right: none;
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--space-6);
+    display: none;
   }
 
   .left-headline {
@@ -277,6 +275,10 @@
   }
 
   .login-right {
-    padding: var(--space-8) var(--space-6);
+    padding: var(--space-6) var(--space-6);
+  }
+
+  .login-langs {
+    margin-bottom: var(--space-6);
   }
 }

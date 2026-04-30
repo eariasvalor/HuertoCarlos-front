@@ -76,9 +76,24 @@
     "states": {
       "loading": "Cargando tus pedidos...",
       "empty": "Todavía no tienes pedidos.",
+      "no_match": "No hay pedidos con este estado.",
       "browse": "Ver catálogo",
       "load_error": "No se han podido cargar tus pedidos. Inténtalo de nuevo.",
       "cancel_error": "No se ha podido cancelar el pedido. Inténtalo de nuevo."
+    },
+    "filter": {
+      "all": "Todos",
+      "pending": "Pendientes",
+      "confirmed": "Confirmados",
+      "ready": "Listos",
+      "delivered": "Entregados",
+      "cancelled": "Cancelados"
+    },
+    "sort": {
+      "date_desc": "Más reciente",
+      "date_asc": "Más antiguo",
+      "total_desc": "Mayor importe",
+      "total_asc": "Menor importe"
     },
     "timeline": {
       "pending": "Pendiente",

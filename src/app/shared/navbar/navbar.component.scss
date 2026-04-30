@@ -246,6 +246,29 @@
   font-size: var(--text-base);
 }
 
+.mobile-langs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-6);
+}
+
+.mobile-lang-btn {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color var(--transition);
+
+  &.active { color: var(--color-ink); font-weight: 500; }
+  &:hover  { color: var(--color-ink); }
+}
+
 /* =========================
    CART DRAWER
 ========================= */

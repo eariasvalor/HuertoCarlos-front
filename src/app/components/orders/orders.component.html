@@ -25,8 +25,34 @@
 
   } @else {
 
+    <div class="orders-toolbar">
+      <div class="filter-bar">
+        <button class="filter-btn" [class.active]="activeFilter() === 'ALL'" (click)="setFilter('ALL')">
+          {{ 'orders.filter.all' | transloco }}
+        </button>
+        @for (status of filterStatuses; track status) {
+          <button class="filter-btn" [class.active]="activeFilter() === status" (click)="setFilter(status)">
+            {{ 'orders.filter.' + mapStatus(status) | transloco }}
+          </button>
+        }
+      </div>
+      <select class="sort-select" [value]="sortKey()" (change)="setSort($event)">
+        <option value="date_desc">{{ 'orders.sort.date_desc' | transloco }}</option>
+        <option value="date_asc">{{ 'orders.sort.date_asc' | transloco }}</option>
+        <option value="total_desc">{{ 'orders.sort.total_desc' | transloco }}</option>
+        <option value="total_asc">{{ 'orders.sort.total_asc' | transloco }}</option>
+      </select>
+    </div>
+
+    @if (filteredOrders().length === 0) {
+      <div class="orders-empty">
+        <p class="empty-text">{{ 'orders.states.no_match' | transloco }}</p>
+        <button class="btn-browse" (click)="setFilter('ALL')">{{ 'orders.filter.all' | transloco }} →</button>
+      </div>
+    } @else {
+
     <div class="orders-list">
-      @for (order of orders(); track order.id) {
+      @for (order of filteredOrders(); track order.id) {
 
         <div class="order-card">
 
@@ -114,6 +140,8 @@
 
       }
     </div>
+
+    }
 
   }
 
